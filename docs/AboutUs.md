@@ -45,15 +45,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/flyingcat9)] [[portfolio](team/liminong.md)]
 
-* Role: Team Lead
-* Responsibilities: Everything under the Sun
+* Role: Developer
+* Responsibilities: Deliverables and deadlines
 
 ### Eugene Lek
 
-<img src="images/eugene_lek.png" width="200px">
+<img src="images/eugene-lek.png" width="200px">
 
 [[github](https://github.com/Eugene-Lek)]
 [[portfolio](team/eugene-lek.md)]
 
-* Role: Git expert
+* Role: Developer
 * Responsibilities: Git only

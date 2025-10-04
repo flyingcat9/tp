@@ -274,13 +274,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
-* can type fast
+* has a need to manage a database of blood donors with detailed profile information
+* requires quick access to donor personal information
+* prefer desktop apps over other types of apps
+* is able to type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
+* wants to filter profiles such as by blood type
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage blood-donor profiles more efficiently as opposed to a typical mouse driven app
 
 
 ### User stories
