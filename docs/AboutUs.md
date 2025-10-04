@@ -11,51 +11,49 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Aditya Khandelwal
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/adityagk753.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/adityagk753)]
+[[portfolio](team/aditya.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: Software Development
 
-### Jane Doe
+### Lim Jinle, Alexius
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tastyveggy.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/TastyVeggy)]
+[[portfolio](team/alexius.md)]
+
+* Role: Developer
+
+### Faith Wan
+
+<img src="images/fsythw.png" width="200px">
+
+[[github](https://github.com/fsythw)]
+[[portfolio](team/fsythw.md)]
+
+* Role: Developer
+
+### Ong Li Min
+
+<img src="images/flyingcat9.png" width="200px">
+
+[[github](http://github.com/flyingcat9)] [[portfolio](team/liminong.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Everything under the Sun
 
-### Johnny Doe
+### Eugene Lek
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eugene_lek.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Eugene-Lek)]
+[[portfolio](team/eugene-lek.md)]
 
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Git expert
+* Responsibilities: Git only

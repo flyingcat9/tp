@@ -35,7 +35,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** (consisting of classes [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
+**`Main`** (consisting of classes [`Main`](https://github.com/AY2526S1-CS2103T-T16-4/tp/tree/master/src/main/java/seedu/address) and [`MainApp`](https://github.com/AY2526S1-CS2103T-T16-4/tp/blob/master/src/main/java/seedu/address/MainApp.java)) is in charge of the app launch and shut down.
 * At app launch, it initializes the other components in the correct sequence, and connects them up with each other.
 * At shut down, it shuts down the other components and invokes cleanup methods where necessary.
 
@@ -67,13 +67,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2526S1-CS2103T-T16-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 <puml src="diagrams/UiClassDiagram.puml" alt="Structure of the UI Component"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2526S1-CS2103T-T16-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2526S1-CS2103T-T16-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -84,7 +84,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2526S1-CS2103T-T16-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -101,7 +101,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it is passed to an `AddressBookParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
+1. When `Logic` is called upon to execute a command, it is passed to an `BloodNetParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
@@ -112,11 +112,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <puml src="diagrams/ParserClasses.puml" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `BloodNetParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `BloodNetParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2526S1-CS2103T-T16-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <puml src="diagrams/ModelClassDiagram.puml" width="450" />
 
@@ -130,7 +130,7 @@ The `Model` component,
 
 <box type="info" seamless>
 
-**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `BloodNet`, which `Person` references. This allows `BloodNet` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <puml src="diagrams/BetterModelClassDiagram.puml" width="450" />
 
@@ -139,13 +139,13 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/BloodNet-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <puml src="diagrams/StorageClassDiagram.puml" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in JSON format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `BloodNetStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -162,42 +162,42 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedBloodNet`. It extends `BloodNet` with an undo/redo history, stored internally as an `BloodNetStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedBloodNet#commit()` — Saves the current address book state in its history.
+* `VersionedBloodNet#undo()` — Restores the previous address book state from its history.
+* `VersionedBloodNet#redo()` — Restores a previously undone address book state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitBloodNet()`, `Model#undoBloodNet()` and `Model#redoBloodNet()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedBloodNet` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
 
 <puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitBloodNet()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `BloodNetStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 <puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitBloodNet()`, causing another modified address book state to be saved into the `BloodNetStateList`.
 
 <puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
 
 <box type="info" seamless>
 
-**Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+**Note:** If a command fails its execution, it will not call `Model#commitBloodNet()`, so the address book state will not be saved into the `BloodNetStateList`.
 
 </box>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoBloodNet()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 <puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
 
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+**Note:** If the `currentStatePointer` is at index 0, pointing to the initial BloodNet state, then there are no previous BloodNet states to restore. The `undo` command uses `Model#canUndoBloodNet()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </box>
@@ -216,19 +216,19 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 
 <puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoBloodNet()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
 <box type="info" seamless>
 
-**Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+**Note:** If the `currentStatePointer` is at index `BloodNetStateList.size() - 1`, pointing to the latest address book state, then there are no undone BloodNet states to restore. The `redo` command uses `Model#canRedoBloodNet()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </box>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitBloodNet()`, `Model#undoBloodNet()` or `Model#redoBloodNet()`. Thus, the `BloodNetStateList` remains unchanged.
 
 <puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitBloodNet()`. Since the `currentStatePointer` is not pointing at the end of the `BloodNetStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 <puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
 
@@ -287,45 +287,337 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person             |                                                                        |
-| `* * *`  | user                                       | delete a person              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name        | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name         | locate a person easily                                                 |
+| Priority | As a …      | I want to …                                                                                               | So that …                                                                                                  |
+| -------- | ----------- |-----------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| * * *    | admin staff | add a donor’s contact & blood type                                                                        | the blood bank can keep in touch with the donor if more information is needed                                    |
+| * * *    | admin staff | add a donor’s gender                                                                                      | the blood bank is aware of the haemoglobin level of the person                                                   |
+| * * *    | admin staff | add a donor’s DOB                                                                                         | the blood bank knows if the person is eligible for donating blood                                                |
+| * * *    | admin staff | add a donor’s medical history                                                                             | the blood bank can keep track if the person has any conditions                                                   |
+| * * *    | admin staff | search donors by name                                                                                     | I can find their contact information if I need to contact them                                                   |
+| * * *    | admin staff | modify a donor’s contact information                                                                      | I can fix the stored contact information if it was keyed in wrongly previously                                   |
+| * * *    | admin staff | modify a donor’s DOB                                                                                      | I can fix the stored date of birth if it was keyed in wrongly                                                    |
+| * * *    | admin staff | modify a donor’s blood type                                                                               | I can fix the stored blood type if it was keyed in wrongly previously                                            |
+| * * *    | admin staff | modify a person’s medical history                                                                         | I can fix the stored medical history if it had been typed in wrongly previously                                  |
+| * * *    | admin staff | delete a donor (soft-delete / archive)                                                                    | Remove donors who have passed away or are no longer eligible for donation                                        |
+| * * *    | admin staff | list all donors in the system                                                                             | Have a quick overview of all the people who have agreed to donate blood to us                                    |
+| * * *    | admin staff | find all donors of a particular blood type                                                                | If we have a shortage of a particular blood type, we can contact these people and ask them for donations         |
+| * * *    | admin staff | record a blood donation by a contact                                                                      | I can track how many donations each contact has made, and the details of those donations                 |
+| * * *    | admin staff | modify a blood donation record                                                                            | I can modify wrongly keyed in records                                                                                  |
+| * * *    | admin staff | delete a blood donation record                                                                            | I can remove wrongly keyed in records                                                                                  |
+| * * *    | admin staff | sort all blood donation records of a contact                                                              | I can see a person’s blood donation history to determine if it has been at least 12 weeks since their last donation |
+| * * *    | admin staff | check if a person is eligible for donation on a particular date (based on age and last donation interval) | I can quickly determine if the person is eligible for donation on their requested appointment date               |
+| * * *    | manager     | report the breakdown of contacts by blood group                                                           | I can understand which blood group we are lacking donors in                                                      |
+| * * *    | admin staff | record a blood donor’s emergency contact(s)                                                               | I can reach out to someone if there are complications after a blood donation (e.g. donor faints)                 |
+| * *      | admin staff | modify a donor’s gender                                                                                   | I can fix a person’s gender if typed wrongly                                                                     | |
+| * *      | admin staff | find a donor based on contact information                                                                 | I can link their name and contact information together                                                           |
+| * *      | admin staff | export donor contact information into a file                                                              | I can share donor lists with approved stakeholders when needed                                                   |
+| * *      | admin staff | be able to choose which fields to anonymise when exporting information                                    | I can comply with data protection policies                                                                       |
+| * *      | admin staff | send reminders to eligible donors for their next donation                                                 | Donors are aware of when they can donate again                                                                   |
+| * *      | admin staff | tag a donor as unavailable                                                                                | they are not contacted when they cannot donate (traveling, ill etc)                                           |
+| * *      | admin staff | add a donor’s weight                                                                                      | I know how much blood can be drawn from a donor in accord with minimum weight requirements                       |
+| * *      | admin staff | modify a donor’s weight                                                                                   | I can update the donor’s weight or fix it if I typed wrongly                                                     |
+| * *      | admin staff | mass import donor information from a file                                                                 | I can quickly onboard data from other instances of the same system within the blood bank                         |
+| * *      | admin staff | detect duplicate donors                                                                                   | I can quickly identify duplicate data in the system and reconcile it to reduce data pollution                    |
+| * *      | manager     | see donor demographics (e.g. age ranges, gender distribution)                                             | I can understand our donor base better to plan outreach programmes accordingly                                   |
+| *        | admin staff | check the date when the weight is last updated                                                            | I know if I should request a weight update based on the recency of the data                                      |
+| *        | manager     | view a record of every change done to the system                                                          | I can establish accountability for a system holding sensitive data                                               |
+| *        | admin staff | record how much blood was donated by a donor in a session                                                 | I can recommend donors who have been very active for appreciation awards, to incentivise more donors             |
 
-*{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `BloodNet`, unless specified otherwise)
 
-**Use case: Delete a person**
+---
+
+### **Use case: UC01 - Add a donor’s contact & blood type**
+
+**Actor**: Admin staff
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. Admin staff requests to add a donor and provides the donor's information.
+2. BloodNet creates a new donor entry with the provided details.
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. One or more of the provided information is invalid
+    * 1a1. BloodNet shows an error message.
+    * Use case returns to step 1.
 
-  Use case ends.
+---
 
-* 3a. The given index is invalid.
+### **Use case: UC02 - Update a donor's information**
 
-    * 3a1. AddressBook shows an error message.
+**Actor**: Admin staff
 
-      Use case resumes at step 2.
+**MSS**
 
-*{More to be added}*
+1. Admin staff lists all donors ([UC05](#use-case-uc05---list-all-donors-in-the-system
+)).
+2. Admin staff requests to update a specified donor, and provides the fields to update and values to update them with.
+3. BloodNet updates fields of the donor for which values were supplied.
+
+Use case ends.
+
+**Extensions**
+* 1a. The list is empty.
+    * Use case ends.
+
+* 2a. Donor ID not found.
+    * 3a1. BloodNet shows an error message.
+    * Use case returns to step 3.
+
+* 2b. One or more invalid values provided.
+    * 3b1. BloodNet shows an error message.
+    * Use case returns to step 3.
+
+---
+
+### **Use case: UC03 - Search donors by name**
+
+**Actor**: Admin staff
+
+**MSS**
+
+1. Admin staff requests to find a donor by their name.
+2. BloodNet searches and displays donors with matching names.
+
+Use case ends.
+
+---
+
+### **Use case: UC04 - Delete a donor**
+
+**Actor**: Admin staff
+
+**MSS**
+
+1. Admin staff lists all donors ([UC05](#use-case-uc05---list-all-donors-in-the-system)).
+2. Admin staff requests to delete a donor.
+3. BloodNet deletes a donor.
+
+Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+    * Use case ends.
+
+* 2a. Donor ID is invalid.
+    * 3a1. BloodNet shows an error message.
+    * Use case returns to step 3.
+
+---
+
+### **Use case: UC05 - List all donors in the system**
+
+**Actor**: Admin staff
+
+**MSS**
+
+1. Admin staff requests to list all donors.
+2. BloodNet displays a list of all non-deleted donors.
+
+Use case ends.
+
+---
+
+### **Use case: UC06 - Find all donors of a particular blood type**
+
+**Actor**: Admin staff
+
+**MSS**
+
+1. Admin staff requests to find donors of a particular blood type.
+2. BloodNet searches for and displays all donors matching the specified blood type.
+
+Use case ends.
+
+---
+
+### **Use case: UC07 - Record a blood donation by a donor**
+
+**Actor**: Admin staff
+
+**MSS**
+
+1. Admin staff requests to find a donor by their name.
+2. BloodNet searches and displays donors with matching names.
+3. Admin staff requests to record a blood donation by a donor.
+4. BloodNet records the donation details (including date and volume).
+
+ Use case ends.
+
+**Extensions**
+
+* 2a. No donors match the search name.
+    * Use case ends.
+
+* 3a. Donor ID is invalid.
+    * 3a1. BloodNet shows an error message.
+    * Use case returns to step 3.
+
+* 3b. Date or volume format is invalid.
+    * 3b1. BloodNet shows an error message.
+    * Use case resumes at step 3.
+
+---
+
+### **Use case: UC08 - List all blood donations by a donor**
+
+**Actor**: Admin staff
+
+**MSS**
+
+1. Admin staff requests to find a donor by their name.
+2. BloodNet searches and displays donors with matching names.
+3. Admin staff requests to list all blood donations by a specified donor.
+4. BloodNet returns a list of blood donations, sorted by donation date in descending order.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. No donors match the search name.
+    * Use case ends.
+
+* 3a. Donor ID is invalid.
+    * 3a1. BloodNet shows an error message.
+    * Use case returns to step 3.
+
+
+---
+
+
+### **Use case: UC09 - Modify a blood donation record**
+
+**Actor**: Admin staff
+
+**MSS**
+
+1. Admin staff requests to find a donor by their name.
+2. BloodNet searches and displays donors with matching names.
+3. Admin staff requests to list all blood donations by a specified donor.
+4. BloodNet returns a list of blood donations, sorted by donation date in descending order.
+5. Admin staff requests to update a specified blood donation record.
+6. BloodNet updates the donation record.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. No donors match the search name.
+    * Use case ends.
+
+* 3a. Donor ID is invalid.
+    * 3a1. BloodNet shows an error message.
+    * Use case returns to step 3.
+
+* 5a. Donation ID is invalid.
+    * 1a1. BloodNet shows an error message.
+      Use case returns to step 5.
+
+* 5b. Invalid data format for date or volume.
+    * 5b1. BloodNet shows an error message.
+      Use case returns to step 5.
+
+---
+
+### **Use case: UC10 - Delete a blood donation record**
+
+**Actor**: Admin staff
+
+**MSS**
+
+1. Admin staff requests to find a donor by their name.
+2. BloodNet searches and displays donors with matching names.
+3. Admin staff requests to list all blood donations by a specified donor.
+4. BloodNet returns a list of blood donations, sorted by donation date in descending order.
+5. Admin staff requests to delete a specified blood donation record.
+6. BloodNet deletes the donation record.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. No donors match the search name.
+    * Use case ends.
+
+* 3a. Donor ID is invalid.
+    * 3a1. BloodNet shows an error message.
+    * Use case returns to step 3.
+
+* 5a. Donation ID is invalid.
+    * 1a1. BloodNet shows an error message.
+      Use case returns to step 5.
+
+---
+
+### **Use case: UC11 - Check if a person is eligible for donation on a particular date**
+
+**Actor**: Admin staff
+
+**MSS**
+
+1. Admin staff requests to find a donor by their name.
+2. BloodNet searches and displays donors with matching names.
+3. Admin staff requests to check if a specified donor is eligible for donation on a particular date.
+4. BloodNet checks if the donor meets age and 12-week interval rules, and shows eligible or not eligible status with reason.
+
+Use case ends.
+
+**Extensions**
+
+* 2a. No donors match the search name.
+    * Use case ends.
+
+* 3a. Donor ID is invalid.
+    * 3a1. BloodNet shows an error message.
+    * Use case returns to step 3
+
+---
+
+### **Use case: UC12 - See donor demographics (e.g. age ranges, gender distribution)**
+
+**Actor**: Manager
+
+**MSS**
+
+1. Manager requests to see donor demographics.
+2. BloodNet computes and shows breakdown of donor population by age, gender, etc.
+
+Use case ends.
+
+---
+
+### **Use case: UC13 - Report the breakdown of contacts by blood group**
+
+**Actor**: Manager
+
+**MSS**
+
+1. Manager requests to see the breakdown of contacts by blood group.
+2. BloodNet displays a breakdown of donors by blood group.
+
+Use case ends.
+
+---
+
+### **Use case: UC14 - View a record of every change done to the system**
+
+**Actor**: Manager
+
+**MSS**
+
+1. Manager requests to see the audit log.
+2. BloodNet displays all actions made (add/update/delete), with timestamps and user roles.
+
+Use case ends.
+
+
 
 ### Non-Functional Requirements
 
