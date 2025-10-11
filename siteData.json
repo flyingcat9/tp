@@ -7,11 +7,11 @@
       "headings": {
         "about-us": "About Us",
         "project-team": "Project team",
-        "john-doe": "John Doe",
-        "jane-doe": "Jane Doe",
-        "johnny-doe": "Johnny Doe",
-        "jean-doe": "Jean Doe",
-        "james-doe": "James Doe"
+        "aditya-khandelwal": "Aditya Khandelwal",
+        "lim-jinle-alexius": "Lim Jinle, Alexius",
+        "faith-wan": "Faith Wan",
+        "ong-li-min": "Ong Li Min",
+        "eugene-lek": "Eugene Lek"
       },
       "headingKeywords": {}
     },
@@ -38,7 +38,6 @@
     },
     {
       "src": "DeveloperGuide.md",
-      "title": "Developer Guide",
       "headings": {
         "ab-3-developer-guide": "AB-3 Developer Guide",
         "acknowledgements": "Acknowledgements",
@@ -58,6 +57,20 @@
         "product-scope": "Product scope",
         "user-stories": "User stories",
         "use-cases": "Use cases",
+        "use-case-uc01-add-a-donor-s-contact-and-amp-blood-type": "Use case: UC01 - Add a donor’s contact &amp; blood type",
+        "use-case-uc02-update-a-donor-s-information": "Use case: UC02 - Update a donor's information",
+        "use-case-uc03-search-donors-by-name": "Use case: UC03 - Search donors by name",
+        "use-case-uc04-delete-a-donor": "Use case: UC04 - Delete a donor",
+        "use-case-uc05-list-all-donors-in-the-system": "Use case: UC05 - List all donors in the system",
+        "use-case-uc06-find-all-donors-of-a-particular-blood-type": "Use case: UC06 - Find all donors of a particular blood type",
+        "use-case-uc07-record-a-blood-donation-by-a-donor": "Use case: UC07 - Record a blood donation by a donor",
+        "use-case-uc08-list-all-blood-donations-by-a-donor": "Use case: UC08 - List all blood donations by a donor",
+        "use-case-uc09-modify-a-blood-donation-record": "Use case: UC09 - Modify a blood donation record",
+        "use-case-uc10-delete-a-blood-donation-record": "Use case: UC10 - Delete a blood donation record",
+        "use-case-uc11-check-if-a-person-is-eligible-for-donation-on-a-particular-date": "Use case: UC11 - Check if a person is eligible for donation on a particular date",
+        "use-case-uc12-see-donor-demographics-e-g-age-ranges-gender-distribution": "Use case: UC12 - See donor demographics (e.g. age ranges, gender distribution)",
+        "use-case-uc13-report-the-breakdown-of-contacts-by-blood-group": "Use case: UC13 - Report the breakdown of contacts by blood group",
+        "use-case-uc14-view-a-record-of-every-change-done-to-the-system": "Use case: UC14 - View a record of every change done to the system",
         "non-functional-requirements": "Non-Functional Requirements",
         "glossary": "Glossary",
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
@@ -107,7 +120,7 @@
       "src": "UserGuide.md",
       "title": "User Guide",
       "headings": {
-        "ab-3-user-guide": "AB-3 User Guide",
+        "bloodnet-user-guide": "BloodNet User Guide",
         "quick-start": "Quick start",
         "features": "Features",
         "viewing-help-help": "Viewing help : help",
@@ -136,10 +149,42 @@
       "headingKeywords": {}
     },
     {
-      "src": "team/johndoe.md",
-      "title": "John Doe's Project Portfolio Page",
+      "src": "team/aditya.md",
+      "title": "Aditya's Project Portfolio Page",
       "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/alexius.md",
+      "title": "Alexius' Project Portfolio Page",
+      "headings": {
+        "project-bloodnet": "Project: BloodNet"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/eugene-lek.md",
+      "title": "Eugene Lek's Project Portfolio Page",
+      "headings": {
+        "project-addressbook-level-3": "Project: AddressBook Level 3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/faith.md",
+      "title": "Faith's Project Portfolio Page",
+      "headings": {
+        "project-bloodnet": "Project: BloodNet"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/liminong.md",
+      "title": "Li Min Ong's Project Portfolio Page",
+      "headings": {
+        "project-bloodnet-level-3": "Project: BloodNet Level 3"
       },
       "headingKeywords": {}
     }
