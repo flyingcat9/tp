@@ -43,6 +43,8 @@ public class Messages {
                 .append(person.getEmail())
                 .append("; Blood Type: ")
                 .append(person.getBloodType())
+                .append("; Eligibility Status: ")
+                .append(person.getEligibilityStatus())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
         return builder.toString();

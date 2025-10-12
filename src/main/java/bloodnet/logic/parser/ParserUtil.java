@@ -10,6 +10,7 @@ import bloodnet.commons.core.index.Index;
 import bloodnet.commons.util.StringUtil;
 import bloodnet.logic.parser.exceptions.ParseException;
 import bloodnet.model.person.BloodType;
+import bloodnet.model.person.EligibilityStatus;
 import bloodnet.model.person.Email;
 import bloodnet.model.person.Name;
 import bloodnet.model.person.Phone;
@@ -81,6 +82,22 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String EligibilityStatus} into a {@code EligibilityStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code EligibilityStatus} is invalid.
+     */
+    public static EligibilityStatus parseEligibilityStatus(String eligibilityStatus) throws ParseException {
+        requireNonNull(eligibilityStatus);
+        String trimmedEligibilityStatus = eligibilityStatus.trim();
+        if (!EligibilityStatus.isValidEligibilityStatus(trimmedEligibilityStatus)) {
+            throw new ParseException(EligibilityStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new EligibilityStatus(trimmedEligibilityStatus);
+    }
+
+
+    /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -121,4 +138,7 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+
+
 }

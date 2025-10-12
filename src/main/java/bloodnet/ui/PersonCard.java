@@ -39,6 +39,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label eligibilityStatus;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -52,6 +54,9 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         bloodType.setText(person.getBloodType().value);
         email.setText(person.getEmail().value);
+        System.out.println("EligibilityStatus object: " + person.getEligibilityStatus());
+        System.out.println("EligibilityStatus.value: [" + person.getEligibilityStatus().value + "]");
+        eligibilityStatus.setText(person.getEligibilityStatus().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

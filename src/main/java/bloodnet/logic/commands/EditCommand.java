@@ -5,6 +5,7 @@ import static bloodnet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_NAME;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_TAG;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_ELIGIBILITY_STATUS;
 import static bloodnet.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
@@ -22,6 +23,7 @@ import bloodnet.logic.Messages;
 import bloodnet.logic.commands.exceptions.CommandException;
 import bloodnet.model.Model;
 import bloodnet.model.person.BloodType;
+import bloodnet.model.person.EligibilityStatus;
 import bloodnet.model.person.Email;
 import bloodnet.model.person.Name;
 import bloodnet.model.person.Person;
@@ -43,6 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_BLOOD_TYPE + "BLOOD_TYPE] "
+            + "[" + PREFIX_ELIGIBILITY_STATUS + "ELIGIBILITY_STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -99,9 +102,10 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
+        EligibilityStatus updatedEligibilityStatus = editPersonDescriptor.getEligibilityStatus().orElse(personToEdit.getEligibilityStatus());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedBloodType, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedBloodType, updatedEligibilityStatus, updatedTags);
     }
 
     @Override
@@ -137,6 +141,7 @@ public class EditCommand extends Command {
         private Phone phone;
         private Email email;
         private BloodType bloodType;
+        private EligibilityStatus eligibilityStatus;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -150,6 +155,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setBloodType(toCopy.bloodType);
+            setEligibilityStatus(toCopy.eligibilityStatus);
             setTags(toCopy.tags);
         }
 
@@ -192,6 +198,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(bloodType);
         }
 
+        public void setEligibilityStatus(EligibilityStatus eligibilityStatus) {
+            this.eligibilityStatus = eligibilityStatus;
+        }
+
+        public Optional<EligibilityStatus> getEligibilityStatus() {
+            return Optional.ofNullable(eligibilityStatus);
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
@@ -225,6 +239,7 @@ public class EditCommand extends Command {
                     && Objects.equals(phone, otherEditPersonDescriptor.phone)
                     && Objects.equals(email, otherEditPersonDescriptor.email)
                     && Objects.equals(bloodType, otherEditPersonDescriptor.bloodType)
+                    && Objects.equals(eligibilityStatus, otherEditPersonDescriptor.eligibilityStatus)
                     && Objects.equals(tags, otherEditPersonDescriptor.tags);
         }
 
@@ -236,7 +251,11 @@ public class EditCommand extends Command {
                     .add("email", email)
                     .add("bloodType", bloodType)
                     .add("tags", tags)
+                    .add("eligibilityStatus", eligibilityStatus)
                     .toString();
         }
+
+
+
     }
 }

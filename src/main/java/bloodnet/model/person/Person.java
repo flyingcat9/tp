@@ -23,17 +23,20 @@ public class Person {
 
     // Data fields
     private final BloodType bloodType;
+    private final EligibilityStatus eligibilityStatus;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, BloodType bloodType, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, bloodType, tags);
+    public Person(Name name, Phone phone, Email email, BloodType bloodType, EligibilityStatus
+            eligibilityStatus, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, bloodType, eligibilityStatus, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.bloodType = bloodType;
+        this.eligibilityStatus = eligibilityStatus;
         this.tags.addAll(tags);
     }
 
@@ -52,6 +55,14 @@ public class Person {
     public BloodType getBloodType() {
         return bloodType;
     }
+
+    /**
+     * Returns the eligibility status of the blood donor.
+     */
+    public EligibilityStatus getEligibilityStatus() {
+        return eligibilityStatus;
+    }
+
 
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
@@ -94,13 +105,14 @@ public class Person {
                 && phone.equals(otherPerson.phone)
                 && email.equals(otherPerson.email)
                 && bloodType.equals(otherPerson.bloodType)
+                && eligibilityStatus.equals(otherPerson.eligibilityStatus)
                 && tags.equals(otherPerson.tags);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, bloodType, tags);
+        return Objects.hash(name, phone, email, bloodType, eligibilityStatus, tags);
     }
 
     @Override
@@ -110,6 +122,7 @@ public class Person {
                 .add("phone", phone)
                 .add("email", email)
                 .add("bloodType", bloodType)
+                .add("eligibilityStatus", eligibilityStatus)
                 .add("tags", tags)
                 .toString();
     }

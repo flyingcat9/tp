@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import bloodnet.commons.exceptions.IllegalValueException;
 import bloodnet.model.person.BloodType;
+import bloodnet.model.person.EligibilityStatus;
 import bloodnet.model.person.Email;
 import bloodnet.model.person.Name;
 import bloodnet.model.person.Person;
@@ -28,6 +29,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String bloodType;
+    private final String eligibilityStatus;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -36,11 +38,13 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("bloodType") String bloodType,
+            @JsonProperty("eligibilityStatus") String eligibilityStatus,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.bloodType = bloodType;
+        this.eligibilityStatus = eligibilityStatus;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -54,6 +58,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         bloodType = source.getBloodType().value;
+        eligibilityStatus = source.getEligibilityStatus().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -103,8 +108,19 @@ class JsonAdaptedPerson {
         }
         final BloodType modelBloodType = new BloodType(bloodType);
 
+        if (eligibilityStatus == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    BloodType.class.getSimpleName()));
+        }
+
+        if(!EligibilityStatus.isValidEligibilityStatus((eligibilityStatus))) {
+            throw new IllegalValueException(EligibilityStatus.MESSAGE_CONSTRAINTS);
+        }
+
+        final EligibilityStatus modelEligibilityStatus = new EligibilityStatus(eligibilityStatus);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelBloodType, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelBloodType, modelEligibilityStatus, modelTags);
     }
 
 }
