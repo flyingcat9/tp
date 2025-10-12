@@ -1,6 +1,7 @@
 package bloodnet.model.person;
 
 import static bloodnet.logic.commands.CommandTestUtil.VALID_BLOOD_TYPE_BOB;
+import static bloodnet.logic.commands.CommandTestUtil.VALID_ELIGIBILITY_STATUS_BOB;
 import static bloodnet.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static bloodnet.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static bloodnet.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -34,17 +35,20 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns false
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withBloodType(VALID_BLOOD_TYPE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withBloodType(VALID_BLOOD_TYPE_BOB).withEligibilityStatus(VALID_ELIGIBILITY_STATUS_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // same number, all other attributes different -> returns false
         editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).withEmail(VALID_EMAIL_BOB)
-                .withBloodType(VALID_BLOOD_TYPE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withBloodType(VALID_BLOOD_TYPE_BOB).withEligibilityStatus(VALID_ELIGIBILITY_STATUS_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // same name and same number, all other attributes different -> return true
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
-                .withBloodType(VALID_BLOOD_TYPE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withBloodType(VALID_BLOOD_TYPE_BOB)
+                .withEligibilityStatus(VALID_ELIGIBILITY_STATUS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name and number, all other attributes same -> return false
@@ -96,6 +100,10 @@ public class PersonTest {
         editedAlice = new PersonBuilder(ALICE).withBloodType(VALID_BLOOD_TYPE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
+        // different eligibility status, same everything else -> returns false
+        editedAlice = new PersonBuilder(ALICE).withEligibilityStatus(VALID_ELIGIBILITY_STATUS_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -103,9 +111,12 @@ public class PersonTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
+        String expected = Person.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone="
+                + ALICE.getPhone()
                 + ", email=" + ALICE.getEmail()
-                + ", bloodType=" + ALICE.getBloodType() + ", tags=" + ALICE.getTags() + "}";
+                + ", bloodType=" + ALICE.getBloodType() + ", eligibilityStatus="
+                + ALICE.getEligibilityStatus()
+                + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

@@ -67,6 +67,6 @@ public class EligibilityStatusTest {
         assertFalse(eligibilityStatus.equals(2.0f));
 
         // different values -> returns false
-        assertFalse(eligibilityStatus.equals(new EligibilityStatus("eligible")));
+        assertFalse(eligibilityStatus.equals(new EligibilityStatus("ineligible")));
     }
 }

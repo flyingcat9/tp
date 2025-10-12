@@ -32,7 +32,6 @@ public class EligibilityStatus {
      */
     public EligibilityStatus(String eligibilityStatus) {
         requireNonNull(eligibilityStatus);
-        System.out.println("Constructing EligibilityStatus with: '" + eligibilityStatus + "'");
         checkArgument(isValidEligibilityStatus(eligibilityStatus), MESSAGE_CONSTRAINTS);
         this.value = eligibilityStatus;
     }

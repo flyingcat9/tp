@@ -36,6 +36,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setBloodType(person.getBloodType());
+        descriptor.setEligibilityStatus(person.getEligibilityStatus());
         descriptor.setTags(person.getTags());
     }
 
@@ -68,6 +69,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withBloodType(String bloodType) {
         descriptor.setBloodType(new BloodType(bloodType));
+        return this;
+    }
+
+    /**
+     * Sets the {@code EligibilityStatus} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withEligibilityStatus(String eligibilityStatus) {
+        descriptor.setBloodType(new BloodType(eligibilityStatus));
         return this;
     }
 

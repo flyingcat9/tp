@@ -1,6 +1,7 @@
 package bloodnet.logic.commands;
 
 import static bloodnet.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_ELIGIBILITY_STATUS;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_NAME;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -30,6 +31,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
+    public static final String VALID_ELIGIBILITY_STATUS_AMY = "eligible";
+    public static final String VALID_ELIGIBILITY_STATUS_BOB = "ineligible";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_BLOOD_TYPE_AMY = "A+";
@@ -43,6 +46,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String ELIGIBILITY_STATUS_DESC_AMY = " " + PREFIX_BLOOD_TYPE + VALID_BLOOD_TYPE_AMY;
+    public static final String ELIGIBILITY_STATUS_DESC_BOB = " " + PREFIX_BLOOD_TYPE + VALID_BLOOD_TYPE_BOB;
     public static final String BLOOD_TYPE_DESC_AMY = " " + PREFIX_BLOOD_TYPE + VALID_BLOOD_TYPE_AMY;
     public static final String BLOOD_TYPE_DESC_BOB = " " + PREFIX_BLOOD_TYPE + VALID_BLOOD_TYPE_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -50,7 +55,9 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo";
+    public static final String INVALID_ELIGIBILITY_STATUS_DESC = " "
+            + PREFIX_ELIGIBILITY_STATUS + "x"; // other statuses are not valid
     public static final String INVALID_BLOOD_TYPE_DESC = " " + PREFIX_BLOOD_TYPE; // " " not allowed for blood types
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 

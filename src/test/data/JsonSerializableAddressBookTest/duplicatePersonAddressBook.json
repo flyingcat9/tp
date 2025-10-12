@@ -4,11 +4,14 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "bloodType": "B+",
+    "eligibilityStatus": "deferred",
     "tags": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
-    "email": "pauline@example.com",
-    "bloodType": "B+"
+    "email": "alice@example.com",
+    "bloodType": "B+",
+    "eligibilityStatus": "eligible",
+    "tags": [ "friends" ]
   } ]
 }

@@ -3,6 +3,8 @@
     "name": "Hans Muster",
     "phone": "94782424",
     "email": "invalid@email!3e",
+    "bloodType": "A+",
+    "eligibilityStatus": "eligible",
     "address": "4th street"
   } ]
 }

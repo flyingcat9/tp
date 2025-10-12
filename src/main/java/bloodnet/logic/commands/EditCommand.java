@@ -252,8 +252,8 @@ public class EditCommand extends Command {
                     .add("phone", phone)
                     .add("email", email)
                     .add("bloodType", bloodType)
-                    .add("tags", tags)
                     .add("eligibilityStatus", eligibilityStatus)
+                    .add("tags", tags)
                     .toString();
         }
 
