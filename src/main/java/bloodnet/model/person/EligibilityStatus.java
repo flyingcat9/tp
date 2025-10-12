@@ -33,7 +33,7 @@ public class EligibilityStatus {
     public EligibilityStatus(String eligibilityStatus) {
         requireNonNull(eligibilityStatus);
         System.out.println("Constructing EligibilityStatus with: '" + eligibilityStatus + "'");
-        checkArgument(isValidEligibilityStatus(eligibilityStatus.toLowerCase()), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidEligibilityStatus(eligibilityStatus), MESSAGE_CONSTRAINTS);
         this.value = eligibilityStatus;
     }
 
@@ -41,7 +41,7 @@ public class EligibilityStatus {
      * Returns true if a given string is a valid blood type
      */
     public static boolean isValidEligibilityStatus(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.toLowerCase().matches(VALIDATION_REGEX);
     }
 
 
