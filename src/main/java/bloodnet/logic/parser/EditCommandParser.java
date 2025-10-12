@@ -2,10 +2,10 @@ package bloodnet.logic.parser;
 
 import static bloodnet.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_ELIGIBILITY_STATUS;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_NAME;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_PHONE;
-import static bloodnet.logic.parser.CliSyntax.PREFIX_ELIGIBILITY_STATUS;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
@@ -62,7 +62,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setBloodType(ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOOD_TYPE).get()));
         }
         if (argMultimap.getValue(PREFIX_ELIGIBILITY_STATUS).isPresent()) {
-            editPersonDescriptor.setEligibilityStatus(ParserUtil.parseEligibilityStatus(argMultimap.getValue(PREFIX_ELIGIBILITY_STATUS).get()));
+            editPersonDescriptor.setEligibilityStatus(
+                    ParserUtil.parseEligibilityStatus(argMultimap.getValue(PREFIX_ELIGIBILITY_STATUS).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 

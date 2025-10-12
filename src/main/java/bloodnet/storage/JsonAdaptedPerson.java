@@ -113,7 +113,7 @@ class JsonAdaptedPerson {
                     BloodType.class.getSimpleName()));
         }
 
-        if(!EligibilityStatus.isValidEligibilityStatus((eligibilityStatus))) {
+        if (!EligibilityStatus.isValidEligibilityStatus((eligibilityStatus))) {
             throw new IllegalValueException(EligibilityStatus.MESSAGE_CONSTRAINTS);
         }
 

@@ -1,10 +1,10 @@
 package bloodnet.logic.commands;
 
 import static bloodnet.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_ELIGIBILITY_STATUS;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_NAME;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_PHONE;
-import static bloodnet.logic.parser.CliSyntax.PREFIX_ELIGIBILITY_STATUS;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 

@@ -14,8 +14,8 @@ public class EligibilityStatus {
      * system but have yet to screen/donate
     */
     public static final String MESSAGE_CONSTRAINTS =
-            "Eligibility status should either be Eligible, Cooldown, Deferred, Ineligible, or Unscreened, " +
-                    "and it should not be blank";
+            "Eligibility status should either be Eligible, Cooldown, Deferred, Ineligible, or Unscreened, "
+                    + "and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -23,7 +23,7 @@ public class EligibilityStatus {
      */
     public static final String VALIDATION_REGEX = "^(eligible|cooldown|deferred|ineligible|unscreened)$";
 
-    public String value;
+    public final String value;
 
     /**
      * Constructs a {@code EligibilityStatus}.

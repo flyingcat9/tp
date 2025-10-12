@@ -36,17 +36,20 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_BLOOD_TYPE, PREFIX_ELIGIBILITY_STATUS, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_BLOOD_TYPE, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ELIGIBILITY_STATUS)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_BLOOD_TYPE,
+                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ELIGIBILITY_STATUS)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_BLOOD_TYPE, PREFIX_ELIGIBILITY_STATUS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE,
+                PREFIX_EMAIL, PREFIX_BLOOD_TYPE, PREFIX_ELIGIBILITY_STATUS);
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         BloodType bloodType = ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOOD_TYPE).get());
-        EligibilityStatus eligibilityStatus = ParserUtil.parseEligibilityStatus(argMultimap.getValue(PREFIX_ELIGIBILITY_STATUS).get());
+        EligibilityStatus eligibilityStatus = ParserUtil.parseEligibilityStatus(
+                argMultimap.getValue(PREFIX_ELIGIBILITY_STATUS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(name, phone, email, bloodType, eligibilityStatus, tagList);

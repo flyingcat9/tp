@@ -1,11 +1,11 @@
 package bloodnet.logic.commands;
 
 import static bloodnet.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_ELIGIBILITY_STATUS;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_NAME;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_PHONE;
 import static bloodnet.logic.parser.CliSyntax.PREFIX_TAG;
-import static bloodnet.logic.parser.CliSyntax.PREFIX_ELIGIBILITY_STATUS;
 import static bloodnet.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static java.util.Objects.requireNonNull;
 
@@ -102,10 +102,12 @@ public class EditCommand extends Command {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());
-        EligibilityStatus updatedEligibilityStatus = editPersonDescriptor.getEligibilityStatus().orElse(personToEdit.getEligibilityStatus());
+        EligibilityStatus updatedEligibilityStatus = editPersonDescriptor.getEligibilityStatus()
+                .orElse(personToEdit.getEligibilityStatus());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedBloodType, updatedEligibilityStatus, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedBloodType,
+                updatedEligibilityStatus, updatedTags);
     }
 
     @Override
