@@ -23,9 +23,9 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public InputResponse execute(Model model) {
         requireNonNull(model);
         model.setBloodNet(new BloodNet());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new InputResponse(MESSAGE_SUCCESS);
     }
 }

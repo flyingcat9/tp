@@ -21,7 +21,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import bloodnet.logic.commands.AddCommand;
 import bloodnet.logic.commands.Command;
-import bloodnet.logic.commands.CommandResult;
+import bloodnet.logic.commands.InputResponse;
 import bloodnet.logic.commands.ListCommand;
 import bloodnet.logic.commands.commandsessions.CommandSession;
 import bloodnet.logic.commands.commandsessions.exceptions.TerminalSessionStateException;
@@ -96,18 +96,18 @@ public class LogicManagerTest {
         Logic logic = new LogicManager(model, storage, new BloodNetParserStub());
 
 
-        CommandResult result;
+        InputResponse response;
         for (int i = 1; i <= 3; i++) {
-            result = logic.execute("multi state");
+            response = logic.handle("multi state");
             // Verify that session is still ongoing
-            assertEquals(Integer.toString(i), result.getFeedbackToUser());
+            assertEquals(Integer.toString(i), response.getFeedbackToUser());
         }
 
         // Verify that upon reaching the terminal state for 'multi state' command,
-        // the session is cleaned up and subsequent execute behaves as a fresh
+        // the session is cleaned up and subsequent handling of user input behaves as a fresh
         // command, not session input
-        result = logic.execute("");
-        assertEquals("Success", result.getFeedbackToUser());
+        response = logic.handle("");
+        assertEquals("Success", response.getFeedbackToUser());
     }
 
     @Test
@@ -118,14 +118,14 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(bloodNetStorage, userPrefsStorage);
         Logic logic = new LogicManager(model, storage, new BloodNetParserStub());
 
-        CommandResult result = logic.execute("throw terminal");
+        InputResponse response = logic.handle("throw terminal");
 
-        assertEquals(LogicManager.TERMINAL_COMMAND_SESSION_STATE_ERROR_MESSAGE, result.getFeedbackToUser());
+        assertEquals(LogicManager.TERMINAL_COMMAND_SESSION_STATE_ERROR_MESSAGE, response.getFeedbackToUser());
 
         // Verify that session is cleaned up after terminalSessionStateException and
-        // subsequent execute behaves as a fresh command, not session input
-        result = logic.execute("");
-        assertEquals("Success", result.getFeedbackToUser());
+        // subsequent handling of user input behaves as a fresh command, not session input
+        response = logic.handle("");
+        assertEquals("Success", response.getFeedbackToUser());
     }
 
     @Test
@@ -135,9 +135,9 @@ public class LogicManagerTest {
         StorageManager storage = new StorageManager(bloodNetStorage, userPrefsStorage);
         Logic logic = new LogicManager(model, storage, new BloodNetParserStub());
 
-        CommandResult result;
+        InputResponse response;
         try {
-            result = logic.execute("throw command exception");
+            response = logic.handle("throw command exception");
             throw new AssertionError("Should throw a CommandException");
         } catch (CommandException e) {
             assertEquals("Command exception occurred", e.getMessage());
@@ -145,8 +145,8 @@ public class LogicManagerTest {
 
         // Verify that session is cleaned up after CommandException and
         // subsequent execute behaves as a fresh command, not session input
-        result = logic.execute("");
-        assertEquals("Success", result.getFeedbackToUser());
+        response = logic.handle("");
+        assertEquals("Success", response.getFeedbackToUser());
     }
 
     @Test
@@ -169,13 +169,13 @@ public class LogicManagerTest {
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
                                       Model expectedModel) throws CommandException, ParseException {
-        CommandResult result = logic.execute(inputCommand);
-        assertEquals(expectedMessage, result.getFeedbackToUser());
+        InputResponse response = logic.handle(inputCommand);
+        assertEquals(expectedMessage, response.getFeedbackToUser());
         assertEquals(expectedModel, model);
     }
 
     /**
-     * Executes the command, confirms that a ParseException is thrown and that the result message is correct.
+     * Executes the command, confirms that a ParseException is thrown and that the response message is correct.
      *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
@@ -184,7 +184,7 @@ public class LogicManagerTest {
     }
 
     /**
-     * Executes the command, confirms that a CommandException is thrown and that the result message is correct.
+     * Executes the command, confirms that a CommandException is thrown and that the response message is correct.
      *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
@@ -193,7 +193,7 @@ public class LogicManagerTest {
     }
 
     /**
-     * Executes the command, confirms that the exception is thrown and that the result message is correct.
+     * Executes the command, confirms that the exception is thrown and that the response message is correct.
      *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
@@ -213,7 +213,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage, Model expectedModel) {
-        assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
+        assertThrows(expectedException, expectedMessage, () -> logic.handle(inputCommand));
         assertEquals(expectedModel, model);
     }
 
@@ -255,7 +255,7 @@ public class LogicManagerTest {
      */
     private class TerminalExceptionSessionStub implements CommandSession {
         @Override
-        public CommandResult handle(String input) throws TerminalSessionStateException {
+        public InputResponse handle(String input) throws TerminalSessionStateException {
             throw new TerminalSessionStateException();
         }
 
@@ -275,7 +275,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public CommandResult execute(Model model) {
+        public InputResponse execute(Model model) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -292,9 +292,9 @@ public class LogicManagerTest {
         private int currentState = 0;
 
         @Override
-        public CommandResult handle(String input) throws CommandException, TerminalSessionStateException {
+        public InputResponse handle(String input) throws CommandException, TerminalSessionStateException {
             currentState += 1;
-            return new CommandResult(Integer.toString(currentState));
+            return new InputResponse(Integer.toString(currentState));
         }
 
         @Override
@@ -313,7 +313,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public CommandResult execute(Model model) {
+        public InputResponse execute(Model model) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -323,8 +323,8 @@ public class LogicManagerTest {
      */
     private class SuccessCommandStub extends Command {
         @Override
-        public CommandResult execute(Model model) {
-            return new CommandResult("Success");
+        public InputResponse execute(Model model) {
+            return new InputResponse("Success");
         }
     }
 
@@ -352,7 +352,7 @@ public class LogicManagerTest {
      */
     private class CommandExceptionSessionStub implements CommandSession {
         @Override
-        public CommandResult handle(String input) throws CommandException {
+        public InputResponse handle(String input) throws CommandException {
             throw new CommandException("Command exception occurred");
         }
 
@@ -372,7 +372,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public CommandResult execute(Model model) {
+        public InputResponse execute(Model model) {
             throw new AssertionError("This method should not be called.");
         }
     }

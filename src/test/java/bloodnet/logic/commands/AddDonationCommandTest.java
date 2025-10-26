@@ -70,9 +70,9 @@ public class AddDonationCommandTest {
         AddDonationCommand addDonationCommand =
                 new AddDonationCommand(indexStub, donationDateStub, bloodVolumeStub);
 
-        CommandResult commandResult = addDonationCommand.execute(modelStub);
+        InputResponse inputResponse = addDonationCommand.execute(modelStub);
 
-        assert(commandResult.getFeedbackToUser().contains("New donation record added"));
+        assert(inputResponse.getFeedbackToUser().contains("New donation record added"));
     }
 
     @Test

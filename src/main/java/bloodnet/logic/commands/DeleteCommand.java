@@ -20,8 +20,8 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String DESCRIPTION = " Deletes the person identified by the index number "
-            + "used in the displayed person list.";
+    public static final String DESCRIPTION = "Deletes the donor identified by the index number "
+            + "used in the displayed donor list.";
 
     public static final String EXAMPLE = "Example: " + COMMAND_WORD + " 1";
 
@@ -47,10 +47,10 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public InputResponse execute(Model model) throws CommandException {
         Person personToDelete = getPersonToDelete(model);
         model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
+        return new InputResponse(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));
     }
 
     @Override

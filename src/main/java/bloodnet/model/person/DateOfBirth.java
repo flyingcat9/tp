@@ -8,26 +8,19 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-
 /**
- * Represents a Person's birthdate (DD-MM-YYYY) in BloodNet
+ * Represents a Person's dateOfBirth (DD-MM-YYYY) in BloodNet
  * Guarantees: immutable; is valid as declared in {@link #isValidDateOfBirth(String)}
  */
 public class DateOfBirth {
 
-    /**
-     * Blood donation requiremenets taken from: https://www.hsa.gov.sg/blood-donation/can-i-donate
-     */
     public static final String MESSAGE_CONSTRAINTS =
             "The date of birth should be of the format DD-MM-YYYY, not in the future,"
                     + " and not more than 130 years ago from today.";
     public static final DateTimeFormatter DATE_FORMATTER =
             DateTimeFormatter.ofPattern("dd-MM-uuuu").withResolverStyle(STRICT);
-    /**
-     * This is stored as a LocalDate for easier parsing purposes.
-     */
-    public final LocalDate value;
 
+    public final LocalDate value;
 
     /**
      * Constructs a {@code DateOfBirth}.
@@ -41,11 +34,9 @@ public class DateOfBirth {
     }
 
     /**
-     * Returns true if a given string is a valid date of birth.
-     * Checks to see if it can be parsed as a valid date of birth.
+     * Returns if a given string is a valid dateOfBirth.
      */
     public static boolean isValidDateOfBirth(String test) {
-
         try {
             LocalDate date = LocalDate.parse(test, DATE_FORMATTER);
             LocalDate current = LocalDate.now();
@@ -56,19 +47,18 @@ public class DateOfBirth {
         }
     }
 
+    public LocalDate getValue() {
+        return value;
+    }
+
     /**
-     * Formats the date as the same format as inputted ie: DD-MM-YYY
+     * Formats the date as the same format as inputted ie: DD-MM-YYYY.
      */
     @Override
     public String toString() {
         return value.format(DATE_FORMATTER);
     }
 
-    /**
-     * Compares two dates of birth with one another.
-     *
-     * @param other date
-     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -81,12 +71,9 @@ public class DateOfBirth {
         }
 
         DateOfBirth otherDateOfBirth = (DateOfBirth) other;
-        return value.equals(otherDateOfBirth.value);
+        return this.getValue().equals(otherDateOfBirth.getValue());
     }
 
-    /**
-     * This returns the same hashCode if the values are equal to one another.
-     */
     @Override
     public int hashCode() {
         return value.hashCode();

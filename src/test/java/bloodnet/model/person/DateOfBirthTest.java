@@ -68,6 +68,7 @@ public class DateOfBirthTest {
 
     }
 
+
     @Test
     public void equals() {
         DateOfBirth dateOfBirth = new DateOfBirth("01-01-2008");
@@ -93,6 +94,8 @@ public class DateOfBirthTest {
 
         //valid with itself
         assertEquals(dateOfBirth.hashCode(), dateOfBirth.hashCode());
+
+
 
     }
 }

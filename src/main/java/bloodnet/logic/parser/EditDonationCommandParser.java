@@ -7,16 +7,17 @@ import static java.util.Objects.requireNonNull;
 
 import bloodnet.commons.core.index.Index;
 import bloodnet.logic.commands.EditDonationCommand;
+import bloodnet.logic.commands.EditDonationCommand.EditDonationRecordDescriptor;
 import bloodnet.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditDonationCommand object
+ * Parses input arguments and creates a new EditDonationCommand object.
  */
 public class EditDonationCommandParser implements Parser<EditDonationCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditDonationCommand
-     * and returns an EditDonationCommand object for execution.
+     * Parses the provided {@code String} of arguments in the context of the EditDonationCommand
+     * and returns an EditDonationCommand object to execute.
      *
      * @throws ParseException if the user input does not conform the expected format
      */
@@ -24,7 +25,6 @@ public class EditDonationCommandParser implements Parser<EditDonationCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_BLOOD_VOLUME, PREFIX_DONATION_DATE);
-
         Index index;
 
         try {
@@ -36,7 +36,7 @@ public class EditDonationCommandParser implements Parser<EditDonationCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_BLOOD_VOLUME, PREFIX_DONATION_DATE);
 
-        EditDonationCommand.EditDonationRecordDescriptor editDonationRecordDescriptor =
+        EditDonationRecordDescriptor editDonationRecordDescriptor =
                 new EditDonationCommand.EditDonationRecordDescriptor();
 
         if (argMultimap.getValue(PREFIX_BLOOD_VOLUME).isPresent()) {
@@ -52,7 +52,6 @@ public class EditDonationCommandParser implements Parser<EditDonationCommand> {
         if (!editDonationRecordDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditDonationCommand.getMessageUsage());
         }
-
         return new EditDonationCommand(index, editDonationRecordDescriptor);
     }
 

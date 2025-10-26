@@ -15,10 +15,10 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String DESCRIPTION = "Finds all persons whose names contain any of \"\n" +
-            "            + \"the specified keywords (case-insensitive) and displays them as a list with index numbers.";
+    public static final String DESCRIPTION = "Finds all donors whose names contain any of "
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.";
 
-    public static final String EXAMPLE = "Example: \" + COMMAND_WORD + \" alice bob charlie";
+    public static final String EXAMPLE = "Example: " + COMMAND_WORD + " alice bob charlie";
 
     public static final String PARAMETERS = "Parameters: KEYWORD [MORE_KEYWORDS]...";
 
@@ -33,11 +33,11 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public InputResponse execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         int filteredPersonListSize = model.getFilteredPersonList().size();
-        return new CommandResult(
+        return new InputResponse(
                 String.format(Messages.MESSAGE_PEOPLE_LISTED_OVERVIEW,
                         filteredPersonListSize,
                         filteredPersonListSize > 1 ? "s" : ""));

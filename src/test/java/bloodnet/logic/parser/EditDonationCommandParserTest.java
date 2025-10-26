@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import bloodnet.commons.core.index.Index;
 import bloodnet.logic.Messages;
 import bloodnet.logic.commands.EditDonationCommand;
+import bloodnet.logic.commands.EditDonationCommand.EditDonationRecordDescriptor;
 import bloodnet.model.donationrecord.BloodVolume;
 import bloodnet.model.donationrecord.DonationDate;
 
@@ -20,7 +21,7 @@ public class EditDonationCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditDonationCommand.getMessageUsage());
 
-    private EditDonationCommandParser parser = new EditDonationCommandParser();
+    private final EditDonationCommandParser parser = new EditDonationCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -51,11 +52,12 @@ public class EditDonationCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + " v/400x", BloodVolume.MESSAGE_CONSTRAINTS); // invalid blood volume
+        assertParseFailure(parser, "1" + " v/400x",
+                BloodVolume.MESSAGE_CONSTRAINTS); // invalid blood volume
         assertParseFailure(parser, "1" + " d/01-20-xxxx",
                 DonationDate.MESSAGE_CONSTRAINTS); // invalid donation date
 
-        // invalid blood volume followed by donation date
+        // invalid blood volume and donation date
         assertParseFailure(parser, "1" + " v/x00" + " d/05-25-2020",
                 BloodVolume.MESSAGE_CONSTRAINTS);
 
@@ -68,21 +70,19 @@ public class EditDonationCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_failure() {
-        // More extensive testing of duplicate parameter detections is done in
-        // AddCommandParserTest#parse_repeatedNonTagValue_failure()
 
-        // valid followed by invalid
+        // valid followed by invalid blood type
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + " v/200" + " v/200";
+        String userInput = targetIndex.getOneBased() + " v/200" + " v/200xxx";
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_BLOOD_VOLUME));
 
-        // invalid followed by valid
+        // invalid followed by valid blood type
         userInput = targetIndex.getOneBased() + " v/1x0" + " " + "v/330";
 
         assertParseFailure(parser, userInput, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_BLOOD_VOLUME));
 
-        // mulltiple valid fields repeated
+        // multiple valid fields repeated
         userInput = targetIndex.getOneBased() + " d/01-01-2022" + " d/01-01-2023"
                 + " v/100" + " v/1000";
 
@@ -92,13 +92,16 @@ public class EditDonationCommandParserTest {
     }
 
     @Test
-    public void parse_validValues_success() {
+    public void parse_validInputString_success() {
         Index targetIndex = Index.fromOneBased(1);
-        EditDonationCommand.EditDonationRecordDescriptor edit = new EditDonationCommand.EditDonationRecordDescriptor();
+        EditDonationRecordDescriptor edit = new EditDonationRecordDescriptor();
+
         edit.setBloodVolume(new BloodVolume("400"));
         edit.setDonationDate(new DonationDate("01-01-2000"));
+
         EditDonationCommand expectedCommand = new EditDonationCommand(
                 targetIndex, edit);
+
         assertParseSuccess(parser, "1 d/01-01-2000 v/400", expectedCommand);
 
     }

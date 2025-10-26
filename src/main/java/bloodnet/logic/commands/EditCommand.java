@@ -26,36 +26,36 @@ import bloodnet.model.person.Person;
 import bloodnet.model.person.Phone;
 
 /**
- * Edits the details of an existing person in the bloodnet.
+ * Edits the details of an existing person in BloodNet.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String DESCRIPTION = "Edits the details of the person identified "
-            + "by the index number used in the displayed person list.";
+    public static final String DESCRIPTION = "Edits the field(s) of the donor identified "
+            + "by the index number used in the displayed donor list. \nAt least one field to edit must be provided.";
 
     public static final String EXAMPLE = "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Donor: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in BloodNet.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This donor already exists in BloodNet.";
 
     public static final String PARAMETERS = "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_BLOOD_TYPE + "BLOOD_TYPE] "
-            + "[" + PREFIX_DATE_OF_BIRTH + "DATE_OF_BIRTH (DD-MM-YYYY)]";
+            + "[" + PREFIX_BLOOD_TYPE + "BLOOD TYPE] "
+            + "[" + PREFIX_DATE_OF_BIRTH + "DATE OF BIRTH (DD-MM-YYYY)] ";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index                of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index Index of the person in the filtered person list to edit.
+     * @param editPersonDescriptor Details to edit the person with.
      */
     public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(index);
@@ -69,7 +69,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public InputResponse execute(Model model) throws CommandException {
         Person personToEdit = getPersonToEdit(model);
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
@@ -79,7 +79,7 @@ public class EditCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        return new InputResponse(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
     }
 
     /**

@@ -28,8 +28,9 @@ public class EditDonationCommand extends Command {
 
     public static final String COMMAND_WORD = "editdonation";
 
-    public static final String DESCRIPTION = "Edits the donation record identified "
-            + "by the index number used in the displayed donation record list.";
+    public static final String DESCRIPTION = "Edits the donation record detail(s) identified "
+            + "by the index number used in the displayed donation record list. At least one field "
+            + "must be provided.";
 
     public static final String EXAMPLE = "Example: editdonation 1 v/100 d/02-02-2002";
 
@@ -38,23 +39,24 @@ public class EditDonationCommand extends Command {
     public static final String MESSAGE_DUPLICATE_DONATION_RECORD =
             "No change to the donation record.";
 
-    static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
-    public static final String PARAMETERS = "Parameters: INDEX (must be a positive integer) \"\n" +
-            "            + PREFIX_DONATION_DATE + \"DONATION DATE (DD-MM-YYYY) \"\n" +
-            "            + PREFIX_BLOOD_VOLUME + \"BLOOD VOLUME (IN MILLILITRES)";
+    public static final String PARAMETERS = "Parameters: INDEX (must be a positive integer) "
+            + "[" + PREFIX_DONATION_DATE + "DONATION DATE (DD-MM-YYYY)] "
+            + "[" + PREFIX_BLOOD_VOLUME + "BLOOD VOLUME (IN MILLILITRES)]";
 
     private final Index indexOfDonationRecord;
     private final EditDonationRecordDescriptor editDonationRecordDescriptor;
 
     /**
-     * @param indexOfDonationRecord of the donation record in the donation record list
-     * @param editDonationRecordDescriptor details related to the edits made to the donation record
+     * @param indexOfDonationRecord Index of the donation record in the displayed donation record list.
+     * @param editDonationRecordDescriptor Details related to the edits made to the donation record.
      */
     public EditDonationCommand(Index indexOfDonationRecord,
                                EditDonationRecordDescriptor editDonationRecordDescriptor) {
         requireNonNull(indexOfDonationRecord);
         requireNonNull(editDonationRecordDescriptor);
+
         this.indexOfDonationRecord = indexOfDonationRecord;
         this.editDonationRecordDescriptor = new EditDonationRecordDescriptor(editDonationRecordDescriptor);
     }
@@ -64,33 +66,38 @@ public class EditDonationCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public InputResponse execute(Model model) throws CommandException {
         requireNonNull(model);
         DonationRecord recordToEdit = getDonationRecordToEdit(model);
-        Person personToEditRecordFor = getPersonToEditRecordFor(model, recordToEdit);
-        UUID personId = personToEditRecordFor.getId();
+        Person personForRecordEdit = getPersonToEditRecordFor(model, recordToEdit);
+
+        assert personForRecordEdit != null;
+        UUID personId = personForRecordEdit.getId();
         assert personId != null;
         DonationRecord editedDonationRecord = createEditedDonationRecord(recordToEdit, editDonationRecordDescriptor);
+
         if (recordToEdit.equals(editedDonationRecord)) {
             throw new CommandException(MESSAGE_DUPLICATE_DONATION_RECORD);
         }
+
         model.setDonationRecord(recordToEdit, editedDonationRecord);
-        return new CommandResult(String.format(MESSAGE_EDIT_DONATION_RECORD_SUCCESS,
-                Messages.format(editedDonationRecord, personToEditRecordFor)));
+        return new InputResponse(String.format(MESSAGE_EDIT_DONATION_RECORD_SUCCESS,
+                Messages.format(editedDonationRecord, personForRecordEdit)));
     }
 
     /**
-     * Creates and returns a {@code DonationRecord} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code DonationRecord} with the details of {@code personForRecordEdit}
+     * edited with {@code editDonationRecordDescriptor}.
      */
     private static DonationRecord createEditedDonationRecord(
-            DonationRecord donationRecordToEdit, EditDonationRecordDescriptor editDonationRecordDescriptor) {
-        DonationDate updatedDonationDate =
-                editDonationRecordDescriptor.getDonationDate().orElse(donationRecordToEdit.getDonationDate());
-        BloodVolume updatedBloodVolume =
-                editDonationRecordDescriptor.getBloodVolume().orElse(donationRecordToEdit.getBloodVolume());
+            DonationRecord donationRecordToEdit, EditDonationRecordDescriptor editedDonationRecordDescriptor) {
+        DonationDate editedDonationDate =
+                editedDonationRecordDescriptor.getDonationDate().orElse(donationRecordToEdit.getDonationDate());
+        BloodVolume editedBloodVolume =
+                editedDonationRecordDescriptor.getBloodVolume().orElse(donationRecordToEdit.getBloodVolume());
+
         return new DonationRecord(donationRecordToEdit.getId(),
-                donationRecordToEdit.getPersonId(), updatedDonationDate, updatedBloodVolume);
+                donationRecordToEdit.getPersonId(), editedDonationDate, editedBloodVolume);
     }
 
     private DonationRecord getDonationRecordToEdit(Model model) throws CommandException {
@@ -103,7 +110,7 @@ public class EditDonationCommand extends Command {
     }
 
     /**
-     * Retrieves the {@code Person} corresponding to the {@code personId} of provided {@code donationRecord}
+     * Retrieves the {@code Person} corresponding to the {@code personId} of the provided {@code donationRecord}
      */
     private Person getPersonToEditRecordFor(Model model, DonationRecord donationRecord) throws CommandException {
         requireNonNull(model);
@@ -114,6 +121,7 @@ public class EditDonationCommand extends Command {
         if (optionalPerson.isPresent()) {
             return optionalPerson.get();
         }
+
         return null;
     }
 
@@ -153,7 +161,7 @@ public class EditDonationCommand extends Command {
         }
 
         /**
-         * Copy constructor.
+         * Copy the constructor.
          */
         public EditDonationRecordDescriptor(EditDonationRecordDescriptor toCopy) {
             setBloodVolume(toCopy.bloodVolume);

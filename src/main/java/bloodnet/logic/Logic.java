@@ -3,7 +3,7 @@ package bloodnet.logic;
 import java.nio.file.Path;
 
 import bloodnet.commons.core.GuiSettings;
-import bloodnet.logic.commands.CommandResult;
+import bloodnet.logic.commands.InputResponse;
 import bloodnet.logic.commands.exceptions.CommandException;
 import bloodnet.logic.parser.exceptions.ParseException;
 import bloodnet.model.Model;
@@ -17,14 +17,14 @@ import javafx.collections.ObservableList;
  */
 public interface Logic {
     /**
-     * Executes the command and returns the result.
+     * Handle a user input and return the response.
      *
-     * @param commandText The command as entered by the user.
-     * @return the result of the command execution.
-     * @throws CommandException If an error occurs during command execution.
+     * @param input The input as entered by the user.
+     * @return the response from handling that input.
+     * @throws CommandException If an error occurs during input handling.
      * @throws ParseException   If an error occurs during parsing.
      */
-    CommandResult execute(String commandText) throws CommandException, ParseException;
+    InputResponse handle(String input) throws CommandException, ParseException;
 
     /**
      * Returns the BloodNet.

@@ -7,9 +7,9 @@ import java.util.Objects;
 import bloodnet.commons.util.ToStringBuilder;
 
 /**
- * Represents the result of a command execution.
+ * Represents a response to a user command input.
  */
-public class CommandResult {
+public class InputResponse {
 
     private final String feedbackToUser;
 
@@ -24,19 +24,19 @@ public class CommandResult {
     private final boolean exit;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code InputResponse} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public InputResponse(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * Constructs a {@code InputResponse} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser) {
+    public InputResponse(String feedbackToUser) {
         this(feedbackToUser, false, false);
     }
 
@@ -59,14 +59,14 @@ public class CommandResult {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof CommandResult)) {
+        if (!(other instanceof InputResponse)) {
             return false;
         }
 
-        CommandResult otherCommandResult = (CommandResult) other;
-        return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+        InputResponse otherInputResponse = (InputResponse) other;
+        return feedbackToUser.equals(otherInputResponse.feedbackToUser)
+                && showHelp == otherInputResponse.showHelp
+                && exit == otherInputResponse.exit;
     }
 
     @Override

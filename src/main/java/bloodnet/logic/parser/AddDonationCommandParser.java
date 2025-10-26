@@ -32,7 +32,8 @@ public class AddDonationCommandParser implements Parser<AddDonationCommand> {
         if (!arePrefixesPresent(argMultimap, PREFIX_PERSON_INDEX_ONE_BASED, PREFIX_DONATION_DATE,
                 PREFIX_BLOOD_VOLUME)
             || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDonationCommand.getMessageUsage()));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddDonationCommand.getMessageUsage()));
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_PERSON_INDEX_ONE_BASED, PREFIX_DONATION_DATE,

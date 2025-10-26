@@ -1,14 +1,14 @@
 package bloodnet.logic.commands.commandsessions;
 
-import bloodnet.logic.commands.CommandResult;
+import bloodnet.logic.commands.InputResponse;
 import bloodnet.logic.commands.commandsessions.exceptions.TerminalSessionStateException;
 import bloodnet.logic.commands.exceptions.CommandException;
 
 /**
  * Represents a command session that requires user confirmation before
- * proceeding with an action.
+ * proceeding with its execution.
  * <p>
- * This session is typically used for commands that perform high-destructive
+ * This session is typically used for commands that perform destructive
  * operations, such as deletion, where explicit user consent is needed
  * to continue.
  * </p>
@@ -21,43 +21,44 @@ public class ConfirmationCommandSession implements CommandSession {
     private enum State {
         INITIAL {
             @Override
-            Response handle(ConfirmationCommandSession session, String action, String input) {
-                CommandResult prompt = new CommandResult(
+            InputOutcome handle(ConfirmationCommandSession session, String action, String input) {
+                InputResponse prompt = new InputResponse(
                         String.format(ConfirmationCommandSession.MESSAGE_SEEK_CONFIRMATION, action));
-                return new Response(PENDING_CONFIRMATION, prompt);
+                return new InputOutcome(PENDING_CONFIRMATION, prompt);
             }
         },
         PENDING_CONFIRMATION {
             @Override
-            Response handle(ConfirmationCommandSession session, String action, String input) throws CommandException {
+            InputOutcome handle(ConfirmationCommandSession session, String action, String input)
+                    throws CommandException {
                 String normalisedInput = input.trim().toLowerCase();
                 if ("yes".equals(normalisedInput)) {
-                    CommandResult result = session.onConfirm.run();
-                    return new Response(DONE, result);
+                    InputResponse response = session.onConfirm.run();
+                    return new InputOutcome(DONE, response);
                 } else if ("no".equals(normalisedInput)) {
-                    CommandResult result = new CommandResult(String.format(MESSAGE_CANCELLED, action));
-                    return new Response(DONE, result);
+                    InputResponse response = new InputResponse(String.format(MESSAGE_CANCELLED, action));
+                    return new InputOutcome(DONE, response);
                 } else {
-                    CommandResult result = new CommandResult(
+                    InputResponse response = new InputResponse(
                             String.format(MESSAGE_INVALID_INPUT,
                                     session.action));
-                    return new Response(this, result);
+                    return new InputOutcome(this, response);
                 }
             }
         },
         DONE {
             @Override
-            Response handle(ConfirmationCommandSession session, String action,
+            InputOutcome handle(ConfirmationCommandSession session, String action,
                             String input) throws TerminalSessionStateException {
                 throw new TerminalSessionStateException();
             }
         };
 
-        abstract Response handle(ConfirmationCommandSession session,
+        abstract InputOutcome handle(ConfirmationCommandSession session,
                                  String action, String input) throws CommandException, TerminalSessionStateException;
     }
 
-    private record Response(State nextState, CommandResult result) {
+    private record InputOutcome(State nextState, InputResponse response) {
     }
 
     public static final String MESSAGE_SEEK_CONFIRMATION =
@@ -68,22 +69,22 @@ public class ConfirmationCommandSession implements CommandSession {
 
     private State currentState = State.INITIAL;
     private final String action;
-    private final DeferredCommand onConfirm;
+    private final DeferredExecution onConfirm;
 
     /**
      * Constructs a {@code ConfirmationCommandSession} with the given action to be
      * executed and the {@code DeferredCommand}.
      */
-    public ConfirmationCommandSession(String action, DeferredCommand onConfirm) {
+    public ConfirmationCommandSession(String action, DeferredExecution onConfirm) {
         this.action = action;
         this.onConfirm = onConfirm;
     }
 
     @Override
-    public CommandResult handle(String input) throws CommandException, TerminalSessionStateException {
-        Response response = currentState.handle(this, action, input);
-        this.currentState = response.nextState();
-        return response.result();
+    public InputResponse handle(String input) throws CommandException, TerminalSessionStateException {
+        InputOutcome outcome = currentState.handle(this, action, input);
+        this.currentState = outcome.nextState();
+        return outcome.response();
     }
 
     @Override

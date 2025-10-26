@@ -1,7 +1,7 @@
 package bloodnet.logic.commands.commandsessions;
 
 import bloodnet.logic.commands.Command;
-import bloodnet.logic.commands.CommandResult;
+import bloodnet.logic.commands.InputResponse;
 import bloodnet.logic.commands.commandsessions.exceptions.TerminalSessionStateException;
 import bloodnet.logic.commands.exceptions.CommandException;
 import bloodnet.model.Model;
@@ -28,7 +28,7 @@ public class SingleStepCommandSession implements CommandSession {
     }
 
     @Override
-    public CommandResult handle(String userInput) throws CommandException, TerminalSessionStateException {
+    public InputResponse handle(String userInput) throws CommandException, TerminalSessionStateException {
         if (this.done) {
             throw new TerminalSessionStateException();
         }

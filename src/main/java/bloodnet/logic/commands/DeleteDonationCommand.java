@@ -23,7 +23,7 @@ public class DeleteDonationCommand extends Command {
 
     public static final String COMMAND_WORD = "deletedonation";
 
-    public static final String DESCRIPTION = ": Deletes the donation record identified by the index number "
+    public static final String DESCRIPTION = "Deletes the donation record identified by the index number "
             + "used in the displayed donation record list.";
 
     public static final String EXAMPLE = "Example: " + COMMAND_WORD + " 1";
@@ -53,11 +53,11 @@ public class DeleteDonationCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public InputResponse execute(Model model) throws CommandException {
         DonationRecord donationToDelete = getDonationToDelete(model);
         Person relatedPerson = getPersonForDonation(model, donationToDelete, targetIndex);
         model.deleteDonationRecord(donationToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_DONATION_SUCCESS, Messages.format(donationToDelete,
+        return new InputResponse(String.format(MESSAGE_DELETE_DONATION_SUCCESS, Messages.format(donationToDelete,
                 relatedPerson)));
     }
 

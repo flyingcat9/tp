@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import bloodnet.logic.commands.Command;
-import bloodnet.logic.commands.CommandResult;
 import bloodnet.logic.commands.ExitCommand;
+import bloodnet.logic.commands.InputResponse;
 import bloodnet.logic.commands.commandsessions.exceptions.TerminalSessionStateException;
 import bloodnet.logic.commands.exceptions.CommandException;
 import bloodnet.model.Model;
@@ -46,8 +46,8 @@ public class SingleStateCommandSessionTest {
         }
 
         @Override
-        public CommandResult execute(Model model) {
-            return new CommandResult("Success", false, false);
+        public InputResponse execute(Model model) {
+            return new InputResponse("Success", false, false);
         }
     }
 }

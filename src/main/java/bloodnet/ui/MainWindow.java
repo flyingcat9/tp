@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 import bloodnet.commons.core.GuiSettings;
 import bloodnet.commons.core.LogsCenter;
 import bloodnet.logic.Logic;
-import bloodnet.logic.commands.CommandResult;
+import bloodnet.logic.commands.InputResponse;
 import bloodnet.logic.commands.exceptions.CommandException;
 import bloodnet.logic.parser.exceptions.ParseException;
 import javafx.event.ActionEvent;
@@ -33,11 +33,11 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private DonationRecordListPanel donationRecordListPanel;
-    private ResultDisplay resultDisplay;
+    private OutputDisplay outputDisplay;
     private HelpWindow helpWindow;
 
     @FXML
-    private StackPane commandBoxPlaceholder;
+    private StackPane inputBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
@@ -49,7 +49,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane donationRecordListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane outputDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -94,14 +94,14 @@ public class MainWindow extends UiPart<Stage> {
          * is fixed in later version of SDK.
          *
          * According to the bug report, TextInputControl (TextField, TextArea) will
-         * consume function-key events. Because CommandBox contains a TextField, and
-         * ResultDisplay contains a TextArea, thus some accelerators (e.g F1) will
+         * consume function-key events. Because inputBox contains a TextField, and
+         * OutputDisplay contains a TextArea, thus some accelerators (e.g F1) will
          * not work when the focus is in them because the key event is consumed by
          * the TextInputControl(s).
          *
          * For now, we add following event filter to capture such key events and open
          * help window purposely so to support accelerators even when focus is
-         * in CommandBox or ResultDisplay.
+         * in InputBox or OutputDisplay.
          */
         getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getTarget() instanceof TextInputControl && keyCombination.match(event)) {
@@ -121,14 +121,14 @@ public class MainWindow extends UiPart<Stage> {
         donationRecordListPanel = new DonationRecordListPanel(logic.getFilteredDonationRecordList());
         donationRecordListPanelPlaceholder.getChildren().add(donationRecordListPanel.getRoot());
 
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        outputDisplay = new OutputDisplay();
+        outputDisplayPlaceholder.getChildren().add(outputDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getBloodNetFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        InputBox inputBox = new InputBox(this::handleInput);
+        inputBoxPlaceholder.getChildren().add(inputBox.getRoot());
     }
 
     /**
@@ -180,28 +180,28 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Executes the command and returns the result.
+     * handles the command and returns the response.
      *
-     * @see Logic#execute(String)
+     * @see Logic#handle(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private InputResponse handleInput(String input) throws CommandException, ParseException {
         try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            InputResponse inputResponse = logic.handle(input);
+            logger.info("Response: " + inputResponse.getFeedbackToUser());
+            outputDisplay.setFeedbackToUser(inputResponse.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            if (inputResponse.isShowHelp()) {
                 handleHelp();
             }
 
-            if (commandResult.isExit()) {
+            if (inputResponse.isExit()) {
                 handleExit();
             }
 
-            return commandResult;
+            return inputResponse;
         } catch (CommandException | ParseException e) {
-            logger.info("An error occurred while executing command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            logger.info("An error occurred while executing command: " + input);
+            outputDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
     }

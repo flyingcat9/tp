@@ -20,9 +20,9 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String DESCRIPTION = "Adds a person to BloodNet.";
+    public static final String DESCRIPTION = "Adds a donor to BloodNet.";
 
-    public static final String PARAMETERS =  "Parameters: "
+    public static final String PARAMETERS = "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
@@ -54,7 +54,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public InputResponse execute(Model model) throws CommandException {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
@@ -62,7 +62,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
+        return new InputResponse(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
     @Override

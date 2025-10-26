@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import bloodnet.logic.commands.Command;
-import bloodnet.logic.commands.CommandResult;
+import bloodnet.logic.commands.InputResponse;
 import bloodnet.logic.commands.commandsessions.exceptions.TerminalSessionStateException;
 import bloodnet.logic.commands.exceptions.CommandException;
 import bloodnet.model.Model;
@@ -22,11 +22,11 @@ public class ConfirmationCommandSessionTest {
         Command commandStub = new CommandStub();
         ConfirmationCommandSession session = new ConfirmationCommandSession("action", () -> commandStub.execute(model));
 
-        CommandResult result = session.handle("");
+        InputResponse response = session.handle("");
 
         assertEquals(
                 String.format(ConfirmationCommandSession.MESSAGE_SEEK_CONFIRMATION, "action"),
-                result.getFeedbackToUser());
+                response.getFeedbackToUser());
 
         assertEquals(false, session.isDone());
     }
@@ -37,9 +37,9 @@ public class ConfirmationCommandSessionTest {
         ConfirmationCommandSession session = new ConfirmationCommandSession("action", () -> commandStub.execute(model));
 
         session.handle("");
-        CommandResult result = session.handle("yEs");
+        InputResponse response = session.handle("yEs");
 
-        assertEquals("Success", result.getFeedbackToUser());
+        assertEquals("Success", response.getFeedbackToUser());
         assertTrue(session.isDone());
     }
 
@@ -49,9 +49,13 @@ public class ConfirmationCommandSessionTest {
         ConfirmationCommandSession session = new ConfirmationCommandSession("action", () -> commandStub.execute(model));
 
         session.handle("");
-        CommandResult result = session.handle("nO");
+        InputResponse response = session.handle("nO");
 
-        assertEquals(String.format(ConfirmationCommandSession.MESSAGE_CANCELLED, "action"), result.getFeedbackToUser());
+        assertEquals(
+                String.format(
+                        ConfirmationCommandSession.MESSAGE_CANCELLED,
+                        "action"),
+                response.getFeedbackToUser());
         assertTrue(session.isDone());
     }
 
@@ -61,11 +65,11 @@ public class ConfirmationCommandSessionTest {
         ConfirmationCommandSession session = new ConfirmationCommandSession("action", () -> commandStub.execute(model));
 
         session.handle("");
-        CommandResult result = session.handle("");
+        InputResponse response = session.handle("");
 
         assertEquals(
                 String.format(ConfirmationCommandSession.MESSAGE_INVALID_INPUT, "action"),
-                result.getFeedbackToUser());
+                response.getFeedbackToUser());
         assertFalse(session.isDone());
     }
 
@@ -91,8 +95,8 @@ public class ConfirmationCommandSessionTest {
         }
 
         @Override
-        public CommandResult execute(Model model) {
-            return new CommandResult("Success", false, false);
+        public InputResponse execute(Model model) {
+            return new InputResponse("Success", false, false);
         }
     }
 }

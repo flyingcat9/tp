@@ -9,7 +9,7 @@ import bloodnet.commons.core.GuiSettings;
 import bloodnet.commons.core.LogsCenter;
 import bloodnet.commons.exceptions.DataLoadingException;
 import bloodnet.logic.commands.Command;
-import bloodnet.logic.commands.CommandResult;
+import bloodnet.logic.commands.InputResponse;
 import bloodnet.logic.commands.commandsessions.CommandSession;
 import bloodnet.logic.commands.commandsessions.exceptions.TerminalSessionStateException;
 import bloodnet.logic.commands.exceptions.CommandException;
@@ -64,32 +64,32 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
-        logger.info("----------------[USER COMMAND][" + commandText + "]");
+    public InputResponse handle(String input) throws CommandException, ParseException {
+        logger.info("----------------[USER INPUT][" + input + "]");
 
         if (currentSession == null) {
-            Command command = bloodNetParser.parseCommand(commandText);
+            Command command = bloodNetParser.parseCommand(input);
             this.currentSession = command.createSession(model);
         }
 
         assert this.currentSession != null;
 
-        return advanceCurrentSession(commandText);
+        return advanceCurrentSession(input);
     }
 
-    private CommandResult advanceCurrentSession(String input) throws CommandException {
-        CommandResult result;
+    private InputResponse advanceCurrentSession(String input) throws CommandException {
+        InputResponse response;
         try {
-            result = currentSession.handle(input);
+            response = currentSession.handle(input);
         } catch (TerminalSessionStateException e) {
             currentSession = null;
-            result = new CommandResult(TERMINAL_COMMAND_SESSION_STATE_ERROR_MESSAGE);
+            response = new InputResponse(TERMINAL_COMMAND_SESSION_STATE_ERROR_MESSAGE);
         } catch (CommandException e) {
             // If a CommandException is thrown upon calling currentSession.handle(input),
             // the current session should be ended.
             // However, we still throw the CommandException,
-            // so that the CommandBox's text does not get reset to an empty String.
-            // Refer to CommandBox::handleCommandEntered to better understand this.
+            // so that the OutputBox's text does not get reset to an empty String.
+            // Refer to OutputBox::handleCommandEntered to better understand this.
             currentSession = null;
             throw e;
         }
@@ -97,7 +97,7 @@ public class LogicManager implements Logic {
             currentSession = null;
             saveBloodNetSafely();
         }
-        return result;
+        return response;
     }
 
     private void saveBloodNetSafely() throws CommandException {

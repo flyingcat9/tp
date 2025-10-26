@@ -8,7 +8,7 @@ import java.util.UUID;
 import bloodnet.commons.util.ToStringBuilder;
 
 /**
- * Represents a Donation Record in the bloodnet.
+ * Represents a Donation Record in BloodNet.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class DonationRecord {
@@ -82,8 +82,7 @@ public class DonationRecord {
         }
 
         DonationRecord otherDonationRecord = (DonationRecord) other;
-        return id.equals(otherDonationRecord.id)
-                && personId.equals(otherDonationRecord.personId)
+        return personId.equals(otherDonationRecord.personId)
                 && donationDate.equals(otherDonationRecord.donationDate)
                 && bloodVolume.equals(otherDonationRecord.bloodVolume);
     }
