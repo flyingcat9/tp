@@ -39,7 +39,7 @@ public class AddDonationCommandParserTest {
                 + PREFIX_BLOOD_VOLUME + "450";
 
         assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDonationCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDonationCommand.getMessageUsage()));
     }
 
     @Test
@@ -48,7 +48,7 @@ public class AddDonationCommandParserTest {
                 + PREFIX_BLOOD_VOLUME + "450";
 
         assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDonationCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDonationCommand.getMessageUsage()));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class AddDonationCommandParserTest {
                 + PREFIX_DONATION_DATE + "15-10-2023";
 
         assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDonationCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDonationCommand.getMessageUsage()));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class AddDonationCommandParserTest {
         String userInput = "";
 
         assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDonationCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDonationCommand.getMessageUsage()));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class AddDonationCommandParserTest {
                 + PREFIX_BLOOD_VOLUME + "450";
 
         assertParseFailure(parser, userInput,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDonationCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDonationCommand.getMessageUsage()));
     }
 
     @Test

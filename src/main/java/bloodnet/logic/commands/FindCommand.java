@@ -15,15 +15,21 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String DESCRIPTION = "Finds all persons whose names contain any of \"\n" +
+            "            + \"the specified keywords (case-insensitive) and displays them as a list with index numbers.";
+
+    public static final String EXAMPLE = "Example: \" + COMMAND_WORD + \" alice bob charlie";
+
+    public static final String PARAMETERS = "Parameters: KEYWORD [MORE_KEYWORDS]...";
 
     private final NameContainsKeywordsPredicate predicate;
 
     public FindCommand(NameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
+    }
+
+    public static String getMessageUsage() {
+        return COMMAND_WORD + ": " + DESCRIPTION + "\n" + PARAMETERS + "\n" + EXAMPLE;
     }
 
     @Override

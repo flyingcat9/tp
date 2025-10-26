@@ -31,7 +31,7 @@ public class EditDonationCommandParser implements Parser<EditDonationCommand> {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(
-                    MESSAGE_INVALID_COMMAND_FORMAT, EditDonationCommand.MESSAGE_USAGE), pe);
+                    MESSAGE_INVALID_COMMAND_FORMAT, EditDonationCommand.getMessageUsage()), pe);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_BLOOD_VOLUME, PREFIX_DONATION_DATE);
@@ -50,7 +50,7 @@ public class EditDonationCommandParser implements Parser<EditDonationCommand> {
         }
 
         if (!editDonationRecordDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditDonationCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditDonationCommand.getMessageUsage());
         }
 
         return new EditDonationCommand(index, editDonationRecordDescriptor);

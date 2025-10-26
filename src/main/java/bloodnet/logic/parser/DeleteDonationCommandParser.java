@@ -22,7 +22,7 @@ public class DeleteDonationCommandParser implements Parser<DeleteDonationCommand
             return new DeleteDonationCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteDonationCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteDonationCommand.getMessageUsage()), pe);
         }
     }
 

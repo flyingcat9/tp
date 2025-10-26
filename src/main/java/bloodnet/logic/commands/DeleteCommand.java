@@ -14,23 +14,30 @@ import bloodnet.model.Model;
 import bloodnet.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the bloodnet.
+ * Deletes a person identified using it's displayed index from BloodNet.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String DESCRIPTION = " Deletes the person identified by the index number "
+            + "used in the displayed person list.";
+
+    public static final String EXAMPLE = "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+
+    public static final String PARAMETERS = "Parameters: INDEX (must be a positive integer)";
+
 
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+    }
+
+    public static String getMessageUsage() {
+        return COMMAND_WORD + ": " + DESCRIPTION + "\n" + PARAMETERS + "\n" + EXAMPLE;
     }
 
     @Override
@@ -78,4 +85,6 @@ public class DeleteCommand extends Command {
 
         return lastShownList.get(targetIndex.getZeroBased());
     }
+
+
 }

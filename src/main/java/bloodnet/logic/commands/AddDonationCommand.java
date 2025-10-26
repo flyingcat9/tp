@@ -25,13 +25,12 @@ public class AddDonationCommand extends Command {
 
     public static final String COMMAND_WORD = "adddonation";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a donation record for "
-            + "the person identified by their index number in the displayed person list.\n"
-            + "Parameters: "
-            + PREFIX_PERSON_INDEX_ONE_BASED + "PERSON INDEX (must be positive integer) "
-            + PREFIX_DONATION_DATE + "DONATION DATE (DD-MM-YYYY) "
-            + PREFIX_BLOOD_VOLUME + "BLOOD VOLUME (IN MILLILITRES)\n"
-            + "Example: " + COMMAND_WORD + " "
+    public static final String DESCRIPTION = "Adds a donation record for "
+            + "the person identified by their index number in the displayed person list.";
+
+
+
+    public static final String EXAMPLE =  "Example: " + COMMAND_WORD + " "
             + PREFIX_PERSON_INDEX_ONE_BASED + "1 "
             + PREFIX_DONATION_DATE + "07-05-2025 "
             + PREFIX_BLOOD_VOLUME + "450 ";
@@ -39,6 +38,11 @@ public class AddDonationCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New donation record added: %1$s";
     public static final String MESSAGE_DUPLICATE_DONATION_RECORD =
                                                 "This donation record already exists in BloodNet";
+
+    public static final String PARAMETERS = "Parameters: "
+            + PREFIX_PERSON_INDEX_ONE_BASED + "PERSON INDEX (must be positive integer) "
+            + PREFIX_DONATION_DATE + "DONATION DATE (DD-MM-YYYY) "
+            + PREFIX_BLOOD_VOLUME + "BLOOD VOLUME (IN MILLILITRES)";
 
     private final Index targetPersonIndex;
     private final DonationDate donationDate;
@@ -53,6 +57,10 @@ public class AddDonationCommand extends Command {
         this.targetPersonIndex = targetPersonIndex;
         this.donationDate = donationDate;
         this.bloodVolume = bloodVolume;
+    }
+
+    public static String getMessageUsage() {
+        return COMMAND_WORD + ": " + DESCRIPTION + "\n" + PARAMETERS + "\n" + EXAMPLE;
     }
 
     @Override

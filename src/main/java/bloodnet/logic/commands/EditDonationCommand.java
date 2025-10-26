@@ -28,18 +28,22 @@ public class EditDonationCommand extends Command {
 
     public static final String COMMAND_WORD = "editdonation";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the donation record identified "
-            + "by the index number used in the displayed donation record list. \n"
-            + "Existing values will be overwritten by the input values. \n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_DONATION_DATE + "DONATION DATE (DD-MM-YYYY) "
-            + PREFIX_BLOOD_VOLUME + "BLOOD VOLUME (IN MILLILITRES)\n"
-            + "Example: editdonation 1 v/100 d/02-02-2002";
+    public static final String DESCRIPTION = "Edits the donation record identified "
+            + "by the index number used in the displayed donation record list.";
+
+    public static final String EXAMPLE = "Example: editdonation 1 v/100 d/02-02-2002";
 
     public static final String MESSAGE_EDIT_DONATION_RECORD_SUCCESS = "Edited Donation Record: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+
     public static final String MESSAGE_DUPLICATE_DONATION_RECORD =
             "No change to the donation record.";
+
+    static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+
+    public static final String PARAMETERS = "Parameters: INDEX (must be a positive integer) \"\n" +
+            "            + PREFIX_DONATION_DATE + \"DONATION DATE (DD-MM-YYYY) \"\n" +
+            "            + PREFIX_BLOOD_VOLUME + \"BLOOD VOLUME (IN MILLILITRES)";
+
     private final Index indexOfDonationRecord;
     private final EditDonationRecordDescriptor editDonationRecordDescriptor;
 
@@ -53,6 +57,10 @@ public class EditDonationCommand extends Command {
         requireNonNull(editDonationRecordDescriptor);
         this.indexOfDonationRecord = indexOfDonationRecord;
         this.editDonationRecordDescriptor = new EditDonationRecordDescriptor(editDonationRecordDescriptor);
+    }
+
+    public static String getMessageUsage() {
+        return COMMAND_WORD + ": " + DESCRIPTION + "\n" + PARAMETERS + "\n" + EXAMPLE;
     }
 
     @Override

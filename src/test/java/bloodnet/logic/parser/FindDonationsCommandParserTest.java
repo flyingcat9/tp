@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import bloodnet.logic.commands.FindDonationsCommand;
 
 public class FindDonationsCommandParserTest {
-    private FindDonationsCommandParser parser = new FindDonationsCommandParser();
+    private final FindDonationsCommandParser parser = new FindDonationsCommandParser();
 
     @Test
     public void parse_validArgs_returnsFindDonationsCommand() {
@@ -21,6 +21,6 @@ public class FindDonationsCommandParserTest {
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(
                 parser, "a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindDonationsCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindDonationsCommand.getMessageUsage()));
     }
 }

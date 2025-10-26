@@ -23,19 +23,23 @@ public class DeleteDonationCommand extends Command {
 
     public static final String COMMAND_WORD = "deletedonation";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + """
-                : Deletes the donation record identified by the index number
-                used in the displayed donation record list.\n"""
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String DESCRIPTION = ": Deletes the donation record identified by the index number "
+            + "used in the displayed donation record list.";
+
+    public static final String EXAMPLE = "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_DONATION_SUCCESS = "Deleted Donation Record: %1$s";
+
+    public static final String PARAMETERS = "Parameters: INDEX (must be a positive integer)";
 
     private final Index targetIndex;
 
     public DeleteDonationCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
+    }
+
+    public static String getMessageUsage() {
+        return COMMAND_WORD + ": " + DESCRIPTION + "\n" + PARAMETERS + "\n" + EXAMPLE;
     }
 
     @Override
@@ -112,6 +116,8 @@ public class DeleteDonationCommand extends Command {
         }
 
         throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);
+
+
 
     }
 }

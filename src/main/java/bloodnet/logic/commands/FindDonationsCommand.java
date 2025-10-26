@@ -20,15 +20,21 @@ import bloodnet.model.person.Person;
 public class FindDonationsCommand extends Command {
     public static final String COMMAND_WORD = "finddonations";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all donation records related to "
-            + "the person identified by the index number used in the displayed person list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+    public static final String DESCRIPTION = "Finds all donation records related to "
+            + "the person identified by the index number used in the displayed person list.";
+
+    public static final String PARAMETERS = "INDEX (must be a positive integer)";
+
+    public static final String EXAMPLE =  "Example: " + COMMAND_WORD + " 1";
 
     private final Index targetPersonIndex;
 
     public FindDonationsCommand(Index targetPersonIndex) {
         this.targetPersonIndex = targetPersonIndex;
+    }
+
+    public static String getMessageUsage() {
+        return COMMAND_WORD + ": " + DESCRIPTION + "\n" + PARAMETERS + "\n" + EXAMPLE;
     }
 
     @Override

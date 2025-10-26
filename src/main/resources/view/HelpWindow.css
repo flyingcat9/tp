@@ -1,19 +1,24 @@
 #copyButton, #helpMessage {
-    -fx-text-fill: white;
+    -fx-text-fill: #2B2B2B;
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: #C12727;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 3, 0, 0, 1);
+   -fx-background-color: #D32F2F;
 }
 
 #copyButton:armed {
-    -fx-background-color: darkgray;
+    -fx-background-color: linear-gradient(to bottom, #A30808, #AD0202);
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color:  #f2f0f0;
 }
