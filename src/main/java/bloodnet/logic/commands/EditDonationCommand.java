@@ -39,11 +39,12 @@ public class EditDonationCommand extends Command {
 
     public static final String MESSAGE_EDIT_DONATION_RECORD_SUCCESS = "Edited Donation Record: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_DONATION_RECORD =
-            "No change to the donation record.";
     public static final String MESSAGE_CONCATENATED_VALIDATION_ERRORS_HEADER =
             "You are attempting to modify a donation record to an invalid one. "
             + "Please fix these errors:";
+
+    public static final String MESSAGE_DONATION_RECORD_ALREADY_EXISTS = "Donor has already been recorded "
+            + "as donating on the same date.";
 
     private final Index indexOfDonationRecord;
     private final EditDonationRecordDescriptor editDonationRecordDescriptor;
@@ -66,12 +67,10 @@ public class EditDonationCommand extends Command {
         requireNonNull(model);
         DonationRecord recordToEdit = getDonationRecordToEdit(model);
         Person personForRecordEdit = getPersonToEditRecordFor(model, recordToEdit);
-
         assert personForRecordEdit != null;
         UUID personId = personForRecordEdit.getId();
         assert personId != null;
         DonationRecord editedDonationRecord = createEditedDonationRecord(recordToEdit, editDonationRecordDescriptor);
-
         ArrayList<String> validationErrorStrings = editedDonationRecord
                                                         .validate(model.getBloodNet().getPersonList(),
                                                                   model.getBloodNet().getDonationRecordList());
@@ -83,8 +82,13 @@ public class EditDonationCommand extends Command {
             throw new CommandException(concatenatedMessage);
         }
 
-        if (recordToEdit.equals(editedDonationRecord)) {
-            throw new CommandException(MESSAGE_DUPLICATE_DONATION_RECORD);
+        if (!recordToEdit.isSameDonationRecord(editedDonationRecord)) {
+            boolean hasDonorRecordAlready = model.getFilteredDonationRecordList().stream()
+                    .filter(donationRecord -> !donationRecord.equals(recordToEdit))
+                    .anyMatch(record -> record.isSameDonationRecord(editedDonationRecord));
+            if (hasDonorRecordAlready) {
+                throw new CommandException(MESSAGE_DONATION_RECORD_ALREADY_EXISTS);
+            }
         }
 
         model.setDonationRecord(recordToEdit, editedDonationRecord);
@@ -221,5 +225,7 @@ public class EditDonationCommand extends Command {
                     .add("donationDate", getDonationDate())
                     .toString();
         }
+
+
     }
 }

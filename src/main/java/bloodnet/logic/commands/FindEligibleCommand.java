@@ -28,7 +28,6 @@ public class FindEligibleCommand extends Command {
             + "Parameters: BLOOD_TYPE(S) \n"
             + "Example: " + COMMAND_WORD + " O+ A+ B+";
 
-
     private final List<String> enteredBloodTypes;
 
     public FindEligibleCommand(List<String> enteredBloodTypes) {
