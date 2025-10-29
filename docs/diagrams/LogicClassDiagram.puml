@@ -43,7 +43,7 @@ LogicManager --> Storage
 Storage --[hidden] Model
 Session .[hidden]up.> Storage
 Command ..> Model
-note top of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+note top of XYZCommand: XYZCommand = AddCommand, \nFindDonationsCommand, etc
 
 LogicManager -down-> Session
 ABCCommandSession -up-|> Session

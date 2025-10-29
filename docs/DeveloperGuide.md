@@ -287,6 +287,20 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+______________________________________________________
+
+### \[Future enhancements\]
+
+With future updates, the current `PersonList` and `DonationRecord` will be synchronized with respect to the UI. 
+As such, the system will therefore ensure that any whenever a user does an action to the donor list, it updates the UI
+accordingly for the `DonationRecord` list. 
+
+The below diagram is how a potential implementation of this would look like using command `FindEligible` as an example:
+
+<puml src="diagrams/futureUIImplementation.puml" width="250" />
+
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 

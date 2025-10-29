@@ -13,7 +13,7 @@ start
 :User inputs command requiring\n user confirmation (e.g. delete 1);
 :Create ConfirmationCommandSession storing\ndeferred execution of the Command;
 repeat :Ask user for confirmation;
-repeat while () is ([else]) not ([user inputs 'yes' or 'no' (caps insensitive)])
+repeat while () is ([else]) not ([user inputs 'yes' or 'no' (case-insensitive)])
 if () then ([user inputs 'yes'])
     :Carry out deferred execution of the Command;
 else ([user inputs 'no'])

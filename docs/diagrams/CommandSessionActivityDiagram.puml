@@ -20,7 +20,7 @@ endif
 note right
 Even if the user input is a new command input,
 it is still passed to the CommandSession. However,
- that input itself is typically not used directly because
+that input itself is typically not used directly because
 all relevant information from the command input has
 already been encapsulated in the Command object and
 passed to the CommandSession during its creation.
@@ -28,7 +28,7 @@ endnote
 
 if () then ([currentCommandSession has finished])
     :currentCommandSession is set to null;
-    :SaveBloodNet();
+    :saveBloodNet();
 else ([else])
 endif
 :Pass InputResponse generated to UI;
