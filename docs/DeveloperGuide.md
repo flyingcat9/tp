@@ -193,6 +193,118 @@ The following activity diagrams contrast the flow of a command requiring user co
 
 For clarity, the above diagrams omit general session handling, command parsing and input delegation. See [**Command Sessions**](#command-sessions) for a complete overview.
 
+<<<<<<< Updated upstream
+=======
+
+
+### \[Proposed\] Undo/redo feature
+
+#### Proposed Implementation
+
+The proposed undo/redo mechanism is facilitated by `VersionedBloodNet`. It extends `BloodNet` with an undo/redo history, stored internally as an `BloodNetStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedBloodNet#commit()` — Saves the current bloodnet state in its history.
+* `VersionedBloodNet#undo()` — Restores the previous bloodnet state from its history.
+* `VersionedBloodNet#redo()` — Restores a previously undone bloodnet state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitBloodNet()`, `Model#undoBloodNet()` and `Model#redoBloodNet()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedBloodNet` will be initialized with the initial BloodNet state, and the `currentStatePointer` pointing to that single BloodNet state.
+
+<puml src="diagrams/UndoRedoState0.puml" alt="UndoRedoState0" />
+
+Step 2. The user executes `delete 5` command to delete the 5th person in BloodNet. The `delete` command calls `Model#commitBloodNet()`, causing the modified state of BloodNet after the `delete 5` command executes to be saved in the `BloodNetStateList`, and the `currentStatePointer` is shifted to the newly inserted BloodNet state.
+
+<puml src="diagrams/UndoRedoState1.puml" alt="UndoRedoState1" />
+
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitBloodNet()`, causing another modified BloodNet state to be saved into the `BloodNetStateList`.
+
+<puml src="diagrams/UndoRedoState2.puml" alt="UndoRedoState2" />
+
+<box type="info" seamless>
+
+**Note:** If a command fails its execution, it will not call `Model#commitBloodNet()`, so the BloodNet state will not be saved into the `BloodNetStateList`.
+
+</box>
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoBloodNet()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous BloodNet state, and restores the BloodNet to that state.
+
+<puml src="diagrams/UndoRedoState3.puml" alt="UndoRedoState3" />
+
+
+<box type="info" seamless>
+
+**Note:** If the `currentStatePointer` is at index 0, pointing to the initial BloodNet state, then there are no previous BloodNet states to restore. The `undo` command uses `Model#canUndoBloodNet()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</box>
+
+The following sequence diagram shows how an undo operation goes through the `Logic` component:
+
+<puml src="diagrams/UndoSequenceDiagram-Logic.puml" alt="UndoSequenceDiagram-Logic" />
+
+<box type="info" seamless>
+
+**Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</box>
+
+Similarly, how an undo operation goes through the `Model` component is shown below:
+
+<puml src="diagrams/UndoSequenceDiagram-Model.puml" alt="UndoSequenceDiagram-Model" />
+
+The `redo` command does the opposite — it calls `Model#redoBloodNet()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the bloodnet to that state.
+
+<box type="info" seamless>
+
+**Note:** If the `currentStatePointer` is at index `BloodNetStateList.size() - 1`, pointing to the latest bloodnet state, then there are no undone BloodNet states to restore. The `redo` command uses `Model#canRedoBloodNet()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</box>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify BloodNet, such as `list`, will usually not call `Model#commitBloodNet()`, `Model#undoBloodNet()` or `Model#redoBloodNet()`. Thus, the `BloodNetStateList` remains unchanged.
+
+<puml src="diagrams/UndoRedoState4.puml" alt="UndoRedoState4" />
+
+Step 6. The user executes `clear`, which calls `Model#commitBloodNet()`. Since the `currentStatePointer` is not pointing at the end of the `BloodNetStateList`, all BloodNet states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+<puml src="diagrams/UndoRedoState5.puml" alt="UndoRedoState5" />
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<puml src="diagrams/CommitActivityDiagram.puml" width="250" />
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire BloodNet.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
+______________________________________________________
+
+### \[Future enhancements\]
+
+With future updates, the current `PersonList` and `DonationRecord` will be synchronized with respect to the UI. 
+As such, the system will therefore ensure that any whenever a user does an action to the donor list, it updates the UI
+accordingly for the `DonationRecord` list. 
+
+The below diagram is how a potential implementation of this would look like using command `FindEligible` as an example:
+
+<puml src="diagrams/FutureUIImplementation.puml" width="250" />
+
+
+
+
+>>>>>>> Stashed changes
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

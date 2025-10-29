@@ -1,0 +1,34 @@
+@startuml
+title FindEligible Command
+!include style.puml
+skinparam activity {
+    BackgroundColor FUTURE_IMPLEMENTATION_COLOUR
+    BorderColor black
+    ArrowColor FUTURE_IMPLEMENTATION_COLOUR_T4
+    FontColor white
+}
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+
+start
+:User inputs FindEligible command; as top
+:Parse FindEligible input into a Command;
+
+if (User includes relevant blood type(s)) then (yes)
+    :Create a new FindEligible Command;
+    :Creates a new HasBloodTypeAndIsEligibleToDonatePredicate;
+    :Parses the PersonList based on the given bloodType(s)
+     Parses the PersonList based on each person's dateOfBirth and days since last donation;
+    :Donor list is filtered based on filtering;
+    :From the updated donor list, the donation record list is updated;
+    if ([updated donor list not null]) then (yes)
+        :Show updated donor and donation record list;
+    else(no)
+        :Show message no donors found;
+    endif
+else (no)
+    :bloodType(s) not valid;
+endif
+stop
+@enduml
+ikd its just a black box
