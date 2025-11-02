@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.control.Label?>
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+         title="BloodNet" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+    <icons>
+        <Image url="@/images/blood_net_logo.png"/>
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@BloodTheme.css"/>
+                <URL value="@Extensions.css"/>
+            </stylesheets>
+
+            <VBox>
+                <StackPane VBox.vgrow="NEVER" fx:id="inputBoxPlaceholder" styleClass="pane-with-border">
+                    <padding>
+                        <Insets top="5" right="10" bottom="5" left="10"/>
+                    </padding>
+                </StackPane>
+
+                <StackPane VBox.vgrow="NEVER" fx:id="outputDisplayPlaceholder" styleClass="pane-with-border"
+                           minHeight="100" prefHeight="100" maxHeight="100">
+                    <padding>
+                        <Insets top="5" right="10" bottom="5" left="10"/>
+                    </padding>
+                </StackPane>
+
+                <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.5">
+                    <items>
+                        <VBox>
+                            <StackPane fx:id="personListPanelPlaceholder" styleClass="pane-with-border"
+                                       VBox.vgrow="ALWAYS"/>
+                        </VBox>
+                        <VBox>
+                            <StackPane fx:id="donationRecordListPanelPlaceholder" styleClass="pane-with-border"
+                                       VBox.vgrow="ALWAYS"/>
+                        </VBox>
+
+
+                    </items>
+                </SplitPane>
+
+
+                <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER"/>
+            </VBox>
+        </Scene>
+    </scene>
+</fx:root>

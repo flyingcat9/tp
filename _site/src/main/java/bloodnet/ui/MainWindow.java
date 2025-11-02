@@ -1,0 +1,180 @@
+package bloodnet.ui;
+
+import java.util.logging.Logger;
+
+import bloodnet.commons.core.GuiSettings;
+import bloodnet.commons.core.LogsCenter;
+import bloodnet.logic.Logic;
+import bloodnet.logic.commands.InputResponse;
+import bloodnet.logic.commands.exceptions.CommandException;
+import bloodnet.logic.parser.exceptions.ParseException;
+import javafx.fxml.FXML;
+import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
+/**
+ * The Main Window. Provides the basic application layout
+ * where other JavaFX elements can be placed.
+ */
+public class MainWindow extends UiPart<Stage> {
+
+    private static final String FXML = "MainWindow.fxml";
+
+    private final Logger logger = LogsCenter.getLogger(getClass());
+
+    private Stage primaryStage;
+    private Logic logic;
+
+    // Independent Ui parts residing in this Ui container
+    private PersonListPanel personListPanel;
+    private DonationRecordListPanel donationRecordListPanel;
+    private OutputDisplay outputDisplay;
+    private HelpWindow helpWindow;
+
+    @FXML
+    private StackPane inputBoxPlaceholder;
+
+    @FXML
+    private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane donationRecordListPanelPlaceholder;
+
+    @FXML
+    private StackPane outputDisplayPlaceholder;
+
+    @FXML
+    private StackPane statusbarPlaceholder;
+
+    /**
+     * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
+     */
+    public MainWindow(Stage primaryStage, Logic logic) {
+        super(FXML, primaryStage);
+
+        // Set dependencies
+        this.primaryStage = primaryStage;
+        this.logic = logic;
+
+        // Configure the UI
+        setWindowDefaultSize(logic.getGuiSettings());
+
+        setKeyboardShortcuts();
+
+        helpWindow = new HelpWindow();
+    }
+
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    private void setKeyboardShortcuts() {
+        setGlobalKeyHandler(KeyCombination.valueOf("F1"), this::handleHelp);
+    }
+
+    private void setGlobalKeyHandler(KeyCombination keyCombination, Runnable action) {
+        getRoot().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (keyCombination.match(event)) {
+                action.run();
+                event.consume();
+            }
+        });
+    }
+
+    /**
+     * Fills up all the placeholders of this window.
+     */
+    void fillInnerParts() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        donationRecordListPanel = new DonationRecordListPanel(logic.getFilteredDonationRecordList());
+        donationRecordListPanelPlaceholder.getChildren().add(donationRecordListPanel.getRoot());
+
+        outputDisplay = new OutputDisplay();
+        outputDisplayPlaceholder.getChildren().add(outputDisplay.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getBloodNetFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        InputBox inputBox = new InputBox(this::handleInput);
+        inputBoxPlaceholder.getChildren().add(inputBox.getRoot());
+    }
+
+    /**
+     * Sets the default size based on {@code guiSettings}.
+     */
+    private void setWindowDefaultSize(GuiSettings guiSettings) {
+        primaryStage.setHeight(guiSettings.getWindowHeight());
+        primaryStage.setWidth(guiSettings.getWindowWidth());
+        if (guiSettings.getWindowCoordinates() != null) {
+            primaryStage.setX(guiSettings.getWindowCoordinates().getX());
+            primaryStage.setY(guiSettings.getWindowCoordinates().getY());
+        }
+    }
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleHelp() {
+        if (!helpWindow.isShowing()) {
+            helpWindow.show();
+        } else {
+            helpWindow.focus();
+        }
+    }
+
+    void show() {
+        primaryStage.show();
+    }
+
+    /**
+     * Closes the application.
+     */
+    @FXML
+    private void handleExit() {
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                (int) primaryStage.getX(), (int) primaryStage.getY());
+        logic.setGuiSettings(guiSettings);
+        helpWindow.hide();
+        primaryStage.hide();
+    }
+
+    public PersonListPanel getPersonListPanel() {
+        return personListPanel;
+    }
+
+    public DonationRecordListPanel getDonationRecordListPanel() {
+        return donationRecordListPanel;
+    }
+
+    /**
+     * handles the command and returns the response.
+     *
+     * @see Logic#handle(String)
+     */
+    private InputResponse handleInput(String input) throws CommandException, ParseException {
+        try {
+            InputResponse inputResponse = logic.handle(input);
+            logger.info("Response: " + inputResponse.getFeedbackToUser());
+            outputDisplay.setFeedbackToUser(inputResponse.getFeedbackToUser());
+
+            if (inputResponse.isShowHelp()) {
+                handleHelp();
+            }
+
+            if (inputResponse.isExit()) {
+                handleExit();
+            }
+
+            return inputResponse;
+        } catch (CommandException | ParseException e) {
+            logger.info("An error occurred while executing command: " + input);
+            outputDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        }
+    }
+}

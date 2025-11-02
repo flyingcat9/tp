@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EditDonationCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.commands</a> &gt; <span class="el_source">EditDonationCommand.java</span></div><h1>EditDonationCommand.java</h1><pre class="source lang-java linenums">package bloodnet.logic.commands;
+
+import static bloodnet.logic.parser.CliSyntax.DATE_FORMAT;
+import static bloodnet.logic.parser.CliSyntax.MILLILITRE_FORMAT;
+import static bloodnet.logic.parser.CliSyntax.POSITIVE_INTEGER_FORMAT;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_BLOOD_VOLUME;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_DONATION_DATE;
+import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+import bloodnet.commons.core.index.Index;
+import bloodnet.commons.util.CollectionUtil;
+import bloodnet.commons.util.ToStringBuilder;
+import bloodnet.logic.Messages;
+import bloodnet.logic.commands.exceptions.CommandException;
+import bloodnet.model.Model;
+import bloodnet.model.donationrecord.BloodVolume;
+import bloodnet.model.donationrecord.DonationDate;
+import bloodnet.model.donationrecord.DonationRecord;
+import bloodnet.model.person.Person;
+
+
+/**
+ * Allows users to edit the blood donation records of an existing person in BloodNet.
+ */
+public class EditDonationCommand extends Command {
+
+    public static final String COMMAND_WORD = &quot;editdonation&quot;;
+
+<span class="fc" id="L34">    public static final CommandInformation COMMAND_INFORMATION = new CommandInformation(COMMAND_WORD,</span>
+            &quot;Edits the donation &quot;
+            + &quot;record detail(s) identified by the index number used in the displayed donation record list. &quot;
+            + &quot;At least one field must be provided.&quot;,
+            &quot;Parameters: DONATION_RECORD_LIST_INDEX_&quot; + POSITIVE_INTEGER_FORMAT + &quot; &quot;
+            + &quot;[&quot; + PREFIX_DONATION_DATE + &quot;DONATION_DATE_&quot; + DATE_FORMAT + &quot;] &quot;
+            + &quot;[&quot; + PREFIX_BLOOD_VOLUME + &quot;BLOOD_VOLUME_&quot; + MILLILITRE_FORMAT + &quot;]&quot;,
+            &quot;Example: editdonation 1 d/02-02-2002 v/100&quot;);
+
+    public static final String MESSAGE_EDIT_DONATION_RECORD_SUCCESS = &quot;Edited Donation Record: %1$s&quot;;
+
+    public static final String MESSAGE_CONCATENATED_VALIDATION_ERRORS_HEADER =
+            &quot;You are attempting to modify a donation record to an invalid one. &quot;
+            + &quot;Please fix these errors:&quot;;
+
+    public static final String MESSAGE_DONATION_RECORD_ALREADY_EXISTS = &quot;Donor has already been recorded &quot;
+            + &quot;as donating on the same date.&quot;;
+
+    private final Index indexOfDonationRecord;
+    private final EditDonationRecordDescriptor editDonationRecordDescriptor;
+
+    /**
+     * @param indexOfDonationRecord Index of the donation record in the displayed donation record list.
+     * @param editDonationRecordDescriptor Details related to the edits made to the donation record.
+     */
+    public EditDonationCommand(Index indexOfDonationRecord,
+<span class="fc" id="L60">                               EditDonationRecordDescriptor editDonationRecordDescriptor) {</span>
+<span class="fc" id="L61">        requireNonNull(indexOfDonationRecord);</span>
+<span class="fc" id="L62">        requireNonNull(editDonationRecordDescriptor);</span>
+
+<span class="fc" id="L64">        this.indexOfDonationRecord = indexOfDonationRecord;</span>
+<span class="fc" id="L65">        this.editDonationRecordDescriptor = new EditDonationRecordDescriptor(editDonationRecordDescriptor);</span>
+<span class="fc" id="L66">    }</span>
+
+    @Override
+    public InputResponse execute(Model model) throws CommandException {
+<span class="fc" id="L70">        requireNonNull(model);</span>
+<span class="fc" id="L71">        DonationRecord recordToEdit = getDonationRecordToEdit(model);</span>
+<span class="fc" id="L72">        Person personForRecordEdit = getPersonToEditRecordFor(model, recordToEdit);</span>
+<span class="fc" id="L73">        DonationRecord editedDonationRecord = createEditedDonationRecord(recordToEdit, editDonationRecordDescriptor);</span>
+<span class="fc" id="L74">        ArrayList&lt;String&gt; validationErrorStrings = editedDonationRecord</span>
+<span class="fc" id="L75">                                                        .validate(model.getBloodNet().getPersonList(),</span>
+<span class="fc" id="L76">                                                                  model.getBloodNet().getDonationRecordList());</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (!validationErrorStrings.isEmpty()) {</span>
+<span class="fc" id="L78">            String concatenatedMessage = MESSAGE_CONCATENATED_VALIDATION_ERRORS_HEADER;</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">            for (String validationErrorString : validationErrorStrings) {</span>
+<span class="fc" id="L80">                concatenatedMessage += &quot;\n- &quot; + validationErrorString;</span>
+<span class="fc" id="L81">            }</span>
+<span class="fc" id="L82">            throw new CommandException(concatenatedMessage);</span>
+        }
+
+<span class="fc bfc" id="L85" title="All 4 branches covered.">        if (!recordToEdit.isSameDonationRecord(editedDonationRecord) &amp;&amp; model.hasDonationRecord(editedDonationRecord)) {</span>
+<span class="fc" id="L86">            throw new CommandException(MESSAGE_DONATION_RECORD_ALREADY_EXISTS);</span>
+        }
+
+<span class="fc" id="L89">        model.setDonationRecord(recordToEdit, editedDonationRecord);</span>
+<span class="fc" id="L90">        return new InputResponse(String.format(MESSAGE_EDIT_DONATION_RECORD_SUCCESS,</span>
+<span class="fc" id="L91">                Messages.format(editedDonationRecord, personForRecordEdit)));</span>
+    }
+
+    /**
+     * Creates and returns a {@code DonationRecord} with the details of {@code personForRecordEdit}
+     * edited with {@code editDonationRecordDescriptor}.
+     */
+    private static DonationRecord createEditedDonationRecord(
+            DonationRecord donationRecordToEdit, EditDonationRecordDescriptor editedDonationRecordDescriptor) {
+<span class="fc" id="L100">        DonationDate editedDonationDate =</span>
+<span class="fc" id="L101">                editedDonationRecordDescriptor.getDonationDate().orElse(donationRecordToEdit.getDonationDate());</span>
+<span class="fc" id="L102">        BloodVolume editedBloodVolume =</span>
+<span class="fc" id="L103">                editedDonationRecordDescriptor.getBloodVolume().orElse(donationRecordToEdit.getBloodVolume());</span>
+
+<span class="fc" id="L105">        return new DonationRecord(donationRecordToEdit.getId(),</span>
+<span class="fc" id="L106">                donationRecordToEdit.getPersonId(), editedDonationDate, editedBloodVolume);</span>
+    }
+
+    private DonationRecord getDonationRecordToEdit(Model model) throws CommandException {
+<span class="fc" id="L110">        requireNonNull(model);</span>
+<span class="fc" id="L111">        List&lt;DonationRecord&gt; donationRecordList = model.getFilteredDonationRecordList();</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">        if (indexOfDonationRecord.getZeroBased() &gt;= donationRecordList.size()) {</span>
+<span class="nc" id="L113">            throw new CommandException(Messages.MESSAGE_INVALID_DONATION_DISPLAYED_INDEX);</span>
+        }
+<span class="fc" id="L115">        return donationRecordList.get(indexOfDonationRecord.getZeroBased());</span>
+    }
+
+    /**
+     * Retrieves the {@code Person} corresponding to the {@code personId} of the provided {@code donationRecord}
+     */
+    private Person getPersonToEditRecordFor(Model model, DonationRecord donationRecord) throws CommandException {
+<span class="fc" id="L122">        requireNonNull(model);</span>
+<span class="fc" id="L123">        requireNonNull(donationRecord);</span>
+<span class="fc" id="L124">        List&lt;Person&gt; personList = model.getBloodNet().getPersonList();</span>
+<span class="fc" id="L125">        Optional&lt;Person&gt; optionalPerson = personList.stream()</span>
+<span class="fc" id="L126">                .filter(person -&gt; person.getId().equals(donationRecord.getPersonId())).findFirst();</span>
+
+<span class="pc bpc" id="L128" title="1 of 2 branches missed.">        if (optionalPerson.isPresent()) {</span>
+<span class="fc" id="L129">            return optionalPerson.get();</span>
+        }
+<span class="nc" id="L131">        throw new CommandException(Messages.MESSAGE_PERSON_NOT_FOUND);</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L136" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L137">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="pc bpc" id="L141" title="1 of 2 branches missed.">        if (!(other instanceof EditDonationCommand)) {</span>
+<span class="nc" id="L142">            return false;</span>
+        }
+
+<span class="fc" id="L145">        EditDonationCommand otherEditDonationCommand = (EditDonationCommand) other;</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        return indexOfDonationRecord.equals(otherEditDonationCommand.indexOfDonationRecord)</span>
+<span class="pc bpc" id="L147" title="1 of 2 branches missed.">                &amp;&amp; editDonationRecordDescriptor.equals(otherEditDonationCommand.editDonationRecordDescriptor);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L152">        return new ToStringBuilder(this)</span>
+<span class="fc" id="L153">                .add(&quot;indexOfDonationRecord&quot;, indexOfDonationRecord)</span>
+<span class="fc" id="L154">                .add(&quot;editDonationRecordDescriptor&quot;, editDonationRecordDescriptor)</span>
+<span class="fc" id="L155">                .toString();</span>
+    }
+
+    public static String getMessageUsage() {
+<span class="fc" id="L159">        return COMMAND_INFORMATION.getMessageUsage();</span>
+    }
+
+    /**
+     * Stores the details to edit the donation record with. Each non-empty field value will
+     * replace the corresponding field value of the donation record.
+     */
+    public static class EditDonationRecordDescriptor {
+        private BloodVolume bloodVolume;
+        private DonationDate donationDate;
+
+<span class="fc" id="L170">        public EditDonationRecordDescriptor() {</span>
+<span class="fc" id="L171">        }</span>
+
+        /**
+         * Copy the constructor.
+         */
+<span class="fc" id="L176">        public EditDonationRecordDescriptor(EditDonationRecordDescriptor toCopy) {</span>
+<span class="fc" id="L177">            setBloodVolume(toCopy.bloodVolume);</span>
+<span class="fc" id="L178">            setDonationDate(toCopy.donationDate);</span>
+<span class="fc" id="L179">        }</span>
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+<span class="fc" id="L185">            return CollectionUtil.isAnyNonNull(bloodVolume, donationDate);</span>
+        }
+
+        public void setBloodVolume(BloodVolume bloodVolume) {
+<span class="fc" id="L189">            this.bloodVolume = bloodVolume;</span>
+<span class="fc" id="L190">        }</span>
+
+        public void setDonationDate(DonationDate donationDate) {
+<span class="fc" id="L193">            this.donationDate = donationDate;</span>
+<span class="fc" id="L194">        }</span>
+
+        public Optional&lt;DonationDate&gt; getDonationDate() {
+<span class="fc" id="L197">            return Optional.ofNullable(donationDate);</span>
+        }
+
+        public Optional&lt;BloodVolume&gt; getBloodVolume() {
+<span class="fc" id="L201">            return Optional.ofNullable(bloodVolume);</span>
+        }
+
+        @Override
+        public boolean equals(Object other) {
+<span class="fc bfc" id="L206" title="All 2 branches covered.">            if (other == this) {</span>
+<span class="fc" id="L207">                return true;</span>
+            }
+
+            // instanceof handles nulls
+<span class="pc bpc" id="L211" title="1 of 2 branches missed.">            if (!(other instanceof EditDonationRecordDescriptor)) {</span>
+<span class="nc" id="L212">                return false;</span>
+            }
+
+<span class="fc" id="L215">            EditDonationRecordDescriptor otherEditPersonDescriptor = (EditDonationRecordDescriptor) other;</span>
+<span class="pc bpc" id="L216" title="1 of 2 branches missed.">            return Objects.equals(bloodVolume, otherEditPersonDescriptor.bloodVolume)</span>
+<span class="pc bpc" id="L217" title="1 of 2 branches missed.">                    &amp;&amp; Objects.equals(donationDate, otherEditPersonDescriptor.donationDate);</span>
+        }
+
+        @Override
+        public String toString() {
+<span class="fc" id="L222">            return new ToStringBuilder(this)</span>
+<span class="fc" id="L223">                    .add(&quot;bloodVolume&quot;, getBloodVolume())</span>
+<span class="fc" id="L224">                    .add(&quot;donationDate&quot;, getDonationDate())</span>
+<span class="fc" id="L225">                    .toString();</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

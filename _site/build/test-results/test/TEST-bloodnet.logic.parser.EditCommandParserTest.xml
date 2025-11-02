@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.logic.parser.EditCommandParserTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.084">
+  <properties/>
+  <testcase name="parse_someFieldsSpecified_success()" classname="bloodnet.logic.parser.EditCommandParserTest" time="0.004"/>
+  <testcase name="parse_oneFieldSpecified_success()" classname="bloodnet.logic.parser.EditCommandParserTest" time="0.002"/>
+  <testcase name="parse_missingParts_failure()" classname="bloodnet.logic.parser.EditCommandParserTest" time="0.001"/>
+  <testcase name="parse_invalidPreamble_failure()" classname="bloodnet.logic.parser.EditCommandParserTest" time="0.0"/>
+  <testcase name="parse_allFieldsSpecified_success()" classname="bloodnet.logic.parser.EditCommandParserTest" time="0.008"/>
+  <testcase name="parse_invalidValue_failure()" classname="bloodnet.logic.parser.EditCommandParserTest" time="0.002"/>
+  <testcase name="parse_multipleRepeatedFields_failure()" classname="bloodnet.logic.parser.EditCommandParserTest" time="0.064"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

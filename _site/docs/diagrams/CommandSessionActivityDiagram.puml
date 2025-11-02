@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+skinparam activity {
+    BackgroundColor LOGIC_COLOR
+    BorderColor black
+    ArrowColor LOGIC_COLOR_T4
+    FontColor white
+}
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User inputs something;
+if () then ([no currentCommandSession in LogicManager])
+    :Parse command input into a Command;
+    :Create CommandSession corresponding to the Command;
+    :Set currentCommandSession to that \nnewly created CommandSession;
+else ([else])
+endif
+:CommandSession handles the input and updates its state;
+note right
+Even if the user input is a new command input,
+it is still passed to the CommandSession. However,
+ that input itself is typically not used directly because
+all relevant information from the command input has
+already been encapsulated in the Command object which will
+then pass relevant information to CommandSession during
+its creation.
+endnote
+
+if () then ([currentCommandSession has finished])
+    :currentCommandSession is set to null;
+    :saveBloodNet();
+else ([else])
+endif
+:Pass InputResponse generated to the UI;
+stop
+@enduml

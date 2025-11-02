@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BloodType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.model.person</a> &gt; <span class="el_source">BloodType.java</span></div><h1>BloodType.java</h1><pre class="source lang-java linenums">package bloodnet.model.person;
+
+import static bloodnet.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
+
+/**
+ * Represents a Person's blood type in the person list.
+ * Guarantees: immutable; is valid as declared in {@link #isValidBloodType(String)}
+ */
+public class BloodType {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            &quot;Blood type should either be A-, A+, B-, B+, AB-, AB+, O- or O+, and it should not be blank.&quot;;
+
+    /*
+     * The first character of the blood type must not be a whitespace,
+     * otherwise &quot; &quot; (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = &quot;^(A|B|AB|O)[+-]$&quot;;
+
+    public final String value;
+
+    /**
+     * Constructs a {@code BloodType}.
+     *
+     * @param bloodType A valid blood type.
+     */
+<span class="fc" id="L28">    public BloodType(String bloodType) {</span>
+<span class="fc" id="L29">        requireNonNull(bloodType);</span>
+<span class="fc" id="L30">        checkArgument(isValidBloodType(bloodType), MESSAGE_CONSTRAINTS);</span>
+<span class="fc" id="L31">        this.value = bloodType.toUpperCase();</span>
+<span class="fc" id="L32">    }</span>
+
+    /**
+     * Returns true if a given string is a valid blood type
+     */
+    public static boolean isValidBloodType(String test) {
+<span class="fc" id="L38">        test = test.toUpperCase();</span>
+<span class="fc" id="L39">        return test.matches(VALIDATION_REGEX);</span>
+    }
+
+
+    @Override
+    public String toString() {
+<span class="fc" id="L45">        return value;</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L51">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (!(other instanceof BloodType)) {</span>
+<span class="fc" id="L56">            return false;</span>
+        }
+
+<span class="fc" id="L59">        BloodType otherBloodType = (BloodType) other;</span>
+<span class="fc" id="L60">        return value.equals(otherBloodType.value);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L65">        return value.hashCode();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

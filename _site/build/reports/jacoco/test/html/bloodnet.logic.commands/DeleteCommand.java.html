@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeleteCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.commands</a> &gt; <span class="el_source">DeleteCommand.java</span></div><h1>DeleteCommand.java</h1><pre class="source lang-java linenums">package bloodnet.logic.commands;
+
+import static bloodnet.logic.parser.CliSyntax.POSITIVE_INTEGER_FORMAT;
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
+import bloodnet.commons.core.index.Index;
+import bloodnet.commons.util.ToStringBuilder;
+import bloodnet.logic.Messages;
+import bloodnet.logic.commands.commandsessions.CommandSession;
+import bloodnet.logic.commands.commandsessions.ConfirmationCommandSession;
+import bloodnet.logic.commands.exceptions.CommandException;
+import bloodnet.model.Model;
+import bloodnet.model.person.Person;
+
+/**
+ * Deletes a person identified using its displayed index from the person list.
+ */
+public class DeleteCommand extends Command {
+
+    public static final String COMMAND_WORD = &quot;delete&quot;;
+
+<span class="fc" id="L24">    public static final CommandInformation COMMAND_INFORMATION = new CommandInformation(COMMAND_WORD,</span>
+            &quot;Deletes the &quot;
+                    + &quot;donor identified by the index number used in the displayed donor list. Note that the donor &quot;
+                    + &quot;can only be deleted if the donor has no donation records.&quot;,
+            &quot;Parameters: DONOR_LIST_INDEX_&quot; + POSITIVE_INTEGER_FORMAT,
+            &quot;Example: &quot; + COMMAND_WORD + &quot; 1&quot;);
+
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = &quot;Deleted donor: %1$s&quot;;
+
+    private final Index targetIndex;
+
+<span class="fc" id="L35">    public DeleteCommand(Index targetIndex) {</span>
+<span class="fc" id="L36">        this.targetIndex = targetIndex;</span>
+<span class="fc" id="L37">    }</span>
+
+    @Override
+    public CommandSession createSession(Model model) throws CommandException {
+<span class="fc" id="L41">        Person personToDelete = getPersonToDelete(model);</span>
+<span class="pc" id="L42">        return new ConfirmationCommandSession(COMMAND_WORD + &quot; &quot; + personToDelete.getName(), () -&gt; this.execute(model));</span>
+    }
+
+    @Override
+    public InputResponse execute(Model model) throws CommandException {
+<span class="fc" id="L47">        Person personToDelete = getPersonToDelete(model);</span>
+<span class="fc" id="L48">        model.deletePerson(personToDelete);</span>
+<span class="fc" id="L49">        return new InputResponse(String.format(MESSAGE_DELETE_PERSON_SUCCESS, Messages.format(personToDelete)));</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L55">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (!(other instanceof DeleteCommand)) {</span>
+<span class="fc" id="L60">            return false;</span>
+        }
+
+<span class="fc" id="L63">        DeleteCommand otherDeleteCommand = (DeleteCommand) other;</span>
+<span class="fc" id="L64">        return targetIndex.equals(otherDeleteCommand.targetIndex);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L69">        return new ToStringBuilder(this)</span>
+<span class="fc" id="L70">                .add(&quot;targetIndex&quot;, targetIndex)</span>
+<span class="fc" id="L71">                .toString();</span>
+    }
+
+    private Person getPersonToDelete(Model model) throws CommandException {
+<span class="fc" id="L75">        requireNonNull(model);</span>
+<span class="fc" id="L76">        List&lt;Person&gt; lastShownList = model.getFilteredPersonList();</span>
+
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (targetIndex.getZeroBased() &gt;= lastShownList.size()) {</span>
+<span class="fc" id="L79">            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);</span>
+        }
+
+<span class="fc" id="L82">        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());</span>
+
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        if (model.hasDonationRecordFor(personToDelete)) {</span>
+<span class="fc" id="L85">            throw new CommandException(Messages.MESSAGE_DELETE_PERSON_WITH_DONATION);</span>
+        }
+
+<span class="fc" id="L88">        return personToDelete;</span>
+    }
+
+    public static String getMessageUsage() {
+<span class="fc" id="L92">        return COMMAND_INFORMATION.getMessageUsage();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

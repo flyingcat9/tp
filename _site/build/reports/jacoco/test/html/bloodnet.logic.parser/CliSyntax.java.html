@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CliSyntax.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.parser</a> &gt; <span class="el_source">CliSyntax.java</span></div><h1>CliSyntax.java</h1><pre class="source lang-java linenums">package bloodnet.logic.parser;
+
+/**
+ * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
+ */
+<span class="nc" id="L6">public class CliSyntax {</span>
+
+    /* Prefix definitions */
+<span class="fc" id="L9">    public static final Prefix PREFIX_NAME = new Prefix(&quot;n/&quot;);</span>
+<span class="fc" id="L10">    public static final Prefix PREFIX_PHONE = new Prefix(&quot;p/&quot;);</span>
+<span class="fc" id="L11">    public static final Prefix PREFIX_EMAIL = new Prefix(&quot;e/&quot;);</span>
+<span class="fc" id="L12">    public static final Prefix PREFIX_BLOOD_TYPE = new Prefix(&quot;b/&quot;);</span>
+<span class="fc" id="L13">    public static final Prefix PREFIX_DATE_OF_BIRTH = new Prefix(&quot;d/&quot;);</span>
+<span class="fc" id="L14">    public static final Prefix PREFIX_PERSON_INDEX_ONE_BASED = new Prefix(&quot;p/&quot;);</span>
+<span class="fc" id="L15">    public static final Prefix PREFIX_DONATION_DATE = new Prefix(&quot;d/&quot;);</span>
+<span class="fc" id="L16">    public static final Prefix PREFIX_BLOOD_VOLUME = new Prefix(&quot;v/&quot;);</span>
+
+    public static final String DATE_FORMAT = &quot;(DD-MM-YYYY)&quot;;
+    public static final String POSITIVE_INTEGER_FORMAT = &quot;(MUST_BE_A_POSITIVE_WHOLE_NUMBER)&quot;;
+    public static final String MILLILITRE_FORMAT = &quot;(IN_MILLILITRES)&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.ui.UiPartTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:26" hostname="LENOVOYOGA" time="0.124">
+  <properties/>
+  <testcase name="constructor_validFileUrl_loadsFile()" classname="bloodnet.ui.UiPartTest" time="0.089"/>
+  <testcase name="constructor_missingFileUrl_throwsAssertionError()" classname="bloodnet.ui.UiPartTest" time="0.003"/>
+  <testcase name="constructor_validFileWithFxRootUrl_loadsFile()" classname="bloodnet.ui.UiPartTest" time="0.004"/>
+  <testcase name="constructor_nullFileUrl_throwsNullPointerException()" classname="bloodnet.ui.UiPartTest" time="0.003"/>
+  <testcase name="constructor_invalidFileUrl_throwsAssertionError()" classname="bloodnet.ui.UiPartTest" time="0.016"/>
+  <testcase name="constructor_invalidFileName_throwsAssertionError()" classname="bloodnet.ui.UiPartTest" time="0.005"/>
+  <testcase name="constructor_nullFileName_throwsNullPointerException()" classname="bloodnet.ui.UiPartTest" time="0.001"/>
+  <testcase name="constructor_missingFileName_throwsNullPointerException()" classname="bloodnet.ui.UiPartTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

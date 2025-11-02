@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Person.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.model.person</a> &gt; <span class="el_source">Person.java</span></div><h1>Person.java</h1><pre class="source lang-java linenums">package bloodnet.model.person;
+
+import static bloodnet.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Objects;
+import java.util.UUID;
+
+import bloodnet.commons.util.ToStringBuilder;
+
+/**
+ * Represents a Person in the BloodNet.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
+public class Person {
+    // Identity fields
+    private UUID id;
+    private final Name name;
+    private final Phone phone;
+    private final Email email;
+
+    // Data fields
+    private final BloodType bloodType;
+    private final DateOfBirth dateOfBirth;
+
+    /**
+     * Every field other than ID must be present and not null.
+     */
+    public Person(UUID id, Name name, Phone phone, Email email, BloodType bloodType,
+<span class="fc" id="L29">                  DateOfBirth dateOfBirth) {</span>
+<span class="fc" id="L30">        requireAllNonNull(name, phone, email, bloodType);</span>
+
+<span class="fc" id="L32">        this.id = id;</span>
+<span class="fc" id="L33">        this.name = name;</span>
+<span class="fc" id="L34">        this.phone = phone;</span>
+<span class="fc" id="L35">        this.email = email;</span>
+<span class="fc" id="L36">        this.bloodType = bloodType;</span>
+<span class="fc" id="L37">        this.dateOfBirth = dateOfBirth;</span>
+<span class="fc" id="L38">    }</span>
+
+    public void setId(UUID id) {
+<span class="nc" id="L41">        this.id = id;</span>
+<span class="nc" id="L42">    }</span>
+
+    public UUID getId() {
+<span class="fc" id="L45">        return id;</span>
+    }
+
+    public Name getName() {
+<span class="fc" id="L49">        return name;</span>
+    }
+
+    public Phone getPhone() {
+<span class="fc" id="L53">        return phone;</span>
+    }
+
+    public Email getEmail() {
+<span class="fc" id="L57">        return email;</span>
+    }
+
+    public BloodType getBloodType() {
+<span class="fc" id="L61">        return bloodType;</span>
+    }
+
+    public DateOfBirth getDateOfBirth() {
+<span class="fc" id="L65">        return dateOfBirth;</span>
+    }
+
+
+    /**
+     * Returns true if both persons have the same name and phone number.
+     * This defines a weaker notion of equality between two persons.
+     */
+    public boolean isSamePerson(Person otherPerson) {
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        if (otherPerson == this) {</span>
+<span class="fc" id="L75">            return true;</span>
+        }
+
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        return otherPerson != null</span>
+<span class="fc bfc" id="L79" title="All 4 branches covered.">                &amp;&amp; (otherPerson.getName().equals(getName()) &amp;&amp; otherPerson.getPhone().equals(getPhone()));</span>
+    }
+
+    /**
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
+     */
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L89">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        if (!(other instanceof Person)) {</span>
+<span class="fc" id="L94">            return false;</span>
+        }
+
+<span class="fc" id="L97">        Person otherPerson = (Person) other;</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        return name.equals(otherPerson.name)</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">                &amp;&amp; phone.equals(otherPerson.phone)</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">                &amp;&amp; email.equals(otherPerson.email)</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">                &amp;&amp; bloodType.equals(otherPerson.bloodType)</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">                &amp;&amp; dateOfBirth.equals(otherPerson.dateOfBirth);</span>
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+<span class="fc" id="L108">        return Objects.hash(name, phone, email, bloodType, dateOfBirth);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L113">        return new ToStringBuilder(this)</span>
+<span class="fc" id="L114">                .add(&quot;id&quot;, id)</span>
+<span class="fc" id="L115">                .add(&quot;name&quot;, name)</span>
+<span class="fc" id="L116">                .add(&quot;phone&quot;, phone)</span>
+<span class="fc" id="L117">                .add(&quot;email&quot;, email)</span>
+<span class="fc" id="L118">                .add(&quot;bloodType&quot;, bloodType)</span>
+<span class="fc" id="L119">                .add(&quot;dateOfBirth&quot;, dateOfBirth)</span>
+<span class="fc" id="L120">                .toString();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

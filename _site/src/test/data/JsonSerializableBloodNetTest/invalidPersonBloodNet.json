@@ -1,0 +1,13 @@
+{
+  "persons": [
+    {
+      "id": "ab3080ac-469e-4af0-b5ec-09ff4e369101",
+      "name": "Hans Muster",
+      "phone": "94782424",
+      "email": "invalid@email!3e",
+      "dateOfBirth": "11-08-1980",
+      "bloodType": "O-"
+    }
+  ],
+  "donationRecords": []
+}

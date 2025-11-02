@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserPrefs.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.model</a> &gt; <span class="el_source">UserPrefs.java</span></div><h1>UserPrefs.java</h1><pre class="source lang-java linenums">package bloodnet.model;
+
+import static java.util.Objects.requireNonNull;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Objects;
+
+import bloodnet.commons.core.GuiSettings;
+
+/**
+ * Represents User's preferences.
+ */
+public class UserPrefs implements ReadOnlyUserPrefs {
+
+<span class="fc" id="L16">    private GuiSettings guiSettings = new GuiSettings();</span>
+<span class="fc" id="L17">    private Path bloodNetFilePath = Paths.get(&quot;data&quot;, &quot;bloodnet.json&quot;);</span>
+
+    /**
+     * Creates a {@code UserPrefs} with default values.
+     */
+<span class="fc" id="L22">    public UserPrefs() {</span>
+<span class="fc" id="L23">    }</span>
+
+    /**
+     * Creates a {@code UserPrefs} with the prefs in {@code userPrefs}.
+     */
+    public UserPrefs(ReadOnlyUserPrefs userPrefs) {
+<span class="fc" id="L29">        this();</span>
+<span class="fc" id="L30">        resetData(userPrefs);</span>
+<span class="fc" id="L31">    }</span>
+
+    /**
+     * Resets the existing data of this {@code UserPrefs} with {@code newUserPrefs}.
+     */
+    public void resetData(ReadOnlyUserPrefs newUserPrefs) {
+<span class="fc" id="L37">        requireNonNull(newUserPrefs);</span>
+<span class="fc" id="L38">        setGuiSettings(newUserPrefs.getGuiSettings());</span>
+<span class="fc" id="L39">        setBloodNetFilePath(newUserPrefs.getBloodNetFilePath());</span>
+<span class="fc" id="L40">    }</span>
+
+    public GuiSettings getGuiSettings() {
+<span class="fc" id="L43">        return guiSettings;</span>
+    }
+
+    public void setGuiSettings(GuiSettings guiSettings) {
+<span class="fc" id="L47">        requireNonNull(guiSettings);</span>
+<span class="fc" id="L48">        this.guiSettings = guiSettings;</span>
+<span class="fc" id="L49">    }</span>
+
+    public Path getBloodNetFilePath() {
+<span class="fc" id="L52">        return bloodNetFilePath;</span>
+    }
+
+    public void setBloodNetFilePath(Path bloodNetFilePath) {
+<span class="fc" id="L56">        requireNonNull(bloodNetFilePath);</span>
+<span class="fc" id="L57">        this.bloodNetFilePath = bloodNetFilePath;</span>
+<span class="fc" id="L58">    }</span>
+
+    @Override
+    public boolean equals(Object other) {
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">        if (other == this) {</span>
+<span class="nc" id="L63">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if (!(other instanceof UserPrefs)) {</span>
+<span class="nc" id="L68">            return false;</span>
+        }
+
+<span class="fc" id="L71">        UserPrefs otherUserPrefs = (UserPrefs) other;</span>
+<span class="pc bpc" id="L72" title="1 of 2 branches missed.">        return guiSettings.equals(otherUserPrefs.guiSettings)</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">                &amp;&amp; bloodNetFilePath.equals(otherUserPrefs.bloodNetFilePath);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L78">        return Objects.hash(guiSettings, bloodNetFilePath);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L83">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L84">        sb.append(&quot;Gui Settings : &quot; + guiSettings);</span>
+<span class="fc" id="L85">        sb.append(&quot;\nLocal data file location : &quot; + bloodNetFilePath);</span>
+<span class="fc" id="L86">        return sb.toString();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

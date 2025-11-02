@@ -1,0 +1,43 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+package Storage as StoragePackage {
+
+package "UserPrefs Storage" #F4F6F6{
+Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
+Class JsonUserPrefsStorage
+}
+
+Class "<<interface>>\nStorage" as Storage
+Class StorageManager
+
+package "BloodNet Storage" #F4F6F6{
+Class "<<interface>>\nBloodNetStorage" as BloodNetStorage
+Class JsonBloodNetStorage
+Class JsonSerializableBloodNet
+Class JsonAdaptedPerson
+Class JsonAdaptedDonationRecord
+}
+
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Storage
+
+StorageManager .up.|> Storage
+StorageManager -up-> "1" UserPrefsStorage
+StorageManager -up-> "1" BloodNetStorage
+
+Storage -left-|> UserPrefsStorage
+Storage -right-|> BloodNetStorage
+
+JsonUserPrefsStorage .up.|> UserPrefsStorage
+JsonBloodNetStorage .up.|> BloodNetStorage
+JsonBloodNetStorage ..> JsonSerializableBloodNet
+JsonSerializableBloodNet --> "*" JsonAdaptedPerson
+JsonSerializableBloodNet --> "*" JsonAdaptedDonationRecord
+
+@enduml

@@ -1,0 +1,53 @@
+2025-11-02T09:55:40.434Z - info: Initialization success.
+2025-11-02T09:55:48.157Z - info: Website generation started at 5:55:48 pm
+2025-11-02T09:55:48.767Z - info: Building assets...
+2025-11-02T09:55:50.146Z - info: Assets built
+2025-11-02T09:55:50.147Z - info: Generating pages...
+2025-11-02T09:55:55.173Z - debug:  
+2025-11-02T09:55:55.485Z - debug:  
+2025-11-02T09:55:55.617Z - debug:  
+2025-11-02T09:55:55.692Z - debug:  
+2025-11-02T09:55:55.744Z - debug:  
+2025-11-02T09:55:55.806Z - debug:  
+2025-11-02T09:55:55.836Z - debug:  
+2025-11-02T09:55:55.885Z - debug:  
+2025-11-02T09:55:55.917Z - debug:  
+2025-11-02T09:55:55.930Z - debug:  
+2025-11-02T09:55:55.945Z - debug:  
+2025-11-02T09:55:56.027Z - debug:  
+2025-11-02T09:55:56.058Z - debug:  
+2025-11-02T09:55:56.352Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\index.md'
+2025-11-02T09:55:56.353Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T09:55:56.354Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/UserGuide.html#command-summary' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T09:55:56.354Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/UserGuide.html#features' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T09:55:56.355Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/UserGuide.html#faq' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T09:55:56.356Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/DeveloperGuide.html#acknowledgements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T09:55:56.357Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/DeveloperGuide.html#setting-up-getting-started' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T09:55:56.357Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/DeveloperGuide.html#design' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T09:55:56.357Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/DeveloperGuide.html#implementation' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T09:55:56.358Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T09:55:56.358Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/DeveloperGuide.html#appendix-requirements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T09:55:56.359Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/DeveloperGuide.html#appendix-instructions-for-manual-testing' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T09:55:56.359Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/DeveloperGuide.html#appendix-effort' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T09:55:56.363Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /docs/DeveloperGuide.html#architecture' found in file 'C:\Users\limin\tp\docs\SettingUp.md'
+2025-11-02T09:55:56.364Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/docs/team/fsythw.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T09:55:56.369Z - info: Pages built
+2025-11-02T09:55:56.598Z - info: Site data built
+2025-11-02T09:55:56.598Z - info: Website generation complete! Total build time: 8.463s
+2025-11-02T09:55:56.638Z - info: Serving "C:\Users\limin\tp\_site" at http://127.0.0.1:8080
+2025-11-02T09:55:56.638Z - info: Press CTRL+C to stop ...

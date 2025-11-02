@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArgumentMultimap.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.parser</a> &gt; <span class="el_source">ArgumentMultimap.java</span></div><h1>ArgumentMultimap.java</h1><pre class="source lang-java linenums">package bloodnet.logic.parser;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
+
+import bloodnet.logic.Messages;
+import bloodnet.logic.parser.exceptions.ParseException;
+
+/**
+ * Stores mapping of prefixes to their respective arguments.
+ * Each key may be associated with multiple argument values.
+ * Values for a given key are stored in a list, and the insertion ordering is maintained.
+ * Keys are unique, but the list of argument values may contain duplicate argument values, i.e. the same argument value
+ * can be inserted multiple times for the same prefix.
+ */
+<span class="fc" id="L20">public class ArgumentMultimap {</span>
+
+    /**
+     * Prefixes mapped to their respective arguments
+     **/
+<span class="fc" id="L25">    private final Map&lt;Prefix, List&lt;String&gt;&gt; argMultimap = new HashMap&lt;&gt;();</span>
+
+    /**
+     * Associates the specified argument value with {@code prefix} key in this map.
+     * If the map previously contained a mapping for the key, the new value is appended to the list of existing values.
+     *
+     * @param prefix   Prefix key with which the specified argument value is to be associated
+     * @param argValue Argument value to be associated with the specified prefix key
+     */
+    public void put(Prefix prefix, String argValue) {
+<span class="fc" id="L35">        List&lt;String&gt; argValues = getAllValues(prefix);</span>
+<span class="fc" id="L36">        argValues.add(argValue);</span>
+<span class="fc" id="L37">        argMultimap.put(prefix, argValues);</span>
+<span class="fc" id="L38">    }</span>
+
+    /**
+     * Returns the last value of {@code prefix}.
+     */
+    public Optional&lt;String&gt; getValue(Prefix prefix) {
+<span class="fc" id="L44">        List&lt;String&gt; values = getAllValues(prefix);</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));</span>
+    }
+
+    /**
+     * Returns all values of {@code prefix}.
+     * If the prefix does not exist or has no values, this will return an empty list.
+     * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
+     */
+    public List&lt;String&gt; getAllValues(Prefix prefix) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (!argMultimap.containsKey(prefix)) {</span>
+<span class="fc" id="L55">            return new ArrayList&lt;&gt;();</span>
+        }
+<span class="fc" id="L57">        return new ArrayList&lt;&gt;(argMultimap.get(prefix));</span>
+    }
+
+    /**
+     * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
+     */
+    public String getPreamble() {
+<span class="fc" id="L64">        return getValue(new Prefix(&quot;&quot;)).orElse(&quot;&quot;);</span>
+    }
+
+    /**
+     * Throws a {@code ParseException} if any of the prefixes given in {@code prefixes} appeared more than
+     * once among the arguments.
+     */
+    public void verifyNoDuplicatePrefixesFor(Prefix... prefixes) throws ParseException {
+<span class="fc" id="L72">        Prefix[] duplicatedPrefixes = Stream.of(prefixes).distinct()</span>
+<span class="fc bfc" id="L73" title="All 4 branches covered.">                .filter(prefix -&gt; argMultimap.containsKey(prefix) &amp;&amp; argMultimap.get(prefix).size() &gt; 1)</span>
+<span class="fc" id="L74">                .toArray(Prefix[]::new);</span>
+
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        if (duplicatedPrefixes.length &gt; 0) {</span>
+<span class="fc" id="L77">            throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));</span>
+        }
+<span class="fc" id="L79">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

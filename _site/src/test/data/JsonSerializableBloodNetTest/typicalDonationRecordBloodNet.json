@@ -1,0 +1,87 @@
+{
+  "_comment": "BloodNet save file which contains the same Person and DonationRecord values as in TypicalDonationRecords#getTypicalBloodNet()",
+  "persons": [
+    {
+      "id": "a7460411-cc1f-4b17-a75c-3009a766679a",
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "bloodType": "A+",
+      "dateOfBirth": "17-03-2000"
+    },
+    {
+      "id": "74227cde-d5d3-455e-8852-7bbe6e15e351",
+      "name": "Benson Meier",
+      "phone": "98765432",
+      "email": "johnd@example.com",
+      "dateOfBirth": "20-04-1996",
+      "bloodType": "A-"
+    },
+    {
+      "id": "0bd76fb4-244b-41ee-b220-b4f03b12d6c7",
+      "name": "Carl Kurz",
+      "phone": "95352563",
+      "email": "heinz@example.com",
+      "dateOfBirth": "04-05-1994",
+      "bloodType": "B+"
+    },
+    {
+      "id": "68e79db6-37d9-4e0a-a02a-1831bb6a9f20",
+      "name": "Daniel Meier",
+      "phone": "87652533",
+      "email": "cornelia@example.com",
+      "dateOfBirth": "12-12-1992",
+      "bloodType": "B-"
+    },
+    {
+      "id": "84901d92-c6af-438a-9f87-7b24e926f01c",
+      "name": "Elle Meyer",
+      "phone": "94822242",
+      "email": "werner@example.com",
+      "bloodType": "O-",
+      "dateOfBirth": "03-04-1998"
+    },
+    {
+      "id": "781f4d25-e281-4e9e-ba2a-e903446d1191",
+      "name": "Fiona Kunz",
+      "phone": "94824271",
+      "email": "lydia@example.com",
+      "bloodType": "O+",
+      "dateOfBirth": "01-02-1996"
+    },
+    {
+      "id": "c633e609-304e-4d8f-ad18-8c4694ad05fd",
+      "name": "George Best",
+      "phone": "94824422",
+      "email": "anna@example.com",
+      "bloodType": "AB+",
+      "dateOfBirth": "01-01-2002"
+    }
+  ],
+  "donationRecords": [
+    {
+      "id": "662cd422-ec25-4170-8656-d161a641d3f8",
+      "personId": "a7460411-cc1f-4b17-a75c-3009a766679a",
+      "donationDate": "15-01-2025",
+      "bloodVolume": "400"
+    },
+    {
+      "id": "01ab240a-2e7a-4beb-a8a1-5f9325019b28",
+      "personId": "a7460411-cc1f-4b17-a75c-3009a766679a",
+      "donationDate": "15-10-2025",
+      "bloodVolume": "450"
+    },
+    {
+      "id": "8e84ac9b-da7d-4da2-af22-d713a6337098",
+      "personId": "74227cde-d5d3-455e-8852-7bbe6e15e351",
+      "donationDate": "21-03-2025",
+      "bloodVolume": "400"
+    },
+    {
+      "id": "5b2e97d5-42ce-44eb-a1c2-895ea5f9b049",
+      "personId": "74227cde-d5d3-455e-8852-7bbe6e15e351",
+      "donationDate": "25-07-2025",
+      "bloodVolume": "400"
+    }
+  ]
+}

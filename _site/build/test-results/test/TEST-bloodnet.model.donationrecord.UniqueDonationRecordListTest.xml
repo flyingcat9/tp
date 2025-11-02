@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.model.donationrecord.UniqueDonationRecordListTest" tests="23" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.026">
+  <properties/>
+  <testcase name="add_nullDonationRecord_throwsNullPointerException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.0"/>
+  <testcase name="asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.0"/>
+  <testcase name="setDonationRecord_nullEditedDonationRecord_throwsNullPointerException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.001"/>
+  <testcase name="setDonationRecord_targetDonationRecordNotInList_throwsDonationRecordNotFoundException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.002"/>
+  <testcase name="remove_donationRecordDoesNotExist_throwsDonationRecordNotFoundException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.0"/>
+  <testcase name="toStringMethod()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.0"/>
+  <testcase name="setDonationRecords_uniqueDonationRecordList_replacesOwnListWithProvidedUniqueDonationRecordList()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.0"/>
+  <testcase name="contains_nullDonationRecord_throwsNullPointerException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.001"/>
+  <testcase name="setDonationRecords_nullList_throwsNullPointerException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.001"/>
+  <testcase name="setDonationRecords_listWithDuplicateDonationRecords_throwsDuplicateDonationRecordException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.002"/>
+  <testcase name="remove_nullDonationRecord_throwsNullPointerException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.001"/>
+  <testcase name="setDonationRecord_editedDonationRecordHasNonUniqueIdentity_throwsDuplicateDonationRecordException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.001"/>
+  <testcase name="setDonationRecords_list_replacesOwnListWithProvidedList()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.0"/>
+  <testcase name="contains_donationRecordInList_returnsTrue()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.001"/>
+  <testcase name="contains_donationRecordWithSameIdentityFieldsInList_returnsTrue()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.0"/>
+  <testcase name="setDonationRecords_nullUniqueDonationRecordList_throwsNullPointerException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.002"/>
+  <testcase name="setDonationRecord_editedDonationRecordHasSameIdentity_success()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.0"/>
+  <testcase name="setDonationRecord_editedDonationRecordHasDifferentIdentity_success()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.001"/>
+  <testcase name="remove_existingDonationRecord_removesDonationRecord()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.0"/>
+  <testcase name="setDonationRecord_editedDonationRecordIsSameDonationRecord_success()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.0"/>
+  <testcase name="add_duplicateDonationRecord_throwsDuplicateDonationRecordException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.003"/>
+  <testcase name="setDonationRecord_nullTargetDonationRecord_throwsNullPointerException()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.002"/>
+  <testcase name="contains_donationRecordNotInList_returnsFalse()" classname="bloodnet.model.donationrecord.UniqueDonationRecordListTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

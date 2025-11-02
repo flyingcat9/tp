@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.logic.LogicManagerTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:24" hostname="LENOVOYOGA" time="0.256">
+  <properties/>
+  <testcase name="execute_invalidCommandFormat_throwsParseException()" classname="bloodnet.logic.LogicManagerTest" time="0.011"/>
+  <testcase name="execute_storageThrowsAdException_throwsCommandException()" classname="bloodnet.logic.LogicManagerTest" time="0.051"/>
+  <testcase name="execute_validCommand_success()" classname="bloodnet.logic.LogicManagerTest" time="0.117"/>
+  <testcase name="execute_commandExceptionDuringSessionHandle_resetsSession()" classname="bloodnet.logic.LogicManagerTest" time="0.017"/>
+  <testcase name="execute_storageThrowsIoException_throwsCommandException()" classname="bloodnet.logic.LogicManagerTest" time="0.006"/>
+  <testcase name="execute_terminalSessionStateException_resetsSession()" classname="bloodnet.logic.LogicManagerTest" time="0.013"/>
+  <testcase name="getFilteredDonationRecordsList_modifyList_throwsUnsupportedOperationException()" classname="bloodnet.logic.LogicManagerTest" time="0.005"/>
+  <testcase name="execute_multiStateCommand_success()" classname="bloodnet.logic.LogicManagerTest" time="0.018"/>
+  <testcase name="execute_commandExecutionError_throwsCommandException()" classname="bloodnet.logic.LogicManagerTest" time="0.007"/>
+  <testcase name="getFilteredPersonList_modifyList_throwsUnsupportedOperationException()" classname="bloodnet.logic.LogicManagerTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Nov 02, 2025 2:49:24 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][uicfhmowqewca]
+Nov 02, 2025 2:49:24 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][add n/Amy Bee p/88888888 e/amy@example.com b/A+ d/01-04-1995]
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][list]
+Nov 02, 2025 2:49:25 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit14275026052278226944\bloodnet.json found.
+Nov 02, 2025 2:49:25 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][throw command exception]
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][]
+Nov 02, 2025 2:49:25 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit16133676315119575252\bloodnet.json found.
+Nov 02, 2025 2:49:25 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][add n/Amy Bee p/88888888 e/amy@example.com b/A+ d/01-04-1995]
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][throw terminal]
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][]
+Nov 02, 2025 2:49:25 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit10237403990952000603\bloodnet.json found.
+Nov 02, 2025 2:49:25 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][multi state]
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][multi state]
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][multi state]
+Nov 02, 2025 2:49:25 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit11974285468318552431\bloodnet.json found.
+Nov 02, 2025 2:49:25 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][]
+Nov 02, 2025 2:49:25 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit11974285468318552431\bloodnet.json found.
+Nov 02, 2025 2:49:25 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][delete 9]
+]]></system-err>
+</testsuite>

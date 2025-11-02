@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IsEligibleToDonatePredicate.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.model.person</a> &gt; <span class="el_source">IsEligibleToDonatePredicate.java</span></div><h1>IsEligibleToDonatePredicate.java</h1><pre class="source lang-java linenums">package bloodnet.model.person;
+
+import java.util.ArrayList;
+import java.util.function.Predicate;
+
+import bloodnet.commons.util.ToStringBuilder;
+import bloodnet.model.Model;
+import bloodnet.model.donationrecord.BloodVolume;
+import bloodnet.model.donationrecord.DonationDate;
+import bloodnet.model.donationrecord.DonationRecord;
+
+
+/**
+ * Tests that a {@code Person} meets eligibility criteria based on {@code dateOfBirth}
+ * and days since last donation, if they have donated in the past.
+ */
+public class IsEligibleToDonatePredicate implements Predicate&lt;Person&gt; {
+
+    private final Model model;
+    private final DonationDate donationDate;
+
+    /**
+     * Constructs a {@code IsEligibleToDonatePredicate}.
+     * Sets {@code donationDate} to the specified {@code donationDate}.
+     */
+<span class="fc" id="L26">    public IsEligibleToDonatePredicate(Model model, DonationDate donationDate) {</span>
+<span class="fc" id="L27">        this.model = model;</span>
+<span class="fc" id="L28">        this.donationDate = donationDate;</span>
+<span class="fc" id="L29">    }</span>
+
+    /**
+     * Returns true if the person's date of birth and days since last donation fits the criteria.
+     * {@code dateOfBirth} is provided by the user.
+     *
+     * @param person Person you are checking the {@code dateOfBirth} and days since last donation for.
+     */
+    public boolean test(Person person) {
+        // Using a dummy blood volume, as we want to reuse DonationRecord's .validate() method.
+<span class="fc" id="L39">        DonationRecord donationRecord = new DonationRecord(null,</span>
+<span class="fc" id="L40">                                                            person.getId(),</span>
+                                                            donationDate,
+                                                            new BloodVolume(&quot;1&quot;));
+<span class="fc" id="L43">        ArrayList&lt;String&gt; validationErrorStrings = donationRecord.validate(model.getBloodNet().getPersonList(),</span>
+<span class="fc" id="L44">                                                                           model.getBloodNet().getDonationRecordList());</span>
+<span class="fc" id="L45">        return validationErrorStrings.isEmpty();</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L51">            return true;</span>
+        }
+
+        // instanceof handles nulls or if it is of a different type
+<span class="fc" id="L55">        return other instanceof IsEligibleToDonatePredicate;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L60">        return new ToStringBuilder(this).toString();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

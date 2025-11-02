@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SampleDataUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.model.util</a> &gt; <span class="el_source">SampleDataUtil.java</span></div><h1>SampleDataUtil.java</h1><pre class="source lang-java linenums">package bloodnet.model.util;
+
+
+import java.util.UUID;
+
+import bloodnet.model.BloodNet;
+import bloodnet.model.ReadOnlyBloodNet;
+import bloodnet.model.donationrecord.BloodVolume;
+import bloodnet.model.donationrecord.DonationDate;
+import bloodnet.model.donationrecord.DonationRecord;
+import bloodnet.model.person.BloodType;
+import bloodnet.model.person.DateOfBirth;
+import bloodnet.model.person.Email;
+import bloodnet.model.person.Name;
+import bloodnet.model.person.Person;
+import bloodnet.model.person.Phone;
+
+/**
+ * Contains utility methods for populating {@code BloodNet} with sample data.
+ */
+<span class="nc" id="L21">public class SampleDataUtil {</span>
+    public static Person[] getSamplePersons() {
+<span class="nc" id="L23">        return new Person[]{</span>
+<span class="nc" id="L24">                new Person(UUID.fromString(&quot;04adb966-5b89-4951-bdaf-0471b76b6349&quot;),</span>
+                        new Name(&quot;Alex Yeoh&quot;), new Phone(&quot;87438807&quot;), new Email(&quot;alexyeoh@example.com&quot;),
+                        new BloodType(&quot;A+&quot;), new DateOfBirth(&quot;28-03-1995&quot;)),
+<span class="nc" id="L27">                new Person(UUID.fromString(&quot;929cae0a-c20f-4a6c-8bff-782443910534&quot;),</span>
+                        new Name(&quot;Bernice Yu&quot;), new Phone(&quot;99272758&quot;), new Email(&quot;berniceyu@example.com&quot;),
+                        new BloodType(&quot;AB+&quot;), new DateOfBirth(&quot;01-01-2000&quot;)),
+<span class="nc" id="L30">                new Person(UUID.fromString(&quot;225a1def-43a0-4c8f-9256-18f88e162bcd&quot;),</span>
+                        new Name(&quot;Charlotte Oliveiro&quot;), new Phone(&quot;93210283&quot;), new Email(&quot;charlotte@example.com&quot;),
+                        new BloodType(&quot;O-&quot;), new DateOfBirth(&quot;04-01-2003&quot;)),
+<span class="nc" id="L33">                new Person(UUID.fromString(&quot;773ef4ee-ec45-4a9c-bbc5-aeee7585895c&quot;),</span>
+                        new Name(&quot;David Li&quot;), new Phone(&quot;91031282&quot;), new Email(&quot;lidavid@example.com&quot;),
+                        new BloodType(&quot;B+&quot;), new DateOfBirth(&quot;12-12-2000&quot;)),
+<span class="nc" id="L36">                new Person(UUID.fromString(&quot;763927e1-342b-468b-b539-3197e55cd53b&quot;),</span>
+                        new Name(&quot;Irfan Ibrahim&quot;), new Phone(&quot;92492021&quot;), new Email(&quot;irfan@example.com&quot;),
+                        new BloodType(&quot;B-&quot;), new DateOfBirth(&quot;09-06-1990&quot;)),
+<span class="nc" id="L39">                new Person(UUID.fromString(&quot;cfc7e2e5-26cc-40e5-aaa2-1273a083e8af&quot;),</span>
+                        new Name(&quot;Roy Balakrishnan&quot;), new Phone(&quot;92624417&quot;), new Email(&quot;royb@example.com&quot;),
+                        new BloodType(&quot;O+&quot;), new DateOfBirth(&quot;21-03-2004&quot;))
+        };
+    }
+
+    public static ReadOnlyBloodNet getSampleBloodNet() {
+<span class="nc" id="L46">        BloodNet sampleBloodNet = new BloodNet();</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        for (Person samplePerson : getSamplePersons()) {</span>
+<span class="nc" id="L48">            sampleBloodNet.addPerson(samplePerson);</span>
+        }
+
+<span class="nc bnc" id="L51" title="All 2 branches missed.">        for (DonationRecord sampleDonationRecord : getSampleDonationRecords()) {</span>
+<span class="nc" id="L52">            sampleBloodNet.addDonationRecord(sampleDonationRecord);</span>
+        }
+
+<span class="nc" id="L55">        return sampleBloodNet;</span>
+    }
+
+    public static DonationRecord[] getSampleDonationRecords() {
+<span class="nc" id="L59">        return new DonationRecord[]{</span>
+<span class="nc" id="L60">                new DonationRecord(UUID.fromString(&quot;662cd422-ec25-4170-8656-d161a641d3f8&quot;),</span>
+<span class="nc" id="L61">                        UUID.fromString(&quot;04adb966-5b89-4951-bdaf-0471b76b6349&quot;),</span>
+                        new DonationDate(&quot;15-01-2025&quot;), new BloodVolume(&quot;400&quot;)),
+<span class="nc" id="L63">                new DonationRecord(UUID.fromString(&quot;01ab240a-2e7a-4beb-a8a1-5f9325019b28&quot;),</span>
+<span class="nc" id="L64">                        UUID.fromString(&quot;04adb966-5b89-4951-bdaf-0471b76b6349&quot;),</span>
+                        new DonationDate(&quot;15-10-2025&quot;), new BloodVolume(&quot;450&quot;)),
+<span class="nc" id="L66">                new DonationRecord(UUID.fromString(&quot;8e84ac9b-da7d-4da2-af22-d713a6337098&quot;),</span>
+<span class="nc" id="L67">                        UUID.fromString(&quot;225a1def-43a0-4c8f-9256-18f88e162bcd&quot;),</span>
+                        new DonationDate(&quot;21-03-2025&quot;), new BloodVolume(&quot;400&quot;)),
+<span class="nc" id="L69">                new DonationRecord(UUID.fromString(&quot;5b2e97d5-42ce-44eb-a1c2-895ea5f9b049&quot;),</span>
+<span class="nc" id="L70">                        UUID.fromString(&quot;225a1def-43a0-4c8f-9256-18f88e162bcd&quot;),</span>
+                        new DonationDate(&quot;25-07-2025&quot;), new BloodVolume(&quot;400&quot;)),
+<span class="nc" id="L72">                new DonationRecord(UUID.fromString(&quot;35c36cfb-e4c9-4411-a5b6-36ac5b19489b&quot;),</span>
+<span class="nc" id="L73">                        UUID.fromString(&quot;763927e1-342b-468b-b539-3197e55cd53b&quot;),</span>
+                        new DonationDate(&quot;18-02-2025&quot;), new BloodVolume(&quot;400&quot;)),
+<span class="nc" id="L75">                new DonationRecord(UUID.fromString(&quot;27e01424-af32-4be4-a08b-b93f7870b45f&quot;),</span>
+<span class="nc" id="L76">                        UUID.fromString(&quot;763927e1-342b-468b-b539-3197e55cd53b&quot;),</span>
+                        new DonationDate(&quot;15-10-2025&quot;), new BloodVolume(&quot;499&quot;)),
+        };
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

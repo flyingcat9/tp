@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.model.BloodNetTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.031">
+  <properties/>
+  <testcase name="hasPerson_personWithSameIdentityFieldsInBloodNet_returnsTrue()" classname="bloodnet.model.BloodNetTest" time="0.001"/>
+  <testcase name="getPersonList_modifyList_throwsUnsupportedOperationException()" classname="bloodnet.model.BloodNetTest" time="0.002"/>
+  <testcase name="constructor()" classname="bloodnet.model.BloodNetTest" time="0.0"/>
+  <testcase name="hasPerson_nullPerson_throwsNullPointerException()" classname="bloodnet.model.BloodNetTest" time="0.003"/>
+  <testcase name="resetData_withValidReadOnlyBloodNet_replacesData()" classname="bloodnet.model.BloodNetTest" time="0.0"/>
+  <testcase name="toStringMethod()" classname="bloodnet.model.BloodNetTest" time="0.003"/>
+  <testcase name="resetData_null_throwsNullPointerException()" classname="bloodnet.model.BloodNetTest" time="0.004"/>
+  <testcase name="hasPerson_personNotInBloodNet_returnsFalse()" classname="bloodnet.model.BloodNetTest" time="0.0"/>
+  <testcase name="resetData_withDuplicatePersons_throwsDuplicatePersonException()" classname="bloodnet.model.BloodNetTest" time="0.01"/>
+  <testcase name="hasPerson_personInBloodNet_returnsTrue()" classname="bloodnet.model.BloodNetTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.storage.JsonAdaptedPersonTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.04">
+  <properties/>
+  <testcase name="toModelType_nullBloodType_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedPersonTest" time="0.002"/>
+  <testcase name="toModelType_nullEmail_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedPersonTest" time="0.002"/>
+  <testcase name="toModelType_nullName_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedPersonTest" time="0.001"/>
+  <testcase name="toModelType_nullDateOfBirth_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedPersonTest" time="0.001"/>
+  <testcase name="toModelType_invalidPhone_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedPersonTest" time="0.002"/>
+  <testcase name="toModelType_invalidName_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedPersonTest" time="0.003"/>
+  <testcase name="toModelType_invalidDateofBirth_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedPersonTest" time="0.005"/>
+  <testcase name="toModelType_invalidEmail_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedPersonTest" time="0.008"/>
+  <testcase name="toModelType_validPersonDetails_returnsPerson()" classname="bloodnet.storage.JsonAdaptedPersonTest" time="0.003"/>
+  <testcase name="toModelType_invalidBloodType_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedPersonTest" time="0.004"/>
+  <testcase name="toModelType_nullPhone_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedPersonTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

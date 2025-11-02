@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.logic.commands.FindEligibleCommandTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.017">
+  <properties/>
+  <testcase name="execute_multipleMatches_executesSuccessfully()" classname="bloodnet.logic.commands.FindEligibleCommandTest" time="0.008"/>
+  <testcase name="execute_nullModelExecutes_throwsNullPointerException()" classname="bloodnet.logic.commands.FindEligibleCommandTest" time="0.002"/>
+  <testcase name="equals()" classname="bloodnet.logic.commands.FindEligibleCommandTest" time="0.001"/>
+  <testcase name="execute_zeroMatch_executesSuccessfully()" classname="bloodnet.logic.commands.FindEligibleCommandTest" time="0.001"/>
+  <testcase name="toStringMethod()" classname="bloodnet.logic.commands.FindEligibleCommandTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

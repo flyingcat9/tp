@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.logic.commands.AddCommandTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.013">
+  <properties/>
+  <testcase name="equals()" classname="bloodnet.logic.commands.AddCommandTest" time="0.001"/>
+  <testcase name="toStringMethod()" classname="bloodnet.logic.commands.AddCommandTest" time="0.001"/>
+  <testcase name="execute_duplicatePerson_throwsCommandException()" classname="bloodnet.logic.commands.AddCommandTest" time="0.006"/>
+  <testcase name="execute_personAcceptedByModel_addSuccessful()" classname="bloodnet.logic.commands.AddCommandTest" time="0.002"/>
+  <testcase name="constructor_nullPerson_throwsNullPointerException()" classname="bloodnet.logic.commands.AddCommandTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

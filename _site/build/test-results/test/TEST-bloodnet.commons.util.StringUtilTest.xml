@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.commons.util.StringUtilTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:24" hostname="LENOVOYOGA" time="0.016">
+  <properties/>
+  <testcase name="containsWordIgnoreCase_nullSentence_throwsNullPointerException()" classname="bloodnet.commons.util.StringUtilTest" time="0.002"/>
+  <testcase name="containsWordIgnoreCase_nullWord_throwsNullPointerException()" classname="bloodnet.commons.util.StringUtilTest" time="0.001"/>
+  <testcase name="containsWordIgnoreCase_validInputs_correctResult()" classname="bloodnet.commons.util.StringUtilTest" time="0.003"/>
+  <testcase name="containsWordIgnoreCase_emptyWord_throwsIllegalArgumentException()" classname="bloodnet.commons.util.StringUtilTest" time="0.001"/>
+  <testcase name="getDetails_exceptionGiven()" classname="bloodnet.commons.util.StringUtilTest" time="0.002"/>
+  <testcase name="containsWordIgnoreCase_multipleWords_throwsIllegalArgumentException()" classname="bloodnet.commons.util.StringUtilTest" time="0.002"/>
+  <testcase name="isNonZeroUnsignedInteger()" classname="bloodnet.commons.util.StringUtilTest" time="0.001"/>
+  <testcase name="getDetails_nullGiven_throwsNullPointerException()" classname="bloodnet.commons.util.StringUtilTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

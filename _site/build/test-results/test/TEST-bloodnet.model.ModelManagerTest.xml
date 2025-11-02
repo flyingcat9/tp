@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.model.ModelManagerTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.013">
+  <properties/>
+  <testcase name="setUserPrefs_nullUserPrefs_throwsNullPointerException()" classname="bloodnet.model.ModelManagerTest" time="0.001"/>
+  <testcase name="constructor()" classname="bloodnet.model.ModelManagerTest" time="0.001"/>
+  <testcase name="hasPerson_nullPerson_throwsNullPointerException()" classname="bloodnet.model.ModelManagerTest" time="0.001"/>
+  <testcase name="setGuiSettings_validGuiSettings_setsGuiSettings()" classname="bloodnet.model.ModelManagerTest" time="0.001"/>
+  <testcase name="equals()" classname="bloodnet.model.ModelManagerTest" time="0.002"/>
+  <testcase name="setUserPrefs_validUserPrefs_copiesUserPrefs()" classname="bloodnet.model.ModelManagerTest" time="0.0"/>
+  <testcase name="setBloodNetFilePath_validPath_setsBloodNetFilePath()" classname="bloodnet.model.ModelManagerTest" time="0.0"/>
+  <testcase name="setBloodNetFilePath_nullPath_throwsNullPointerException()" classname="bloodnet.model.ModelManagerTest" time="0.001"/>
+  <testcase name="hasPerson_personNotInBloodNet_returnsFalse()" classname="bloodnet.model.ModelManagerTest" time="0.001"/>
+  <testcase name="hasPerson_personInBloodNet_returnsTrue()" classname="bloodnet.model.ModelManagerTest" time="0.0"/>
+  <testcase name="getFilteredPersonList_modifyList_throwsUnsupportedOperationException()" classname="bloodnet.model.ModelManagerTest" time="0.002"/>
+  <testcase name="setGuiSettings_nullGuiSettings_throwsNullPointerException()" classname="bloodnet.model.ModelManagerTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

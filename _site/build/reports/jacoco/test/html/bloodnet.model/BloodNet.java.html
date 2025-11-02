@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BloodNet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.model</a> &gt; <span class="el_source">BloodNet.java</span></div><h1>BloodNet.java</h1><pre class="source lang-java linenums">package bloodnet.model;
+
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+import java.util.Objects;
+
+import bloodnet.commons.util.ToStringBuilder;
+import bloodnet.model.donationrecord.DonationRecord;
+import bloodnet.model.donationrecord.UniqueDonationRecordList;
+import bloodnet.model.person.Person;
+import bloodnet.model.person.UniquePersonList;
+import javafx.collections.ObservableList;
+
+
+/**
+ * Wraps all data at the blood-net level
+ * Duplicates are not allowed (by .isSamePerson comparison)
+ */
+public class BloodNet implements ReadOnlyBloodNet {
+
+    private final UniquePersonList persons;
+    private final UniqueDonationRecordList donationRecords;
+
+    /*
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     *   among constructors.
+     */
+
+    {
+<span class="fc" id="L34">        persons = new UniquePersonList();</span>
+<span class="fc" id="L35">        donationRecords = new UniqueDonationRecordList();</span>
+    }
+
+<span class="fc" id="L38">    public BloodNet() {</span>
+<span class="fc" id="L39">    }</span>
+
+    /**
+     * Creates an BloodNet using the Persons &amp; Donation Records in the {@code toBeCopied}
+     */
+    public BloodNet(ReadOnlyBloodNet toBeCopied) {
+<span class="fc" id="L45">        this();</span>
+<span class="fc" id="L46">        resetData(toBeCopied);</span>
+<span class="fc" id="L47">    }</span>
+
+    //// list overwrite operations
+
+    /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setPersons(List&lt;Person&gt; persons) {
+<span class="fc" id="L56">        this.persons.setPersons(persons);</span>
+<span class="fc" id="L57">    }</span>
+
+    /**
+     * Replaces the contents of the donationRecord list with {@code donationRecords}.
+     * {@code donationRecords} must not contain duplicate donationRecords.
+     */
+    public void setDonationRecords(List&lt;DonationRecord&gt; donationRecords) {
+<span class="fc" id="L64">        this.donationRecords.setDonationRecords(donationRecords);</span>
+<span class="fc" id="L65">    }</span>
+
+    /**
+     * Resets the existing data of this {@code BloodNet} with {@code newData}.
+     */
+    public void resetData(ReadOnlyBloodNet newData) {
+<span class="fc" id="L71">        requireNonNull(newData);</span>
+
+<span class="fc" id="L73">        setPersons(newData.getPersonList());</span>
+<span class="fc" id="L74">        setDonationRecords(newData.getDonationRecordList());</span>
+<span class="fc" id="L75">    }</span>
+
+    //// person-level operations
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the bloodnet.
+     */
+    public boolean hasPerson(Person person) {
+<span class="fc" id="L83">        requireNonNull(person);</span>
+<span class="fc" id="L84">        return persons.contains(person);</span>
+    }
+
+    /**
+     * Adds a person to the bloodnet.
+     * The person must not already exist in the bloodnet.
+     */
+    public void addPerson(Person p) {
+<span class="fc" id="L92">        persons.add(p);</span>
+<span class="fc" id="L93">    }</span>
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the bloodnet.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the bloodnet.
+     */
+    public void setPerson(Person target, Person editedPerson) {
+<span class="fc" id="L101">        requireNonNull(editedPerson);</span>
+
+<span class="fc" id="L103">        persons.setPerson(target, editedPerson);</span>
+<span class="fc" id="L104">    }</span>
+
+    /**
+     * Removes {@code key} from this {@code BloodNet}.
+     * {@code key} must exist in the bloodnet.
+     */
+    public void removePerson(Person key) {
+<span class="fc" id="L111">        persons.remove(key);</span>
+<span class="fc" id="L112">    }</span>
+
+    /**
+     * Checks if {@code person} has any {@code DonationRecord}
+     * in bloodnet.
+     */
+    public boolean hasDonationRecordFor(Person person) {
+<span class="fc" id="L119">        requireNonNull(person);</span>
+<span class="fc" id="L120">        return donationRecords.asUnmodifiableObservableList()</span>
+<span class="fc" id="L121">                .stream()</span>
+<span class="fc" id="L122">                .anyMatch(record -&gt; record.getPersonId().equals(person.getId()));</span>
+    }
+
+    //// donationRecord-level operations
+
+    /**
+     * Returns true if a donationRecord with the same identity as {@code donationRecord} exists in the bloodnet.
+     */
+    public boolean hasDonationRecord(DonationRecord donationRecord) {
+<span class="fc" id="L131">        requireNonNull(donationRecord);</span>
+<span class="fc" id="L132">        return donationRecords.contains(donationRecord);</span>
+    }
+
+    /**
+     * Adds a donationRecord to the bloodnet.
+     * The donationRecord must not already exist in the bloodnet.
+     */
+    public void addDonationRecord(DonationRecord donationRecord) {
+<span class="fc" id="L140">        donationRecords.add(donationRecord);</span>
+<span class="fc" id="L141">    }</span>
+
+    /**
+     * Replaces the given donationRecord {@code target} in the list with {@code editedDonationRecord}.
+     * {@code target} must exist in the bloodnet.
+     * The donationRecord identity of {@code editedDonationRecord} must not be the same as another existing
+     * donationRecord in the bloodnet.
+     */
+    public void setDonationRecord(DonationRecord target, DonationRecord editedDonationRecord) {
+<span class="fc" id="L150">        requireNonNull(editedDonationRecord);</span>
+
+<span class="fc" id="L152">        donationRecords.setDonationRecord(target, editedDonationRecord);</span>
+<span class="fc" id="L153">    }</span>
+
+    /**
+     * Removes {@code key} from this {@code BloodNet}.
+     * {@code key} must exist in the bloodnet.
+     */
+    public void removeDonationRecord(DonationRecord key) {
+<span class="fc" id="L160">        donationRecords.remove(key);</span>
+<span class="fc" id="L161">    }</span>
+
+    //// util methods
+
+    @Override
+    public String toString() {
+<span class="fc" id="L167">        return new ToStringBuilder(this)</span>
+<span class="fc" id="L168">                .add(&quot;persons&quot;, persons)</span>
+<span class="fc" id="L169">                .add(&quot;donationRecords&quot;, donationRecords)</span>
+<span class="fc" id="L170">                .toString();</span>
+    }
+
+    @Override
+    public ObservableList&lt;Person&gt; getPersonList() {
+<span class="fc" id="L175">        return persons.asUnmodifiableObservableList();</span>
+    }
+
+    @Override
+    public ObservableList&lt;DonationRecord&gt; getDonationRecordList() {
+<span class="fc" id="L180">        return donationRecords.asUnmodifiableObservableList();</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">        if (other == this) {</span>
+<span class="nc" id="L186">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="pc bpc" id="L190" title="1 of 2 branches missed.">        if (!(other instanceof BloodNet)) {</span>
+<span class="nc" id="L191">            return false;</span>
+        }
+
+<span class="fc" id="L194">        BloodNet otherBloodNet = (BloodNet) other;</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">        return persons.equals(otherBloodNet.persons)</span>
+<span class="pc bpc" id="L196" title="1 of 2 branches missed.">                &amp;&amp; donationRecords.equals(otherBloodNet.donationRecords);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L201">        return Objects.hash(persons.hashCode(), donationRecords.hashCode());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

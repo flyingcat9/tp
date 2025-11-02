@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.logic.commands.DeleteCommandTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.024">
+  <properties/>
+  <testcase name="equals()" classname="bloodnet.logic.commands.DeleteCommandTest" time="0.001"/>
+  <testcase name="execute_invalidIndexUnfilteredList_throwsCommandException()" classname="bloodnet.logic.commands.DeleteCommandTest" time="0.0"/>
+  <testcase name="toStringMethod()" classname="bloodnet.logic.commands.DeleteCommandTest" time="0.001"/>
+  <testcase name="createSession_validModel_returnsConfirmationCommandSession()" classname="bloodnet.logic.commands.DeleteCommandTest" time="0.002"/>
+  <testcase name="execute_validIndexUnfilteredList_success()" classname="bloodnet.logic.commands.DeleteCommandTest" time="0.002"/>
+  <testcase name="createSession_nullModel_throwsNullPointerException()" classname="bloodnet.logic.commands.DeleteCommandTest" time="0.002"/>
+  <testcase name="createSession_personHasRecords_throwsCommandException()" classname="bloodnet.logic.commands.DeleteCommandTest" time="0.002"/>
+  <testcase name="execute_validIndexFilteredList_success()" classname="bloodnet.logic.commands.DeleteCommandTest" time="0.004"/>
+  <testcase name="execute_invalidIndexFilteredList_throwsCommandException()" classname="bloodnet.logic.commands.DeleteCommandTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

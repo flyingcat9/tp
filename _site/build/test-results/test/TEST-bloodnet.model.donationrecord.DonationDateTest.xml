@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.model.donationrecord.DonationDateTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.021">
+  <properties/>
+  <testcase name="constructor_invalidDonationDate_throwsIllegalArgumentException()" classname="bloodnet.model.donationrecord.DonationDateTest" time="0.001"/>
+  <testcase name="equals()" classname="bloodnet.model.donationrecord.DonationDateTest" time="0.002"/>
+  <testcase name="constructor_null_throwsNullPointerException()" classname="bloodnet.model.donationrecord.DonationDateTest" time="0.004"/>
+  <testcase name="isValidDonationDate()" classname="bloodnet.model.donationrecord.DonationDateTest" time="0.01"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

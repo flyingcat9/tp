@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.commons.core.index.IndexTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:22" hostname="LENOVOYOGA" time="0.02">
+  <properties/>
+  <testcase name="equals()" classname="bloodnet.commons.core.index.IndexTest" time="0.003"/>
+  <testcase name="toStringMethod()" classname="bloodnet.commons.core.index.IndexTest" time="0.01"/>
+  <testcase name="createZeroBasedIndex()" classname="bloodnet.commons.core.index.IndexTest" time="0.002"/>
+  <testcase name="toDisplayUser()" classname="bloodnet.commons.core.index.IndexTest" time="0.001"/>
+  <testcase name="createOneBasedIndex()" classname="bloodnet.commons.core.index.IndexTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

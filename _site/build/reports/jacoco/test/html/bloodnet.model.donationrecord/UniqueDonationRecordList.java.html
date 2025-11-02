@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UniqueDonationRecordList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.model.donationrecord</a> &gt; <span class="el_source">UniqueDonationRecordList.java</span></div><h1>UniqueDonationRecordList.java</h1><pre class="source lang-java linenums">package bloodnet.model.donationrecord;
+
+import static bloodnet.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
+import bloodnet.model.donationrecord.exceptions.DonationRecordNotFoundException;
+import bloodnet.model.donationrecord.exceptions.DuplicateDonationRecordException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+/**
+ * A list of donationRecords that enforces uniqueness between its elements and does not allow nulls.
+ * A donationRecord is considered unique by comparing using
+ * {@code DonationRecord#isSameDonationRecord(DonationRecord)}. As such, adding and updating of
+ * donationRecords uses DonationRecord#isSameDonationRecord(DonationRecord) for equality so as to ensure that the
+ * donationRecord being added or updated is
+ * unique in terms of identity in the UniqueDonationRecordList. However, the removal of a donationRecord uses
+ * DonationRecord#equals(Object) so
+ * as to ensure that the donationRecord with exactly the same fields will be removed.
+ * &lt;p&gt;
+ * Supports a minimal set of list operations.
+ *
+ * @see DonationRecord#isSameDonationRecord(DonationRecord)
+ */
+<span class="fc" id="L28">public class UniqueDonationRecordList implements Iterable&lt;DonationRecord&gt; {</span>
+
+<span class="fc" id="L30">    private final ObservableList&lt;DonationRecord&gt; internalList = FXCollections.observableArrayList();</span>
+<span class="fc" id="L31">    private final ObservableList&lt;DonationRecord&gt; internalUnmodifiableList =</span>
+<span class="fc" id="L32">            FXCollections.unmodifiableObservableList(internalList);</span>
+
+    /**
+     * Returns true if the list contains an equivalent donationRecord as the given argument.
+     */
+    public boolean contains(DonationRecord toCheck) {
+<span class="fc" id="L38">        requireNonNull(toCheck);</span>
+<span class="fc" id="L39">        return internalList.stream().anyMatch(toCheck::isSameDonationRecord);</span>
+    }
+
+    /**
+     * Adds a donationRecord to the list.
+     * The donationRecord must not already exist in the list.
+     */
+    public void add(DonationRecord toAdd) {
+<span class="fc" id="L47">        requireNonNull(toAdd);</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (contains(toAdd)) {</span>
+<span class="fc" id="L49">            throw new DuplicateDonationRecordException();</span>
+        }
+<span class="fc" id="L51">        internalList.add(toAdd);</span>
+<span class="fc" id="L52">    }</span>
+
+    /**
+     * Replaces the donationRecord {@code target} in the list with {@code editedDonationRecord}.
+     * {@code target} must exist in the list.
+     * The donationRecord identity of {@code editedDonationRecord} must not be the same as another existing
+     * donationRecord in the list.
+     */
+    public void setDonationRecord(DonationRecord target, DonationRecord editedDonationRecord) {
+<span class="fc" id="L61">        requireAllNonNull(target, editedDonationRecord);</span>
+
+<span class="fc" id="L63">        int index = internalList.indexOf(target);</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (index == -1) {</span>
+<span class="fc" id="L65">            throw new DonationRecordNotFoundException();</span>
+        }
+
+<span class="fc bfc" id="L68" title="All 4 branches covered.">        if (!target.isSameDonationRecord(editedDonationRecord) &amp;&amp; contains(editedDonationRecord)) {</span>
+<span class="fc" id="L69">            throw new DuplicateDonationRecordException();</span>
+        }
+
+<span class="fc" id="L72">        internalList.set(index, editedDonationRecord);</span>
+<span class="fc" id="L73">    }</span>
+
+    /**
+     * Removes the equivalent donationRecord from the list.
+     * The donationRecord must exist in the list.
+     */
+    public void remove(DonationRecord toRemove) {
+<span class="fc" id="L80">        requireNonNull(toRemove);</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        if (!internalList.remove(toRemove)) {</span>
+<span class="fc" id="L82">            throw new DonationRecordNotFoundException();</span>
+        }
+<span class="fc" id="L84">    }</span>
+
+    public void setDonationRecords(UniqueDonationRecordList replacement) {
+<span class="fc" id="L87">        requireNonNull(replacement);</span>
+<span class="fc" id="L88">        internalList.setAll(replacement.internalList);</span>
+<span class="fc" id="L89">    }</span>
+
+    /**
+     * Replaces the contents of this list with {@code donationRecords}.
+     * {@code donationRecords} must not contain duplicate donationRecords.
+     */
+    public void setDonationRecords(List&lt;DonationRecord&gt; donationRecords) {
+<span class="fc" id="L96">        requireAllNonNull(donationRecords);</span>
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if (!donationRecordsAreUnique(donationRecords)) {</span>
+<span class="fc" id="L98">            throw new DuplicateDonationRecordException();</span>
+        }
+
+<span class="fc" id="L101">        internalList.setAll(donationRecords);</span>
+<span class="fc" id="L102">    }</span>
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList&lt;DonationRecord&gt; asUnmodifiableObservableList() {
+<span class="fc" id="L108">        return internalUnmodifiableList;</span>
+    }
+
+    @Override
+    public Iterator&lt;DonationRecord&gt; iterator() {
+<span class="nc" id="L113">        return internalList.iterator();</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">        if (other == this) {</span>
+<span class="nc" id="L119">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="pc bpc" id="L123" title="1 of 2 branches missed.">        if (!(other instanceof UniqueDonationRecordList)) {</span>
+<span class="nc" id="L124">            return false;</span>
+        }
+
+<span class="fc" id="L127">        UniqueDonationRecordList otherUniqueDonationRecordList = (UniqueDonationRecordList) other;</span>
+<span class="fc" id="L128">        return internalList.equals(otherUniqueDonationRecordList.internalList);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L133">        return internalList.hashCode();</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L138">        return internalList.toString();</span>
+    }
+
+    /**
+     * Returns true if {@code donationRecords} contains only unique donation records.
+     */
+    private boolean donationRecordsAreUnique(List&lt;DonationRecord&gt; donationRecords) {
+<span class="fc bfc" id="L145" title="All 2 branches covered.">        for (int i = 0; i &lt; donationRecords.size() - 1; i++) {</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">            for (int j = i + 1; j &lt; donationRecords.size(); j++) {</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">                if (donationRecords.get(i).isSameDonationRecord(donationRecords.get(j))) {</span>
+<span class="fc" id="L148">                    return false;</span>
+                }
+            }
+        }
+<span class="fc" id="L152">        return true;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

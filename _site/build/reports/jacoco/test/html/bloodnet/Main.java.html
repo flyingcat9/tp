@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">package bloodnet;
+
+import java.util.logging.Logger;
+
+import bloodnet.commons.core.LogsCenter;
+import javafx.application.Application;
+
+/**
+ * The main entry point to the application.
+ * &lt;p&gt;
+ * This is a workaround for the following error when MainApp is made the
+ * entry point of the application:
+ * &lt;p&gt;
+ * Error: JavaFX runtime components are missing, and are required to run this application
+ * &lt;p&gt;
+ * The reason is that MainApp extends Application. In that case, the
+ * LauncherHelper will check for the javafx.graphics module to be present
+ * as a named module. We don't use JavaFX via the module system so it can't
+ * find the javafx.graphics module, and so the launch is aborted.
+ * &lt;p&gt;
+ * By having a separate main class (Main) that doesn't extend Application
+ * to be the entry point of the application, we avoid this issue.
+ */
+<span class="nc" id="L24">public class Main {</span>
+<span class="nc" id="L25">    private static Logger logger = LogsCenter.getLogger(Main.class);</span>
+
+    public static void main(String[] args) {
+
+        // As per https://github.com/openjdk/jfx/blob/master/doc-files/release-notes-16.md
+        // JavaFX 16 (or later) runtime logs a warning at startup if JavaFX classes are loaded from
+        // the classpath instead of a module.
+        // Our application does not use Java modules yet. Even if it did, modules are ignored when
+        // packed into a FAT Jar file (as we do), which means this warning will persist even then.
+        // The warning however, can be safely ignored. Thus, the following log informs
+        // the user (if looking at the log output) that the said warning appearing in the log
+        // can be ignored.
+
+<span class="nc" id="L38">        logger.warning(&quot;The warning about Unsupported JavaFX configuration below (if any) can be ignored.&quot;);</span>
+<span class="nc" id="L39">        Application.launch(MainApp.class, args);</span>
+<span class="nc" id="L40">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

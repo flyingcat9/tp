@@ -1,0 +1,1087 @@
+2025-11-02T02:36:53.858Z - info: Website generation started at 10:36:53 am
+2025-11-02T02:36:53.904Z - info: Building assets...
+2025-11-02T02:36:53.976Z - info: Assets built
+2025-11-02T02:36:53.977Z - info: Generating pages...
+2025-11-02T02:36:54.876Z - error: 'normal' layout does not exist
+2025-11-02T02:36:54.890Z - error: 'normal' layout does not exist
+2025-11-02T02:36:58.992Z - debug:  
+2025-11-02T02:36:59.631Z - debug:  
+2025-11-02T02:36:59.688Z - debug:  
+2025-11-02T02:36:59.733Z - debug:  
+2025-11-02T02:36:59.867Z - debug:  
+2025-11-02T02:36:59.887Z - debug:  
+2025-11-02T02:36:59.906Z - debug:  
+2025-11-02T02:36:59.948Z - debug:  
+2025-11-02T02:37:00.014Z - debug:  
+2025-11-02T02:37:00.028Z - debug:  
+2025-11-02T02:37:00.091Z - debug:  
+2025-11-02T02:37:00.109Z - debug:  
+2025-11-02T02:37:00.121Z - debug:  
+2025-11-02T02:37:00.235Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/SettingUp.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:00.236Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/Documentation.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:00.237Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/Testing.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:00.238Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/Logging.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:00.239Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/Configuration.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:00.240Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/DevOps.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:00.242Z - info: Pages built
+2025-11-02T02:37:00.532Z - info: Site data built
+2025-11-02T02:37:00.533Z - info: Website generation complete! Total build time: 6.709s
+2025-11-02T02:37:00.576Z - info: Serving "C:\Users\limin\tp\docs\_site" at http://127.0.0.1:8080
+2025-11-02T02:37:00.577Z - info: Press CTRL+C to stop ...
+2025-11-02T02:37:00.807Z - info: [10:37:00 am] Reload for file change: C:\Users\limin\tp\docs\site.json
+2025-11-02T02:37:00.840Z - info: Rebuilding 1 pages
+2025-11-02T02:37:01.401Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/index.html' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.404Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/AboutUs.html' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.405Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.406Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#command-summary' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.409Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#features' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.410Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#faq' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.411Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#acknowledgements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.411Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#setting-up-getting-started' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.412Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#design' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.413Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#implementation' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.414Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.414Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-requirements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.415Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-instructions-for-manual-testing' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.416Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-effort' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:01.441Z - info: Site data built
+2025-11-02T02:37:01.443Z - info: Pages rebuilt
+2025-11-02T02:37:01.444Z - info: Website regeneration complete! Total build time: 0.604s
+2025-11-02T02:37:05.490Z - info: [10:37:05 am] Reload for file change: C:\Users\limin\tp\docs\site.json
+2025-11-02T02:37:05.528Z - info: Rebuilding 1 pages
+2025-11-02T02:37:05.727Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/SettingUp.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:05.728Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/Documentation.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:05.730Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/Testing.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:05.730Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/Logging.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:05.731Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/Configuration.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:05.731Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/DevOps.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:05.746Z - info: Site data built
+2025-11-02T02:37:05.746Z - info: Pages rebuilt
+2025-11-02T02:37:05.746Z - info: Website regeneration complete! Total build time: 0.22s
+2025-11-02T02:37:11.714Z - info: Website generation started at 10:37:11 am
+2025-11-02T02:37:11.760Z - info: Building assets...
+2025-11-02T02:37:11.871Z - info: Assets built
+2025-11-02T02:37:11.872Z - info: Generating pages...
+2025-11-02T02:37:16.755Z - debug:  
+2025-11-02T02:37:16.819Z - debug:  
+2025-11-02T02:37:16.901Z - debug:  
+2025-11-02T02:37:17.085Z - debug:  
+2025-11-02T02:37:17.129Z - debug:  
+2025-11-02T02:37:17.145Z - debug:  
+2025-11-02T02:37:17.195Z - debug:  
+2025-11-02T02:37:17.243Z - debug:  
+2025-11-02T02:37:17.249Z - debug:  
+2025-11-02T02:37:17.261Z - debug:  
+2025-11-02T02:37:17.261Z - debug:  
+2025-11-02T02:37:17.275Z - debug:  
+2025-11-02T02:37:17.419Z - debug:  
+2025-11-02T02:37:17.621Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/SettingUp.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:17.622Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/Documentation.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:17.623Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/Testing.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:17.624Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/Logging.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:17.625Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/Configuration.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:17.626Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/DevOps.html' found in file 'C:\Users\limin\tp\docs\DeveloperGuide.md'
+2025-11-02T02:37:17.627Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/index.html' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.627Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/AboutUs.html' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.628Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.629Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#command-summary' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.629Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#features' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.630Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#faq' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.630Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#acknowledgements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.631Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#setting-up-getting-started' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.631Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#design' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.632Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#implementation' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.632Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.634Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-requirements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.634Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-instructions-for-manual-testing' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.635Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-effort' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:37:17.638Z - info: Pages built
+2025-11-02T02:37:17.986Z - info: Site data built
+2025-11-02T02:37:17.987Z - info: Website generation complete! Total build time: 6.389s
+2025-11-02T02:37:18.036Z - info: Serving "C:\Users\limin\tp\docs\_site" at http://127.0.0.1:8080
+2025-11-02T02:37:18.036Z - info: Press CTRL+C to stop ...
+2025-11-02T02:40:37.419Z - info: [10:40:37 am] Reload for file change: C:\Users\limin\tp\docs\site.json
+2025-11-02T02:40:38.466Z - debug: Assets removed
+2025-11-02T02:40:38.484Z - info: Pages or site config modified, updating pages...
+2025-11-02T02:40:39.502Z - warn: Rebuilding all pages...
+2025-11-02T02:40:39.502Z - info: Generating pages...
+2025-11-02T02:40:39.506Z - warn:  RangeError: Invalid array length
+    at ProgressBar.render (C:\Users\limin\AppData\Local\nvm\v20.19.4\node_modules\markbind-cli\node_modules\@markbind\core\src\lib\progress\node-progress.js:188:14)
+    at Site.<anonymous> (C:\Users\limin\AppData\Local\nvm\v20.19.4\node_modules\markbind-cli\node_modules\@markbind\core\src\Site\index.js:875:25)
+    at Generator.next (<anonymous>)
+    at C:\Users\limin\AppData\Local\nvm\v20.19.4\node_modules\markbind-cli\node_modules\@markbind\core\src\Site\index.js:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\limin\AppData\Local\nvm\v20.19.4\node_modules\markbind-cli\node_modules\@markbind\core\src\Site\index.js:27:12)
+    at Site.runPageGenerationTasks (C:\Users\limin\AppData\Local\nvm\v20.19.4\node_modules\markbind-cli\node_modules\@markbind\core\src\Site\index.js:872:16)
+    at Site.generatePages (C:\Users\limin\AppData\Local\nvm\v20.19.4\node_modules\markbind-cli\node_modules\@markbind\core\src\Site\index.js:1019:21)
+    at Site.<anonymous> (C:\Users\limin\AppData\Local\nvm\v20.19.4\node_modules\markbind-cli\node_modules\@markbind\core\src\Site\index.js:496:28)
+    at Generator.next (<anonymous>)
+    at C:\Users\limin\AppData\Local\nvm\v20.19.4\node_modules\markbind-cli\node_modules\@markbind\core\src\Site\index.js:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\limin\AppData\Local\nvm\v20.19.4\node_modules\markbind-cli\node_modules\@markbind\core\src\Site\index.js:27:12)
+    at Site.buildSourceFiles (C:\Users\limin\AppData\Local\nvm\v20.19.4\node_modules\markbind-cli\node_modules\@markbind\core\src\Site\index.js:492:16)
+    at Site.<anonymous> (C:\Users\limin\AppData\Local\nvm\v20.19.4\node_modules\markbind-cli\node_modules\@markbind\core\src\Site\index.js:661:24)
+    at Generator.next (<anonymous>)
+2025-11-02T02:40:39.638Z - info: Site data built
+2025-11-02T02:40:41.258Z - info: [10:40:41 am] Reload for file change: C:\Users\limin\tp\docs\site.json
+2025-11-02T02:40:41.286Z - info: No pages needed to be rebuilt
+2025-11-02T02:40:46.506Z - info: [10:40:46 am] Reload for file change: C:\Users\limin\tp\docs\site.json
+2025-11-02T02:40:46.537Z - error: Failed to read the site config file 'site.json' atC:\Users\limin\tp\docs:
+C:\Users\limin\tp\docs\site.json: Unexpected token '}', ..."b": 
+    }
+  ]
+}" is not valid JSON
+Please ensure the file exist or is valid
+2025-11-02T02:40:51.843Z - info: [10:40:51 am] Reload for file change: C:\Users\limin\tp\docs\site.json
+2025-11-02T02:40:51.880Z - error: Failed to read the site config file 'site.json' atC:\Users\limin\tp\docs:
+C:\Users\limin\tp\docs\site.json: Expected double-quoted property name in JSON at position 59
+Please ensure the file exist or is valid
+2025-11-02T02:40:59.043Z - info: [10:40:59 am] Reload for file change: C:\Users\limin\tp\docs\site.json
+2025-11-02T02:40:59.080Z - error: Failed to read the site config file 'site.json' atC:\Users\limin\tp\docs:
+C:\Users\limin\tp\docs\site.json: Expected double-quoted property name in JSON at position 87
+Please ensure the file exist or is valid
+2025-11-02T02:41:09.846Z - info: [10:41:09 am] Reload for file change: C:\Users\limin\tp\docs\site.json
+2025-11-02T02:41:14.477Z - info: Website generation started at 10:41:14 am
+2025-11-02T02:41:14.514Z - info: Building assets...
+2025-11-02T02:41:14.600Z - info: Assets built
+2025-11-02T02:41:14.602Z - info: Generating pages...
+2025-11-02T02:41:15.189Z - error: 'default' layout does not exist
+2025-11-02T02:41:15.199Z - error: 'default' layout does not exist
+2025-11-02T02:41:15.208Z - error: 'default' layout does not exist
+2025-11-02T02:41:15.220Z - error: 'default' layout does not exist
+2025-11-02T02:41:21.530Z - debug:  
+2025-11-02T02:41:21.842Z - debug:  
+2025-11-02T02:41:22.011Z - debug:  
+2025-11-02T02:41:22.087Z - debug:  
+2025-11-02T02:41:22.133Z - debug:  
+2025-11-02T02:41:22.133Z - debug:  
+2025-11-02T02:41:22.222Z - debug:  
+2025-11-02T02:41:22.283Z - debug:  
+2025-11-02T02:41:22.300Z - debug:  
+2025-11-02T02:41:22.330Z - debug:  
+2025-11-02T02:41:22.399Z - debug:  
+2025-11-02T02:41:22.407Z - debug:  
+2025-11-02T02:41:22.443Z - debug:  
+2025-11-02T02:41:22.580Z - error: 'default' layout does not exist
+2025-11-02T02:41:22.628Z - error: 'default' layout does not exist
+2025-11-02T02:41:22.735Z - error: 'default' layout does not exist
+2025-11-02T02:41:22.737Z - error: 'default' layout does not exist
+2025-11-02T02:41:22.792Z - error: 'default' layout does not exist
+2025-11-02T02:41:22.830Z - error: 'default' layout does not exist
+2025-11-02T02:41:22.843Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/team/aditya.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T02:41:22.844Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/team/alexius.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T02:41:22.844Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/team/fsythw.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T02:41:22.845Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/team/eugene-lek.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T02:41:22.846Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\index.md'
+2025-11-02T02:41:22.848Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#architecture' found in file 'C:\Users\limin\tp\docs\SettingUp.md'
+2025-11-02T02:41:22.850Z - info: Pages built
+2025-11-02T02:41:23.077Z - info: Site data built
+2025-11-02T02:41:23.078Z - info: Website generation complete! Total build time: 8.626s
+2025-11-02T02:41:23.124Z - info: Serving "C:\Users\limin\tp\docs\_site" at http://127.0.0.1:8080
+2025-11-02T02:41:23.125Z - info: Press CTRL+C to stop ...
+2025-11-02T02:44:44.260Z - info: [10:44:44 am] Reload for file add: C:\Users\limin\tp\docs\_markbind\site.json
+2025-11-02T02:44:44.363Z - info: [10:44:44 am] Reload for file deletion: C:\Users\limin\tp\docs\site.json
+2025-11-02T02:44:45.290Z - info: Assets built
+2025-11-02T02:44:45.379Z - debug: Assets removed
+2025-11-02T02:46:14.125Z - info: [10:46:14 am] Reload for file add: C:\Users\limin\tp\docs\site.json
+2025-11-02T02:46:14.226Z - info: [10:46:14 am] Reload for file deletion: C:\Users\limin\tp\docs\_markbind\site.json
+2025-11-02T02:46:15.144Z - info: Assets built
+2025-11-02T02:46:15.243Z - debug: Assets removed
+2025-11-02T02:48:31.034Z - info: [10:48:31 am] Reload for file deletion: C:\Users\limin\tp\docs\site.json
+2025-11-02T02:48:32.059Z - debug: Assets removed
+2025-11-02T02:48:49.511Z - info: [10:48:49 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:48:50.534Z - info: Rebuilding 1 pages
+2025-11-02T02:48:50.611Z - error: 'default' layout does not exist
+2025-11-02T02:48:50.668Z - info: Site data built
+2025-11-02T02:48:50.669Z - info: Pages rebuilt
+2025-11-02T02:48:50.670Z - info: Website regeneration complete! Total build time: 0.138s
+2025-11-02T02:49:44.727Z - info: [10:49:44 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:49:45.736Z - info: Rebuilding 1 pages
+2025-11-02T02:49:45.896Z - error: 'default' layout does not exist
+2025-11-02T02:49:46.105Z - info: Site data built
+2025-11-02T02:49:46.106Z - info: Pages rebuilt
+2025-11-02T02:49:46.106Z - info: Website regeneration complete! Total build time: 0.373s
+2025-11-02T02:50:51.067Z - info: [10:50:51 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:50:52.083Z - info: Rebuilding 1 pages
+2025-11-02T02:50:52.186Z - error: 'default' layout does not exist
+2025-11-02T02:50:52.255Z - info: Site data built
+2025-11-02T02:50:52.256Z - info: Pages rebuilt
+2025-11-02T02:50:52.256Z - info: Website regeneration complete! Total build time: 0.175s
+2025-11-02T02:51:35.351Z - info: [10:51:35 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:51:36.358Z - info: Rebuilding 1 pages
+2025-11-02T02:51:36.476Z - error: 'default' layout does not exist
+2025-11-02T02:51:36.647Z - info: Site data built
+2025-11-02T02:51:36.648Z - info: Pages rebuilt
+2025-11-02T02:51:36.648Z - info: Website regeneration complete! Total build time: 0.292s
+2025-11-02T02:51:45.002Z - info: [10:51:45 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:51:46.015Z - info: Rebuilding 1 pages
+2025-11-02T02:51:46.140Z - error: 'default' layout does not exist
+2025-11-02T02:51:46.288Z - info: Site data built
+2025-11-02T02:51:46.288Z - info: Pages rebuilt
+2025-11-02T02:51:46.289Z - info: Website regeneration complete! Total build time: 0.278s
+2025-11-02T02:51:54.056Z - info: [10:51:54 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:51:55.068Z - info: Rebuilding 1 pages
+2025-11-02T02:51:55.175Z - error: 'default' layout does not exist
+2025-11-02T02:51:55.306Z - info: Site data built
+2025-11-02T02:51:55.307Z - info: Pages rebuilt
+2025-11-02T02:51:55.308Z - info: Website regeneration complete! Total build time: 0.241s
+2025-11-02T02:51:59.360Z - info: [10:51:59 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:52:00.374Z - info: Rebuilding 1 pages
+2025-11-02T02:52:00.479Z - error: 'default' layout does not exist
+2025-11-02T02:52:00.620Z - info: Site data built
+2025-11-02T02:52:00.621Z - info: Pages rebuilt
+2025-11-02T02:52:00.622Z - info: Website regeneration complete! Total build time: 0.251s
+2025-11-02T02:52:07.182Z - info: [10:52:07 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:52:08.196Z - info: Rebuilding 1 pages
+2025-11-02T02:52:08.304Z - error: 'default' layout does not exist
+2025-11-02T02:52:08.424Z - info: Site data built
+2025-11-02T02:52:08.425Z - info: Pages rebuilt
+2025-11-02T02:52:08.426Z - info: Website regeneration complete! Total build time: 0.231s
+2025-11-02T02:53:00.531Z - info: [10:53:00 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:53:01.540Z - info: Rebuilding 1 pages
+2025-11-02T02:53:01.691Z - error: 'default' layout does not exist
+2025-11-02T02:53:01.902Z - info: Site data built
+2025-11-02T02:53:01.903Z - info: Pages rebuilt
+2025-11-02T02:53:01.904Z - info: Website regeneration complete! Total build time: 0.365s
+2025-11-02T02:53:06.255Z - info: [10:53:06 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:53:07.271Z - info: Rebuilding 1 pages
+2025-11-02T02:53:07.387Z - error: 'default' layout does not exist
+2025-11-02T02:53:07.543Z - info: Site data built
+2025-11-02T02:53:07.544Z - info: Pages rebuilt
+2025-11-02T02:53:07.545Z - info: Website regeneration complete! Total build time: 0.275s
+2025-11-02T02:53:23.130Z - info: [10:53:23 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:53:24.139Z - info: Rebuilding 1 pages
+2025-11-02T02:53:24.250Z - error: 'default' layout does not exist
+2025-11-02T02:53:24.384Z - info: Site data built
+2025-11-02T02:53:24.387Z - info: Pages rebuilt
+2025-11-02T02:53:24.388Z - info: Website regeneration complete! Total build time: 0.25s
+2025-11-02T02:53:37.802Z - info: [10:53:37 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:53:38.807Z - info: Rebuilding 1 pages
+2025-11-02T02:53:38.933Z - error: 'default' layout does not exist
+2025-11-02T02:53:39.067Z - info: Site data built
+2025-11-02T02:53:39.067Z - info: Pages rebuilt
+2025-11-02T02:53:39.068Z - info: Website regeneration complete! Total build time: 0.262s
+2025-11-02T02:53:52.363Z - info: [10:53:52 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:53:53.377Z - info: Rebuilding 1 pages
+2025-11-02T02:53:53.473Z - error: 'default' layout does not exist
+2025-11-02T02:53:53.620Z - info: Site data built
+2025-11-02T02:53:53.621Z - info: Pages rebuilt
+2025-11-02T02:53:53.622Z - info: Website regeneration complete! Total build time: 0.245s
+2025-11-02T02:54:04.701Z - info: [10:54:04 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:54:05.719Z - info: Rebuilding 1 pages
+2025-11-02T02:54:05.833Z - error: 'default' layout does not exist
+2025-11-02T02:54:05.909Z - info: Site data built
+2025-11-02T02:54:05.910Z - info: Pages rebuilt
+2025-11-02T02:54:05.910Z - info: Website regeneration complete! Total build time: 0.194s
+2025-11-02T02:54:12.754Z - info: [10:54:12 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:54:13.777Z - info: Rebuilding 1 pages
+2025-11-02T02:54:13.903Z - error: 'default' layout does not exist
+2025-11-02T02:54:14.046Z - info: Site data built
+2025-11-02T02:54:14.047Z - info: Pages rebuilt
+2025-11-02T02:54:14.048Z - info: Website regeneration complete! Total build time: 0.275s
+2025-11-02T02:54:25.086Z - info: [10:54:25 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:54:26.092Z - info: Rebuilding 1 pages
+2025-11-02T02:54:26.261Z - error: 'default' layout does not exist
+2025-11-02T02:54:26.474Z - info: Site data built
+2025-11-02T02:54:26.475Z - info: Pages rebuilt
+2025-11-02T02:54:26.476Z - info: Website regeneration complete! Total build time: 0.386s
+2025-11-02T02:54:42.378Z - info: [10:54:42 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:54:43.388Z - info: Rebuilding 1 pages
+2025-11-02T02:54:43.479Z - error: 'default' layout does not exist
+2025-11-02T02:54:43.574Z - info: Site data built
+2025-11-02T02:54:43.574Z - info: Pages rebuilt
+2025-11-02T02:54:43.575Z - info: Website regeneration complete! Total build time: 0.188s
+2025-11-02T02:54:47.945Z - info: [10:54:47 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:54:48.957Z - info: Rebuilding 1 pages
+2025-11-02T02:54:49.083Z - error: 'default' layout does not exist
+2025-11-02T02:54:49.224Z - info: Site data built
+2025-11-02T02:54:49.224Z - info: Pages rebuilt
+2025-11-02T02:54:49.225Z - info: Website regeneration complete! Total build time: 0.269s
+2025-11-02T02:55:07.343Z - info: [10:55:07 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:55:08.365Z - info: Rebuilding 1 pages
+2025-11-02T02:55:08.459Z - error: 'default' layout does not exist
+2025-11-02T02:55:08.598Z - info: Site data built
+2025-11-02T02:55:08.599Z - info: Pages rebuilt
+2025-11-02T02:55:08.600Z - info: Website regeneration complete! Total build time: 0.237s
+2025-11-02T02:55:21.565Z - info: [10:55:21 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:55:22.577Z - info: Rebuilding 1 pages
+2025-11-02T02:55:22.704Z - error: 'default' layout does not exist
+2025-11-02T02:55:22.835Z - info: Site data built
+2025-11-02T02:55:22.839Z - info: Pages rebuilt
+2025-11-02T02:55:22.839Z - info: Website regeneration complete! Total build time: 0.264s
+2025-11-02T02:55:31.709Z - info: [10:55:31 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:55:32.718Z - info: Rebuilding 1 pages
+2025-11-02T02:55:32.787Z - error: 'default' layout does not exist
+2025-11-02T02:55:32.858Z - info: Site data built
+2025-11-02T02:55:32.858Z - info: Pages rebuilt
+2025-11-02T02:55:32.859Z - info: Website regeneration complete! Total build time: 0.141s
+2025-11-02T02:55:52.119Z - info: [10:55:52 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:55:53.133Z - info: Rebuilding 1 pages
+2025-11-02T02:55:53.204Z - error: 'default' layout does not exist
+2025-11-02T02:55:53.264Z - info: Site data built
+2025-11-02T02:55:53.264Z - info: Pages rebuilt
+2025-11-02T02:55:53.264Z - info: Website regeneration complete! Total build time: 0.132s
+2025-11-02T02:56:08.109Z - info: [10:56:08 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:56:09.120Z - info: Rebuilding 1 pages
+2025-11-02T02:56:09.227Z - error: 'default' layout does not exist
+2025-11-02T02:56:09.381Z - info: Site data built
+2025-11-02T02:56:09.382Z - info: Pages rebuilt
+2025-11-02T02:56:09.383Z - info: Website regeneration complete! Total build time: 0.266s
+2025-11-02T02:56:17.889Z - info: [10:56:17 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:56:18.896Z - info: Rebuilding 1 pages
+2025-11-02T02:56:18.990Z - error: 'default' layout does not exist
+2025-11-02T02:56:19.109Z - info: Site data built
+2025-11-02T02:56:19.110Z - info: Pages rebuilt
+2025-11-02T02:56:19.111Z - info: Website regeneration complete! Total build time: 0.216s
+2025-11-02T02:56:23.956Z - info: [10:56:23 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:56:24.962Z - info: Rebuilding 1 pages
+2025-11-02T02:56:25.023Z - error: 'default' layout does not exist
+2025-11-02T02:56:25.081Z - info: Site data built
+2025-11-02T02:56:25.081Z - info: Pages rebuilt
+2025-11-02T02:56:25.081Z - info: Website regeneration complete! Total build time: 0.121s
+2025-11-02T02:56:30.935Z - info: [10:56:30 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:56:31.944Z - info: Rebuilding 1 pages
+2025-11-02T02:56:32.051Z - error: 'default' layout does not exist
+2025-11-02T02:56:32.188Z - info: Site data built
+2025-11-02T02:56:32.190Z - info: Pages rebuilt
+2025-11-02T02:56:32.194Z - info: Website regeneration complete! Total build time: 0.249s
+2025-11-02T02:56:39.105Z - info: [10:56:39 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:56:40.114Z - info: Rebuilding 1 pages
+2025-11-02T02:56:40.179Z - error: 'default' layout does not exist
+2025-11-02T02:56:40.237Z - info: Site data built
+2025-11-02T02:56:40.237Z - info: Pages rebuilt
+2025-11-02T02:56:40.238Z - info: Website regeneration complete! Total build time: 0.124s
+2025-11-02T02:56:50.215Z - info: [10:56:50 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:56:51.222Z - info: Rebuilding 1 pages
+2025-11-02T02:56:51.316Z - error: 'default' layout does not exist
+2025-11-02T02:56:51.441Z - info: Site data built
+2025-11-02T02:56:51.441Z - info: Pages rebuilt
+2025-11-02T02:56:51.442Z - info: Website regeneration complete! Total build time: 0.222s
+2025-11-02T02:57:05.298Z - info: [10:57:05 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:57:06.309Z - info: Rebuilding 1 pages
+2025-11-02T02:57:06.407Z - error: 'default' layout does not exist
+2025-11-02T02:57:06.556Z - info: Site data built
+2025-11-02T02:57:06.558Z - info: Pages rebuilt
+2025-11-02T02:57:06.558Z - info: Website regeneration complete! Total build time: 0.25s
+2025-11-02T02:57:19.121Z - info: [10:57:19 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:57:20.140Z - info: Rebuilding 1 pages
+2025-11-02T02:57:20.318Z - error: 'default' layout does not exist
+2025-11-02T02:57:20.501Z - info: Site data built
+2025-11-02T02:57:20.502Z - info: Pages rebuilt
+2025-11-02T02:57:20.503Z - info: Website regeneration complete! Total build time: 0.365s
+2025-11-02T02:57:38.378Z - info: [10:57:38 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:57:39.393Z - info: Rebuilding 1 pages
+2025-11-02T02:57:39.489Z - error: 'default' layout does not exist
+2025-11-02T02:57:39.642Z - info: Site data built
+2025-11-02T02:57:39.644Z - info: Pages rebuilt
+2025-11-02T02:57:39.644Z - info: Website regeneration complete! Total build time: 0.252s
+2025-11-02T02:57:57.866Z - info: [10:57:57 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:57:58.873Z - info: Rebuilding 1 pages
+2025-11-02T02:57:59.033Z - error: 'default' layout does not exist
+2025-11-02T02:57:59.230Z - info: Site data built
+2025-11-02T02:57:59.231Z - info: Pages rebuilt
+2025-11-02T02:57:59.231Z - info: Website regeneration complete! Total build time: 0.36s
+2025-11-02T02:58:12.024Z - info: [10:58:12 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T02:58:29.006Z - info: Initialization success.
+2025-11-02T02:58:35.566Z - info: Website generation started at 10:58:35 am
+2025-11-02T02:58:35.615Z - info: Building assets...
+2025-11-02T02:58:35.703Z - info: Assets built
+2025-11-02T02:58:35.704Z - info: Generating pages...
+2025-11-02T02:58:41.557Z - debug:  
+2025-11-02T02:58:41.572Z - debug:  
+2025-11-02T02:58:41.660Z - debug:  
+2025-11-02T02:58:41.777Z - debug:  
+2025-11-02T02:58:41.879Z - debug:  
+2025-11-02T02:58:41.894Z - debug:  
+2025-11-02T02:58:41.944Z - debug:  
+2025-11-02T02:58:41.969Z - debug:  
+2025-11-02T02:58:41.983Z - debug:  
+2025-11-02T02:58:41.992Z - debug:  
+2025-11-02T02:58:42.050Z - debug:  
+2025-11-02T02:58:42.090Z - debug:  
+2025-11-02T02:58:42.106Z - debug:  
+2025-11-02T02:58:42.232Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/team/fsythw.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T02:58:42.234Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:58:42.235Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#command-summary' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:58:42.235Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#features' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:58:42.236Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#faq' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:58:42.238Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#acknowledgements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:58:42.238Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#setting-up-getting-started' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:58:42.239Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#design' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:58:42.239Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#implementation' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:58:42.240Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:58:42.240Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-requirements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:58:42.241Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-instructions-for-manual-testing' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:58:42.241Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-effort' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T02:58:42.242Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\index.md'
+2025-11-02T02:58:42.245Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#architecture' found in file 'C:\Users\limin\tp\docs\SettingUp.md'
+2025-11-02T02:58:42.249Z - info: Pages built
+2025-11-02T02:58:42.542Z - info: Site data built
+2025-11-02T02:58:42.543Z - info: Website generation complete! Total build time: 7.134s
+2025-11-02T02:58:42.596Z - info: Serving "C:\Users\limin\tp\docs\_site" at http://127.0.0.1:8080
+2025-11-02T02:58:42.596Z - info: Press CTRL+C to stop ...
+2025-11-02T03:00:49.268Z - info: [11:00:49 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:00:50.286Z - info: Rebuilding 1 pages
+2025-11-02T03:00:50.570Z - info: Site data built
+2025-11-02T03:00:50.570Z - info: Pages rebuilt
+2025-11-02T03:00:50.571Z - info: Website regeneration complete! Total build time: 0.287s
+2025-11-02T03:01:05.024Z - info: Website generation started at 11:01:04 am
+2025-11-02T03:01:05.082Z - info: Building assets...
+2025-11-02T03:01:05.178Z - info: Assets built
+2025-11-02T03:01:05.179Z - info: Generating pages...
+2025-11-02T03:01:10.809Z - debug:  
+2025-11-02T03:01:10.810Z - debug:  
+2025-11-02T03:01:10.847Z - debug:  
+2025-11-02T03:01:10.932Z - debug:  
+2025-11-02T03:01:10.981Z - debug:  
+2025-11-02T03:01:10.994Z - debug:  
+2025-11-02T03:01:11.015Z - debug:  
+2025-11-02T03:01:11.017Z - debug:  
+2025-11-02T03:01:11.063Z - debug:  
+2025-11-02T03:01:11.076Z - debug:  
+2025-11-02T03:01:11.113Z - debug:  
+2025-11-02T03:01:11.121Z - debug:  
+2025-11-02T03:01:11.273Z - debug:  
+2025-11-02T03:01:11.382Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/team/fsythw.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T03:01:11.383Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:01:11.384Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#command-summary' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:01:11.384Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#features' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:01:11.385Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#faq' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:01:11.386Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#acknowledgements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:01:11.386Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#setting-up-getting-started' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:01:11.387Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#design' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:01:11.388Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#implementation' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:01:11.388Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:01:11.389Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-requirements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:01:11.389Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-instructions-for-manual-testing' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:01:11.390Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-effort' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:01:11.390Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\index.md'
+2025-11-02T03:01:11.393Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#architecture' found in file 'C:\Users\limin\tp\docs\SettingUp.md'
+2025-11-02T03:01:11.395Z - info: Pages built
+2025-11-02T03:01:11.617Z - info: Site data built
+2025-11-02T03:01:11.617Z - info: Website generation complete! Total build time: 6.751s
+2025-11-02T03:01:11.663Z - info: Serving "C:\Users\limin\tp\docs\_site" at http://127.0.0.1:8080
+2025-11-02T03:01:11.664Z - info: Press CTRL+C to stop ...
+2025-11-02T03:02:34.300Z - info: [11:02:34 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:02:35.323Z - info: Rebuilding 1 pages
+2025-11-02T03:02:35.572Z - info: Site data built
+2025-11-02T03:02:35.573Z - info: Pages rebuilt
+2025-11-02T03:02:35.573Z - info: Website regeneration complete! Total build time: 0.254s
+2025-11-02T03:02:44.567Z - info: [11:02:44 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:02:45.577Z - info: Rebuilding 1 pages
+2025-11-02T03:02:45.939Z - info: Site data built
+2025-11-02T03:02:45.940Z - info: Pages rebuilt
+2025-11-02T03:02:45.940Z - info: Website regeneration complete! Total build time: 0.366s
+2025-11-02T03:02:54.516Z - info: [11:02:54 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:02:55.527Z - info: Rebuilding 1 pages
+2025-11-02T03:02:55.870Z - info: Site data built
+2025-11-02T03:02:55.871Z - info: Pages rebuilt
+2025-11-02T03:02:55.873Z - info: Website regeneration complete! Total build time: 0.347s
+2025-11-02T03:03:02.913Z - info: [11:03:02 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:03:03.934Z - info: Rebuilding 1 pages
+2025-11-02T03:03:04.236Z - info: Site data built
+2025-11-02T03:03:04.237Z - info: Pages rebuilt
+2025-11-02T03:03:04.238Z - info: Website regeneration complete! Total build time: 0.306s
+2025-11-02T03:03:30.121Z - info: [11:03:30 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:03:31.131Z - info: Rebuilding 1 pages
+2025-11-02T03:03:31.369Z - info: Site data built
+2025-11-02T03:03:31.369Z - info: Pages rebuilt
+2025-11-02T03:03:31.370Z - info: Website regeneration complete! Total build time: 0.239s
+2025-11-02T03:04:33.439Z - info: [11:04:33 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:04:36.266Z - info: Website generation started at 11:04:36 am
+2025-11-02T03:04:36.317Z - info: Building assets...
+2025-11-02T03:04:36.402Z - info: Assets built
+2025-11-02T03:04:36.404Z - info: Generating pages...
+2025-11-02T03:04:41.757Z - debug:  
+2025-11-02T03:04:41.786Z - debug:  
+2025-11-02T03:04:41.997Z - debug:  
+2025-11-02T03:04:42.106Z - debug:  
+2025-11-02T03:04:42.126Z - debug:  
+2025-11-02T03:04:42.133Z - debug:  
+2025-11-02T03:04:42.177Z - debug:  
+2025-11-02T03:04:42.186Z - debug:  
+2025-11-02T03:04:42.190Z - debug:  
+2025-11-02T03:04:42.190Z - debug:  
+2025-11-02T03:04:42.216Z - debug:  
+2025-11-02T03:04:42.362Z - debug:  
+2025-11-02T03:04:42.363Z - debug:  
+2025-11-02T03:04:42.449Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/team/fsythw.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T03:04:42.451Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:04:42.451Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#command-summary' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:04:42.452Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#features' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:04:42.452Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#faq' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:04:42.453Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#acknowledgements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:04:42.453Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#setting-up-getting-started' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:04:42.453Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#design' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:04:42.454Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#implementation' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:04:42.454Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:04:42.455Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-requirements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:04:42.455Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-instructions-for-manual-testing' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:04:42.455Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-effort' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:04:42.456Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\index.md'
+2025-11-02T03:04:42.458Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#architecture' found in file 'C:\Users\limin\tp\docs\SettingUp.md'
+2025-11-02T03:04:42.460Z - info: Pages built
+2025-11-02T03:04:42.863Z - info: Site data built
+2025-11-02T03:04:42.864Z - info: Website generation complete! Total build time: 6.742s
+2025-11-02T03:04:42.913Z - info: Serving "C:\Users\limin\tp\docs\_site" at http://127.0.0.1:8080
+2025-11-02T03:04:42.913Z - info: Press CTRL+C to stop ...
+2025-11-02T03:05:04.754Z - info: [11:05:04 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:05:05.771Z - info: Rebuilding 1 pages
+2025-11-02T03:05:06.197Z - info: Site data built
+2025-11-02T03:05:06.199Z - info: Pages rebuilt
+2025-11-02T03:05:06.199Z - info: Website regeneration complete! Total build time: 0.43s
+2025-11-02T03:05:40.647Z - info: [11:05:40 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:05:44.389Z - info: Website generation started at 11:05:44 am
+2025-11-02T03:05:44.441Z - info: Building assets...
+2025-11-02T03:05:44.523Z - info: Assets built
+2025-11-02T03:05:44.524Z - info: Generating pages...
+2025-11-02T03:05:49.774Z - debug:  
+2025-11-02T03:05:49.990Z - debug:  
+2025-11-02T03:05:50.008Z - debug:  
+2025-11-02T03:05:50.061Z - debug:  
+2025-11-02T03:05:50.061Z - debug:  
+2025-11-02T03:05:50.106Z - debug:  
+2025-11-02T03:05:50.123Z - debug:  
+2025-11-02T03:05:50.138Z - debug:  
+2025-11-02T03:05:50.145Z - debug:  
+2025-11-02T03:05:50.168Z - debug:  
+2025-11-02T03:05:50.214Z - debug:  
+2025-11-02T03:05:50.301Z - debug:  
+2025-11-02T03:05:50.316Z - debug:  
+2025-11-02T03:05:50.474Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/team/fsythw.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T03:05:50.476Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:05:50.476Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#command-summary' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:05:50.477Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#features' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:05:50.477Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#faq' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:05:50.478Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#acknowledgements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:05:50.478Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#setting-up-getting-started' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:05:50.479Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#design' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:05:50.479Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#implementation' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:05:50.480Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:05:50.480Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-requirements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:05:50.481Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-instructions-for-manual-testing' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:05:50.481Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-effort' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:05:50.483Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\index.md'
+2025-11-02T03:05:50.488Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#architecture' found in file 'C:\Users\limin\tp\docs\SettingUp.md'
+2025-11-02T03:05:50.490Z - info: Pages built
+2025-11-02T03:05:50.745Z - info: Site data built
+2025-11-02T03:05:50.745Z - info: Website generation complete! Total build time: 6.516s
+2025-11-02T03:05:50.794Z - info: Serving "C:\Users\limin\tp\docs\_site" at http://127.0.0.1:8080
+2025-11-02T03:05:50.795Z - info: Press CTRL+C to stop ...
+2025-11-02T03:06:47.546Z - info: [11:06:47 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:06:48.554Z - info: Rebuilding 1 pages
+2025-11-02T03:06:48.850Z - info: Site data built
+2025-11-02T03:06:48.851Z - info: Pages rebuilt
+2025-11-02T03:06:48.851Z - info: Website regeneration complete! Total build time: 0.298s
+2025-11-02T03:07:43.375Z - info: [11:07:43 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:07:46.405Z - info: Website generation started at 11:07:46 am
+2025-11-02T03:07:46.453Z - info: Building assets...
+2025-11-02T03:07:46.547Z - info: Assets built
+2025-11-02T03:07:46.548Z - info: Generating pages...
+2025-11-02T03:07:51.711Z - debug:  
+2025-11-02T03:07:52.276Z - debug:  
+2025-11-02T03:07:52.277Z - debug:  
+2025-11-02T03:07:52.334Z - debug:  
+2025-11-02T03:07:52.350Z - debug:  
+2025-11-02T03:07:52.350Z - debug:  
+2025-11-02T03:07:52.366Z - debug:  
+2025-11-02T03:07:52.397Z - debug:  
+2025-11-02T03:07:52.445Z - debug:  
+2025-11-02T03:07:52.488Z - debug:  
+2025-11-02T03:07:52.533Z - debug:  
+2025-11-02T03:07:52.590Z - debug:  
+2025-11-02T03:07:52.658Z - debug:  
+2025-11-02T03:07:52.741Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/team/fsythw.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T03:07:52.742Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:07:52.743Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#command-summary' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:07:52.744Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#features' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:07:52.744Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#faq' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:07:52.745Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#acknowledgements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:07:52.746Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#setting-up-getting-started' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:07:52.746Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#design' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:07:52.747Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#implementation' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:07:52.747Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:07:52.748Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-requirements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:07:52.748Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-instructions-for-manual-testing' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:07:52.749Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-effort' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T03:07:52.750Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\index.md'
+2025-11-02T03:07:52.752Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#architecture' found in file 'C:\Users\limin\tp\docs\SettingUp.md'
+2025-11-02T03:07:52.754Z - info: Pages built
+2025-11-02T03:07:53.095Z - info: Site data built
+2025-11-02T03:07:53.095Z - info: Website generation complete! Total build time: 6.843s
+2025-11-02T03:07:53.152Z - info: Serving "C:\Users\limin\tp\docs\_site" at http://127.0.0.1:8080
+2025-11-02T03:07:53.153Z - info: Press CTRL+C to stop ...
+2025-11-02T03:08:50.307Z - info: [11:08:50 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:08:51.328Z - info: Rebuilding 1 pages
+2025-11-02T03:08:51.598Z - info: Site data built
+2025-11-02T03:08:51.599Z - info: Pages rebuilt
+2025-11-02T03:08:51.600Z - info: Website regeneration complete! Total build time: 0.273s
+2025-11-02T03:09:16.944Z - info: [11:09:16 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:09:17.958Z - info: Rebuilding 1 pages
+2025-11-02T03:09:18.188Z - info: Site data built
+2025-11-02T03:09:18.189Z - info: Pages rebuilt
+2025-11-02T03:09:18.189Z - info: Website regeneration complete! Total build time: 0.232s
+2025-11-02T03:09:42.460Z - info: [11:09:42 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:09:43.463Z - info: Rebuilding 1 pages
+2025-11-02T03:09:43.675Z - info: Site data built
+2025-11-02T03:09:43.676Z - info: Pages rebuilt
+2025-11-02T03:09:43.676Z - info: Website regeneration complete! Total build time: 0.214s
+2025-11-02T03:10:06.016Z - info: [11:10:06 am] Reload for file change: C:\Users\limin\tp\docs\UserGuide.md
+2025-11-02T03:10:07.035Z - info: Rebuilding 1 pages
+2025-11-02T03:10:07.421Z - info: Site data built
+2025-11-02T03:10:07.422Z - info: Pages rebuilt
+2025-11-02T03:10:07.422Z - info: Website regeneration complete! Total build time: 0.389s
+2025-11-02T04:16:46.146Z - info: Website generation started at 12:16:46 pm
+2025-11-02T04:16:46.192Z - info: Building assets...
+2025-11-02T04:16:46.279Z - info: Assets built
+2025-11-02T04:16:46.281Z - info: Generating pages...
+2025-11-02T04:16:51.168Z - debug:  
+2025-11-02T04:16:51.480Z - debug:  
+2025-11-02T04:16:51.492Z - debug:  
+2025-11-02T04:16:51.582Z - debug:  
+2025-11-02T04:16:51.645Z - debug:  
+2025-11-02T04:16:51.739Z - debug:  
+2025-11-02T04:16:51.755Z - debug:  
+2025-11-02T04:16:51.795Z - debug:  
+2025-11-02T04:16:51.801Z - debug:  
+2025-11-02T04:16:51.809Z - debug:  
+2025-11-02T04:16:51.838Z - debug:  
+2025-11-02T04:16:51.919Z - debug:  
+2025-11-02T04:16:51.920Z - debug:  
+2025-11-02T04:16:52.344Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/team/fsythw.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T04:16:52.346Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:16:52.346Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#command-summary' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:16:52.347Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#features' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:16:52.347Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#faq' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:16:52.348Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#acknowledgements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:16:52.348Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#setting-up-getting-started' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:16:52.348Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#design' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:16:52.349Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#implementation' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:16:52.349Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:16:52.349Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-requirements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:16:52.349Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-instructions-for-manual-testing' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:16:52.349Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-effort' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:16:52.350Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\index.md'
+2025-11-02T04:16:52.352Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#architecture' found in file 'C:\Users\limin\tp\docs\SettingUp.md'
+2025-11-02T04:16:52.354Z - info: Pages built
+2025-11-02T04:16:52.621Z - info: Site data built
+2025-11-02T04:16:52.622Z - info: Website generation complete! Total build time: 6.604s
+2025-11-02T04:16:52.669Z - info: Serving "C:\Users\limin\tp\docs\_site" at http://127.0.0.1:8080
+2025-11-02T04:16:52.669Z - info: Press CTRL+C to stop ...
+2025-11-02T04:25:25.285Z - info: Website generation started at 12:25:25 pm
+2025-11-02T04:25:25.344Z - info: Building assets...
+2025-11-02T04:25:25.425Z - info: Assets built
+2025-11-02T04:25:25.426Z - info: Generating pages...
+2025-11-02T04:25:30.444Z - debug:  
+2025-11-02T04:25:30.446Z - debug:  
+2025-11-02T04:25:30.563Z - debug:  
+2025-11-02T04:25:30.655Z - debug:  
+2025-11-02T04:25:30.724Z - debug:  
+2025-11-02T04:25:30.808Z - debug:  
+2025-11-02T04:25:30.825Z - debug:  
+2025-11-02T04:25:30.866Z - debug:  
+2025-11-02T04:25:30.874Z - debug:  
+2025-11-02T04:25:30.876Z - debug:  
+2025-11-02T04:25:30.876Z - debug:  
+2025-11-02T04:25:30.876Z - debug:  
+2025-11-02T04:25:30.917Z - debug:  
+2025-11-02T04:25:31.333Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/team/fsythw.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T04:25:31.334Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:25:31.335Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#command-summary' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:25:31.335Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#features' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:25:31.335Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#faq' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:25:31.335Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#acknowledgements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:25:31.336Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#setting-up-getting-started' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:25:31.336Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#design' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:25:31.336Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#implementation' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:25:31.336Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:25:31.337Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-requirements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:25:31.337Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-instructions-for-manual-testing' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:25:31.338Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-effort' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:25:31.338Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\index.md'
+2025-11-02T04:25:31.340Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#architecture' found in file 'C:\Users\limin\tp\docs\SettingUp.md'
+2025-11-02T04:25:31.341Z - info: Pages built
+2025-11-02T04:25:31.591Z - info: Site data built
+2025-11-02T04:25:31.592Z - info: Website generation complete! Total build time: 6.472s
+2025-11-02T04:25:31.639Z - info: Serving "C:\Users\limin\tp\docs\_site" at http://127.0.0.1:8080
+2025-11-02T04:25:31.640Z - info: Press CTRL+C to stop ...
+2025-11-02T04:25:49.437Z - info: [12:25:49 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:25:50.453Z - info: Rebuilding 1 pages
+2025-11-02T04:25:50.946Z - info: Site data built
+2025-11-02T04:25:50.947Z - info: Pages rebuilt
+2025-11-02T04:25:50.948Z - info: Website regeneration complete! Total build time: 0.497s
+2025-11-02T04:25:55.458Z - info: [12:25:55 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:25:56.475Z - info: Rebuilding 1 pages
+2025-11-02T04:25:56.690Z - info: Site data built
+2025-11-02T04:25:56.691Z - info: Pages rebuilt
+2025-11-02T04:25:56.691Z - info: Website regeneration complete! Total build time: 0.217s
+2025-11-02T04:25:58.879Z - info: [12:25:58 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:25:59.899Z - info: Rebuilding 1 pages
+2025-11-02T04:26:00.129Z - info: Site data built
+2025-11-02T04:26:00.129Z - info: Pages rebuilt
+2025-11-02T04:26:00.130Z - info: Website regeneration complete! Total build time: 0.234s
+2025-11-02T04:26:06.780Z - info: [12:26:06 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:26:07.792Z - info: Rebuilding 1 pages
+2025-11-02T04:26:08.212Z - info: Site data built
+2025-11-02T04:26:08.213Z - info: Pages rebuilt
+2025-11-02T04:26:08.213Z - info: Website regeneration complete! Total build time: 0.423s
+2025-11-02T04:26:19.114Z - info: [12:26:19 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:26:20.120Z - info: Rebuilding 1 pages
+2025-11-02T04:26:20.323Z - info: Site data built
+2025-11-02T04:26:20.324Z - info: Pages rebuilt
+2025-11-02T04:26:20.325Z - info: Website regeneration complete! Total build time: 0.206s
+2025-11-02T04:26:25.237Z - info: [12:26:25 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:26:26.243Z - info: Rebuilding 1 pages
+2025-11-02T04:26:26.464Z - info: Site data built
+2025-11-02T04:26:26.464Z - info: Pages rebuilt
+2025-11-02T04:26:26.464Z - info: Website regeneration complete! Total build time: 0.223s
+2025-11-02T04:26:31.047Z - info: [12:26:31 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:26:32.051Z - info: Rebuilding 1 pages
+2025-11-02T04:26:32.419Z - info: Site data built
+2025-11-02T04:26:32.420Z - info: Pages rebuilt
+2025-11-02T04:26:32.420Z - info: Website regeneration complete! Total build time: 0.371s
+2025-11-02T04:26:39.863Z - info: [12:26:39 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:26:40.872Z - info: Rebuilding 1 pages
+2025-11-02T04:26:41.225Z - info: Site data built
+2025-11-02T04:26:41.226Z - info: Pages rebuilt
+2025-11-02T04:26:41.227Z - info: Website regeneration complete! Total build time: 0.356s
+2025-11-02T04:26:49.146Z - info: [12:26:49 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:26:50.156Z - info: Rebuilding 1 pages
+2025-11-02T04:26:50.576Z - info: Site data built
+2025-11-02T04:26:50.577Z - info: Pages rebuilt
+2025-11-02T04:26:50.578Z - info: Website regeneration complete! Total build time: 0.424s
+2025-11-02T04:27:02.039Z - info: [12:27:02 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:27:03.047Z - info: Rebuilding 1 pages
+2025-11-02T04:27:03.756Z - info: Site data built
+2025-11-02T04:27:03.757Z - info: Pages rebuilt
+2025-11-02T04:27:03.758Z - info: Website regeneration complete! Total build time: 0.713s
+2025-11-02T04:27:09.981Z - info: [12:27:09 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:27:10.987Z - info: Rebuilding 1 pages
+2025-11-02T04:27:11.220Z - info: Site data built
+2025-11-02T04:27:11.221Z - info: Pages rebuilt
+2025-11-02T04:27:11.221Z - info: Website regeneration complete! Total build time: 0.236s
+2025-11-02T04:27:19.052Z - info: [12:27:19 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:27:20.060Z - info: Rebuilding 1 pages
+2025-11-02T04:27:20.485Z - info: Site data built
+2025-11-02T04:27:20.486Z - info: Pages rebuilt
+2025-11-02T04:27:20.487Z - info: Website regeneration complete! Total build time: 0.428s
+2025-11-02T04:27:33.103Z - info: [12:27:33 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:27:34.113Z - info: Rebuilding 1 pages
+2025-11-02T04:27:34.313Z - info: Site data built
+2025-11-02T04:27:34.313Z - info: Pages rebuilt
+2025-11-02T04:27:34.313Z - info: Website regeneration complete! Total build time: 0.201s
+2025-11-02T04:27:41.679Z - info: [12:27:41 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:27:42.689Z - info: Rebuilding 1 pages
+2025-11-02T04:27:43.109Z - info: Site data built
+2025-11-02T04:27:43.110Z - info: Pages rebuilt
+2025-11-02T04:27:43.111Z - info: Website regeneration complete! Total build time: 0.424s
+2025-11-02T04:28:03.764Z - info: [12:28:03 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:28:04.779Z - info: Rebuilding 1 pages
+2025-11-02T04:28:05.454Z - info: Site data built
+2025-11-02T04:28:05.456Z - info: Pages rebuilt
+2025-11-02T04:28:05.456Z - info: Website regeneration complete! Total build time: 0.679s
+2025-11-02T04:28:26.556Z - info: [12:28:26 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:28:27.570Z - info: Rebuilding 1 pages
+2025-11-02T04:28:27.891Z - info: Site data built
+2025-11-02T04:28:27.892Z - info: Pages rebuilt
+2025-11-02T04:28:27.892Z - info: Website regeneration complete! Total build time: 0.323s
+2025-11-02T04:28:36.641Z - info: [12:28:36 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:28:37.652Z - info: Rebuilding 1 pages
+2025-11-02T04:28:38.317Z - info: Site data built
+2025-11-02T04:28:38.318Z - info: Pages rebuilt
+2025-11-02T04:28:38.319Z - info: Website regeneration complete! Total build time: 0.67s
+2025-11-02T04:28:50.673Z - info: [12:28:50 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:28:51.685Z - info: Rebuilding 1 pages
+2025-11-02T04:28:51.981Z - info: Site data built
+2025-11-02T04:28:51.983Z - info: Pages rebuilt
+2025-11-02T04:28:51.983Z - info: Website regeneration complete! Total build time: 0.299s
+2025-11-02T04:29:04.193Z - info: [12:29:04 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:29:05.213Z - info: Rebuilding 1 pages
+2025-11-02T04:29:05.834Z - info: Site data built
+2025-11-02T04:29:05.836Z - info: Pages rebuilt
+2025-11-02T04:29:05.836Z - info: Website regeneration complete! Total build time: 0.625s
+2025-11-02T04:30:50.121Z - info: [12:30:50 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:30:51.136Z - info: Rebuilding 1 pages
+2025-11-02T04:30:51.767Z - info: Site data built
+2025-11-02T04:30:51.769Z - info: Pages rebuilt
+2025-11-02T04:30:51.770Z - info: Website regeneration complete! Total build time: 0.636s
+2025-11-02T04:31:01.044Z - info: [12:31:01 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:31:02.047Z - info: Rebuilding 1 pages
+2025-11-02T04:31:02.502Z - info: Site data built
+2025-11-02T04:31:02.504Z - info: Pages rebuilt
+2025-11-02T04:31:02.505Z - info: Website regeneration complete! Total build time: 0.459s
+2025-11-02T04:31:12.788Z - info: [12:31:12 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:31:13.794Z - info: Rebuilding 1 pages
+2025-11-02T04:31:14.205Z - info: Site data built
+2025-11-02T04:31:14.205Z - info: Pages rebuilt
+2025-11-02T04:31:14.206Z - info: Website regeneration complete! Total build time: 0.414s
+2025-11-02T04:31:23.182Z - info: [12:31:23 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:31:24.190Z - info: Rebuilding 1 pages
+2025-11-02T04:31:24.635Z - info: Site data built
+2025-11-02T04:31:24.637Z - info: Pages rebuilt
+2025-11-02T04:31:24.638Z - info: Website regeneration complete! Total build time: 0.45s
+2025-11-02T04:31:33.993Z - info: [12:31:33 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:31:35.012Z - info: Rebuilding 1 pages
+2025-11-02T04:31:35.439Z - info: Site data built
+2025-11-02T04:31:35.440Z - info: Pages rebuilt
+2025-11-02T04:31:35.440Z - info: Website regeneration complete! Total build time: 0.431s
+2025-11-02T04:31:43.049Z - info: [12:31:43 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:31:44.060Z - info: Rebuilding 1 pages
+2025-11-02T04:31:44.487Z - info: Site data built
+2025-11-02T04:31:44.489Z - info: Pages rebuilt
+2025-11-02T04:31:44.489Z - info: Website regeneration complete! Total build time: 0.43s
+2025-11-02T04:31:54.790Z - info: [12:31:54 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:31:55.804Z - info: Rebuilding 1 pages
+2025-11-02T04:31:56.228Z - info: Site data built
+2025-11-02T04:31:56.229Z - info: Pages rebuilt
+2025-11-02T04:31:56.229Z - info: Website regeneration complete! Total build time: 0.426s
+2025-11-02T04:32:07.021Z - info: [12:32:07 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:32:08.039Z - info: Rebuilding 1 pages
+2025-11-02T04:32:08.498Z - info: Site data built
+2025-11-02T04:32:08.500Z - info: Pages rebuilt
+2025-11-02T04:32:08.500Z - info: Website regeneration complete! Total build time: 0.463s
+2025-11-02T04:32:23.137Z - info: [12:32:23 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:32:24.156Z - info: Rebuilding 1 pages
+2025-11-02T04:32:24.834Z - info: Site data built
+2025-11-02T04:32:24.835Z - info: Pages rebuilt
+2025-11-02T04:32:24.835Z - info: Website regeneration complete! Total build time: 0.682s
+2025-11-02T04:32:32.070Z - info: [12:32:32 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:32:33.080Z - info: Rebuilding 1 pages
+2025-11-02T04:32:33.521Z - info: Site data built
+2025-11-02T04:32:33.522Z - info: Pages rebuilt
+2025-11-02T04:32:33.523Z - info: Website regeneration complete! Total build time: 0.445s
+2025-11-02T04:32:39.543Z - info: [12:32:39 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:32:40.555Z - info: Rebuilding 1 pages
+2025-11-02T04:32:40.971Z - info: Site data built
+2025-11-02T04:32:40.972Z - info: Pages rebuilt
+2025-11-02T04:32:40.973Z - info: Website regeneration complete! Total build time: 0.42s
+2025-11-02T04:32:46.927Z - info: [12:32:46 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:32:47.932Z - info: Rebuilding 1 pages
+2025-11-02T04:32:48.321Z - info: Site data built
+2025-11-02T04:32:48.322Z - info: Pages rebuilt
+2025-11-02T04:32:48.322Z - info: Website regeneration complete! Total build time: 0.392s
+2025-11-02T04:32:55.299Z - info: [12:32:55 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:32:56.311Z - info: Rebuilding 1 pages
+2025-11-02T04:32:56.704Z - info: Site data built
+2025-11-02T04:32:56.706Z - info: Pages rebuilt
+2025-11-02T04:32:56.706Z - info: Website regeneration complete! Total build time: 0.396s
+2025-11-02T04:33:03.035Z - info: [12:33:03 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:33:04.040Z - info: Rebuilding 1 pages
+2025-11-02T04:33:04.427Z - info: Site data built
+2025-11-02T04:33:04.428Z - info: Pages rebuilt
+2025-11-02T04:33:04.428Z - info: Website regeneration complete! Total build time: 0.389s
+2025-11-02T04:33:17.966Z - info: [12:33:17 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:33:18.974Z - info: Rebuilding 1 pages
+2025-11-02T04:33:19.679Z - info: Site data built
+2025-11-02T04:33:19.681Z - info: Pages rebuilt
+2025-11-02T04:33:19.681Z - info: Website regeneration complete! Total build time: 0.709s
+2025-11-02T04:33:34.227Z - info: [12:33:34 pm] Reload for file change: C:\Users\limin\tp\docs\DeveloperGuide.md
+2025-11-02T04:45:15.367Z - info: Website generation started at 12:45:15 pm
+2025-11-02T04:45:15.425Z - info: Building assets...
+2025-11-02T04:45:15.516Z - info: Assets built
+2025-11-02T04:45:15.518Z - info: Generating pages...
+2025-11-02T04:45:20.674Z - debug:  
+2025-11-02T04:45:20.695Z - debug:  
+2025-11-02T04:45:20.713Z - debug:  
+2025-11-02T04:45:20.796Z - debug:  
+2025-11-02T04:45:20.829Z - debug:  
+2025-11-02T04:45:20.878Z - debug:  
+2025-11-02T04:45:20.890Z - debug:  
+2025-11-02T04:45:20.905Z - debug:  
+2025-11-02T04:45:20.906Z - debug:  
+2025-11-02T04:45:20.922Z - debug:  
+2025-11-02T04:45:20.984Z - debug:  
+2025-11-02T04:45:21.014Z - debug:  
+2025-11-02T04:45:21.079Z - debug:  
+2025-11-02T04:45:21.417Z - warn: You might have an invalid intra-link! Ignore this warning if it was intended.
+'/team/fsythw.html' found in file 'C:\Users\limin\tp\docs\AboutUs.md'
+2025-11-02T04:45:21.418Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:45:21.419Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#command-summary' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:45:21.419Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#features' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:45:21.419Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#faq' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:45:21.420Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#acknowledgements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:45:21.420Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#setting-up-getting-started' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:45:21.420Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#design' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:45:21.421Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#implementation' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:45:21.421Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#documentation-logging-testing-configuration-dev-ops' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:45:21.421Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-requirements' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:45:21.422Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-instructions-for-manual-testing' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:45:21.422Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#appendix-effort' found in file 'C:\Users\limin\tp\docs\_markbind\layouts\default.md'
+2025-11-02T04:45:21.423Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /UserGuide.html#quick-start' found in file 'C:\Users\limin\tp\docs\index.md'
+2025-11-02T04:45:21.424Z - warn: You might have an invalid hash for intra-link! Ignore this warning if it was intended.'
+  /DeveloperGuide.html#architecture' found in file 'C:\Users\limin\tp\docs\SettingUp.md'
+2025-11-02T04:45:21.426Z - info: Pages built
+2025-11-02T04:45:21.602Z - info: Site data built
+2025-11-02T04:45:21.602Z - info: Website generation complete! Total build time: 6.379s
+2025-11-02T04:45:21.648Z - info: Serving "C:\Users\limin\tp\docs\_site" at http://127.0.0.1:8080
+2025-11-02T04:45:21.649Z - info: Press CTRL+C to stop ...

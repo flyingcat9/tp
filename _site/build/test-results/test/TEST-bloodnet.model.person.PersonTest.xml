@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.model.person.PersonTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.003">
+  <properties/>
+  <testcase name="equals()" classname="bloodnet.model.person.PersonTest" time="0.001"/>
+  <testcase name="toStringMethod()" classname="bloodnet.model.person.PersonTest" time="0.001"/>
+  <testcase name="isSamePerson()" classname="bloodnet.model.person.PersonTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

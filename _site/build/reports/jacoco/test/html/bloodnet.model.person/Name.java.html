@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Name.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.model.person</a> &gt; <span class="el_source">Name.java</span></div><h1>Name.java</h1><pre class="source lang-java linenums">package bloodnet.model.person;
+
+import static bloodnet.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
+
+/**
+ * Represents a Person's name in the bloodnet.
+ * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ */
+public class Name {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            &quot;Name should contain at least 2 letters&quot;;
+
+    /*
+     * The first character of the name must not be a whitespace,
+     * otherwise &quot; &quot; (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = &quot;^(.*[a-zA-Z]){2}.*$&quot;;
+
+    public final String fullName;
+
+    /**
+     * Constructs a {@code Name}.
+     *
+     * @param name A valid name.
+     */
+<span class="fc" id="L28">    public Name(String name) {</span>
+<span class="fc" id="L29">        requireNonNull(name);</span>
+<span class="fc" id="L30">        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);</span>
+<span class="fc" id="L31">        fullName = name;</span>
+<span class="fc" id="L32">    }</span>
+
+    /**
+     * Returns true if a given string is a valid name.
+     */
+    public static boolean isValidName(String test) {
+<span class="fc" id="L38">        return test.matches(VALIDATION_REGEX);</span>
+    }
+
+
+    @Override
+    public String toString() {
+<span class="fc" id="L44">        return fullName;</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L50">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (!(other instanceof Name)) {</span>
+<span class="fc" id="L55">            return false;</span>
+        }
+
+<span class="fc" id="L58">        Name otherName = (Name) other;</span>
+<span class="fc" id="L59">        return fullName.equals(otherName.fullName);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L64">        return fullName.hashCode();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

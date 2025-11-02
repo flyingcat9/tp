@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DonationRecordListPanel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.ui</a> &gt; <span class="el_source">DonationRecordListPanel.java</span></div><h1>DonationRecordListPanel.java</h1><pre class="source lang-java linenums">package bloodnet.ui;
+
+import java.util.logging.Logger;
+
+import bloodnet.commons.core.LogsCenter;
+import bloodnet.model.donationrecord.DonationRecord;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.Region;
+
+/**
+ * Panel containing the list of donation records.
+ */
+public class DonationRecordListPanel extends UiPart&lt;Region&gt; {
+    private static final String FXML = &quot;DonationRecordListPanel.fxml&quot;;
+<span class="nc" id="L18">    private final Logger logger = LogsCenter.getLogger(DonationRecordListPanel.class);</span>
+
+    @FXML
+    private ListView&lt;DonationRecord&gt; donationRecordListView;
+
+    /**
+     * Creates a {@code DonationRecordListPanel} with the given {@code ObservableList}.
+     */
+    public DonationRecordListPanel(ObservableList&lt;DonationRecord&gt; donationRecordList) {
+<span class="nc" id="L27">        super(FXML);</span>
+<span class="nc" id="L28">        donationRecordListView.setItems(donationRecordList);</span>
+<span class="nc" id="L29">        donationRecordListView.setCellFactory(listView -&gt; new DonationRecordListViewCell());</span>
+<span class="nc" id="L30">    }</span>
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code DonationRecord} using a
+     * {@code DonationRecordCard}.
+     */
+<span class="nc" id="L36">    class DonationRecordListViewCell extends ListCell&lt;DonationRecord&gt; {</span>
+        @Override
+        protected void updateItem(DonationRecord record, boolean empty) {
+<span class="nc" id="L39">            super.updateItem(record, empty);</span>
+
+<span class="nc bnc" id="L41" title="All 4 branches missed.">            if (empty || record == null) {</span>
+<span class="nc" id="L42">                setGraphic(null);</span>
+<span class="nc" id="L43">                setText(null);</span>
+            } else {
+<span class="nc" id="L45">                setGraphic(new DonationRecordCard(record, getIndex() + 1).getRoot());</span>
+            }
+<span class="nc" id="L47">        }</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

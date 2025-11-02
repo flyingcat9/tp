@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ModelManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.model</a> &gt; <span class="el_source">ModelManager.java</span></div><h1>ModelManager.java</h1><pre class="source lang-java linenums">package bloodnet.model;
+
+import static bloodnet.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
+import bloodnet.commons.core.GuiSettings;
+import bloodnet.commons.core.LogsCenter;
+import bloodnet.model.donationrecord.DonationRecord;
+import bloodnet.model.person.Person;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+
+/**
+ * Represents the in-memory model of the bloodnet data.
+ */
+public class ModelManager implements Model {
+<span class="fc" id="L21">    private static final Logger logger = LogsCenter.getLogger(ModelManager.class);</span>
+
+    private final BloodNet bloodNet;
+    private final UserPrefs userPrefs;
+    private final FilteredList&lt;Person&gt; filteredPersons;
+    private final FilteredList&lt;DonationRecord&gt; filteredDonationRecords;
+
+    /**
+     * Initializes a ModelManager with the given bloodNet and userPrefs.
+     */
+<span class="fc" id="L31">    public ModelManager(ReadOnlyBloodNet bloodNet, ReadOnlyUserPrefs userPrefs) {</span>
+<span class="fc" id="L32">        requireAllNonNull(bloodNet, userPrefs);</span>
+
+<span class="fc" id="L34">        logger.fine(&quot;Initializing with BloodNet: &quot; + bloodNet + &quot; and user prefs &quot; + userPrefs);</span>
+
+<span class="fc" id="L36">        this.bloodNet = new BloodNet(bloodNet);</span>
+<span class="fc" id="L37">        this.userPrefs = new UserPrefs(userPrefs);</span>
+<span class="fc" id="L38">        filteredPersons = new FilteredList&lt;&gt;(this.bloodNet.getPersonList());</span>
+<span class="fc" id="L39">        filteredDonationRecords = new FilteredList&lt;&gt;(this.bloodNet.getDonationRecordList());</span>
+<span class="fc" id="L40">    }</span>
+
+    public ModelManager() {
+<span class="fc" id="L43">        this(new BloodNet(), new UserPrefs());</span>
+<span class="fc" id="L44">    }</span>
+
+    //=========== UserPrefs ==================================================================================
+
+    @Override
+    public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+<span class="fc" id="L50">        requireNonNull(userPrefs);</span>
+<span class="fc" id="L51">        this.userPrefs.resetData(userPrefs);</span>
+<span class="fc" id="L52">    }</span>
+
+    @Override
+    public ReadOnlyUserPrefs getUserPrefs() {
+<span class="fc" id="L56">        return userPrefs;</span>
+    }
+
+    @Override
+    public GuiSettings getGuiSettings() {
+<span class="fc" id="L61">        return userPrefs.getGuiSettings();</span>
+    }
+
+    @Override
+    public void setGuiSettings(GuiSettings guiSettings) {
+<span class="fc" id="L66">        requireNonNull(guiSettings);</span>
+<span class="fc" id="L67">        userPrefs.setGuiSettings(guiSettings);</span>
+<span class="fc" id="L68">    }</span>
+
+    @Override
+    public Path getBloodNetFilePath() {
+<span class="fc" id="L72">        return userPrefs.getBloodNetFilePath();</span>
+    }
+
+    @Override
+    public void setBloodNetFilePath(Path bloodNetFilePath) {
+<span class="fc" id="L77">        requireNonNull(bloodNetFilePath);</span>
+<span class="fc" id="L78">        userPrefs.setBloodNetFilePath(bloodNetFilePath);</span>
+<span class="fc" id="L79">    }</span>
+
+    //=========== BloodNet ================================================================================
+
+    @Override
+    public void setBloodNet(ReadOnlyBloodNet bloodNet) {
+<span class="fc" id="L85">        this.bloodNet.resetData(bloodNet);</span>
+<span class="fc" id="L86">    }</span>
+
+    @Override
+    public ReadOnlyBloodNet getBloodNet() {
+<span class="fc" id="L90">        return bloodNet;</span>
+    }
+
+    //=========== Person methods =============================================================
+
+    @Override
+    public boolean hasPerson(Person person) {
+<span class="fc" id="L97">        requireNonNull(person);</span>
+<span class="fc" id="L98">        return bloodNet.hasPerson(person);</span>
+    }
+
+    @Override
+    public void deletePerson(Person target) {
+<span class="fc" id="L103">        bloodNet.removePerson(target);</span>
+<span class="fc" id="L104">    }</span>
+
+    @Override
+    public void addPerson(Person person) {
+<span class="fc" id="L108">        bloodNet.addPerson(person);</span>
+<span class="fc" id="L109">        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);</span>
+<span class="fc" id="L110">    }</span>
+
+    @Override
+    public void setPerson(Person target, Person editedPerson) {
+<span class="fc" id="L114">        requireAllNonNull(target, editedPerson);</span>
+
+<span class="fc" id="L116">        bloodNet.setPerson(target, editedPerson);</span>
+<span class="fc" id="L117">    }</span>
+
+    @Override
+    public boolean hasDonationRecordFor(Person person) {
+<span class="fc" id="L121">        requireNonNull(person);</span>
+<span class="fc" id="L122">        return bloodNet.hasDonationRecordFor(person);</span>
+    }
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedBloodNet}
+     */
+    @Override
+    public ObservableList&lt;Person&gt; getFilteredPersonList() {
+<span class="fc" id="L133">        return filteredPersons;</span>
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate&lt;Person&gt; predicate) {
+<span class="fc" id="L138">        requireNonNull(predicate);</span>
+<span class="fc" id="L139">        filteredPersons.setPredicate(predicate);</span>
+<span class="fc" id="L140">    }</span>
+
+    //=========== DonationRecord methods =============================================================
+
+    @Override
+    public boolean hasDonationRecord(DonationRecord donationRecord) {
+<span class="fc" id="L146">        requireNonNull(donationRecord);</span>
+<span class="fc" id="L147">        return bloodNet.hasDonationRecord(donationRecord);</span>
+    }
+
+    @Override
+    public void deleteDonationRecord(DonationRecord target) {
+<span class="fc" id="L152">        bloodNet.removeDonationRecord(target);</span>
+<span class="fc" id="L153">    }</span>
+
+    @Override
+    public void addDonationRecord(DonationRecord donationRecord) {
+<span class="fc" id="L157">        bloodNet.addDonationRecord(donationRecord);</span>
+<span class="fc" id="L158">        updateFilteredDonationRecordList(PREDICATE_SHOW_ALL_DONATION_RECORDS);</span>
+<span class="fc" id="L159">    }</span>
+
+    @Override
+    public void setDonationRecord(DonationRecord target, DonationRecord editedDonationRecord) {
+<span class="fc" id="L163">        requireAllNonNull(target, editedDonationRecord);</span>
+
+<span class="fc" id="L165">        bloodNet.setDonationRecord(target, editedDonationRecord);</span>
+<span class="fc" id="L166">    }</span>
+
+    //=========== Filtered DonationRecord List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code DonationRecord} backed by the internal list of
+     * {@code versionedBloodNet}
+     */
+    @Override
+    public ObservableList&lt;DonationRecord&gt; getFilteredDonationRecordList() {
+<span class="fc" id="L176">        return filteredDonationRecords;</span>
+    }
+
+    @Override
+    public void updateFilteredDonationRecordList(Predicate&lt;DonationRecord&gt; predicate) {
+<span class="fc" id="L181">        requireNonNull(predicate);</span>
+<span class="fc" id="L182">        filteredDonationRecords.setPredicate(predicate);</span>
+<span class="fc" id="L183">    }</span>
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L187" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L188">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="fc bfc" id="L192" title="All 2 branches covered.">        if (!(other instanceof ModelManager)) {</span>
+<span class="fc" id="L193">            return false;</span>
+        }
+
+<span class="fc" id="L196">        ModelManager otherModelManager = (ModelManager) other;</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">        return bloodNet.equals(otherModelManager.bloodNet)</span>
+<span class="fc bfc" id="L198" title="All 2 branches covered.">                &amp;&amp; userPrefs.equals(otherModelManager.userPrefs)</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">                &amp;&amp; filteredPersons.equals(otherModelManager.filteredPersons)</span>
+<span class="pc bpc" id="L200" title="1 of 2 branches missed.">                &amp;&amp; filteredDonationRecords.equals(otherModelManager.filteredDonationRecords);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

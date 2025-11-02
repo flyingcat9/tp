@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EditCommandParser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.parser</a> &gt; <span class="el_source">EditCommandParser.java</span></div><h1>EditCommandParser.java</h1><pre class="source lang-java linenums">package bloodnet.logic.parser;
+
+import static bloodnet.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_NAME;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_PHONE;
+import static java.util.Objects.requireNonNull;
+
+import bloodnet.commons.core.index.Index;
+import bloodnet.logic.commands.EditCommand;
+import bloodnet.logic.commands.EditCommand.EditPersonDescriptor;
+import bloodnet.logic.parser.exceptions.ParseException;
+
+/**
+ * Parses input arguments and creates a new EditCommand object
+ */
+<span class="fc" id="L19">public class EditCommandParser implements Parser&lt;EditCommand&gt; {</span>
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the EditCommand
+     * and returns an EditCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public EditCommand parse(String args) throws ParseException {
+<span class="fc" id="L28">        requireNonNull(args);</span>
+<span class="fc" id="L29">        ArgumentMultimap argMultimap =</span>
+<span class="fc" id="L30">                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,</span>
+                        PREFIX_BLOOD_TYPE, PREFIX_DATE_OF_BIRTH);
+
+        Index index;
+
+        try {
+<span class="fc" id="L36">            index = ParserUtil.parseIndex(argMultimap.getPreamble());</span>
+<span class="fc" id="L37">        } catch (ParseException pe) {</span>
+<span class="fc" id="L38">            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getMessageUsage()), pe);</span>
+<span class="fc" id="L39">        }</span>
+
+<span class="fc" id="L41">        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,</span>
+                PREFIX_DATE_OF_BIRTH, PREFIX_BLOOD_TYPE);
+
+<span class="fc" id="L44">        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();</span>
+
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {</span>
+<span class="fc" id="L47">            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));</span>
+        }
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {</span>
+<span class="fc" id="L50">            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));</span>
+        }
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {</span>
+<span class="fc" id="L53">            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));</span>
+        }
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (argMultimap.getValue(PREFIX_BLOOD_TYPE).isPresent()) {</span>
+<span class="fc" id="L56">            editPersonDescriptor.setBloodType(ParserUtil.parseBloodType(argMultimap.getValue(PREFIX_BLOOD_TYPE).get()));</span>
+        }
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if (argMultimap.getValue(PREFIX_DATE_OF_BIRTH).isPresent()) {</span>
+<span class="fc" id="L59">            editPersonDescriptor.setDateOfBirth(ParserUtil.parseDateOfBirth(</span>
+<span class="fc" id="L60">                    argMultimap.getValue(PREFIX_DATE_OF_BIRTH).get()));</span>
+        }
+
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        if (!editPersonDescriptor.isAnyFieldEdited()) {</span>
+<span class="fc" id="L64">            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);</span>
+        }
+
+<span class="fc" id="L67">        return new EditCommand(index, editPersonDescriptor);</span>
+    }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

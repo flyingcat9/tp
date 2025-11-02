@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OutputDisplay.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.ui</a> &gt; <span class="el_source">OutputDisplay.java</span></div><h1>OutputDisplay.java</h1><pre class="source lang-java linenums">package bloodnet.ui;
+
+import static java.util.Objects.requireNonNull;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.Region;
+
+/**
+ * A UI for the status bar that is displayed at the header of the application.
+ */
+public class OutputDisplay extends UiPart&lt;Region&gt; {
+
+    private static final String FXML = &quot;OutputDisplay.fxml&quot;;
+
+    @FXML
+    private TextArea outputDisplay;
+
+    public OutputDisplay() {
+<span class="nc" id="L20">        super(FXML);</span>
+<span class="nc" id="L21">    }</span>
+
+    public void setFeedbackToUser(String feedbackToUser) {
+<span class="nc" id="L24">        requireNonNull(feedbackToUser);</span>
+<span class="nc" id="L25">        outputDisplay.setWrapText(true);</span>
+<span class="nc" id="L26">        outputDisplay.setText(feedbackToUser);</span>
+<span class="nc" id="L27">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

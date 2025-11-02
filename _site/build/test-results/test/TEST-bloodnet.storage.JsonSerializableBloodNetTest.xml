@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.storage.JsonSerializableBloodNetTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:26" hostname="LENOVOYOGA" time="0.027">
+  <properties/>
+  <testcase name="toModelType_invalidPersonFile_throwsIllegalValueException()" classname="bloodnet.storage.JsonSerializableBloodNetTest" time="0.004"/>
+  <testcase name="toModelType_typicalPersonsFile_success()" classname="bloodnet.storage.JsonSerializableBloodNetTest" time="0.014"/>
+  <testcase name="toModelType_duplicatePersons_throwsIllegalValueException()" classname="bloodnet.storage.JsonSerializableBloodNetTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\JsonSerializableBloodNetTest\invalidPersonBloodNet.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\JsonSerializableBloodNetTest\typicalPersonsBloodNet.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\JsonSerializableBloodNetTest\duplicatePersonBloodNet.json found.
+]]></system-err>
+</testsuite>

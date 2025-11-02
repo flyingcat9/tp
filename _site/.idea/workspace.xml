@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9c44b0b1-eef0-49ac-bca6-ce921bb74b7a" name="Changes" comment="Merge branch and edit test cases" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="tp" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="32otsvS3Lr4I6CG4ZYxpIPF5KtY" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.AddCommandParserTest.executor": "Run",
+    "Gradle.AddCommandParserTest.parse_invalidValue_failure.executor": "Run",
+    "Gradle.AddCommandParserTest.parse_repeatedNonTagValue_failure.executor": "Run",
+    "Gradle.AddDonationCommandParserTest.parse_allFieldsPresent_success.executor": "Run",
+    "Gradle.AllCommandInstructionsTest.executor": "Run",
+    "Gradle.AllCommandInstructionsTest.test_addInstructionsDescriptionsCorrect_success.executor": "Run",
+    "Gradle.AllCommandInstructionsTest.test_addInstructions_success.executor": "Run",
+    "Gradle.BloodNetParserTest.executor": "Run",
+    "Gradle.BloodNetParserTest.parseCommand_add.executor": "Run",
+    "Gradle.BloodNetParserTest.parseCommand_edit.executor": "Run",
+    "Gradle.BloodNetParserTest.parseCommand_editdonations.executor": "Run",
+    "Gradle.BloodNetParserTest.parseCommand_findeligible.executor": "Run",
+    "Gradle.ClearCommandTest.getMessage_string_returnsTrue.executor": "Run",
+    "Gradle.CommandInformationTest.create_commandInformationObject_success.executor": "Run",
+    "Gradle.DateOfBirthTest.executor": "Run",
+    "Gradle.DateOfBirthTest.isValidDateOfBirth.executor": "Run",
+    "Gradle.DeleteCommandTest.toStringMethod.executor": "Run",
+    "Gradle.EditCommandParserTest.executor": "Run",
+    "Gradle.EditCommandParserTest.parse_allFieldsSpecified_success.executor": "Run",
+    "Gradle.EditCommandParserTest.parse_multipleRepeatedFields_failure.executor": "Run",
+    "Gradle.EditCommandParserTest.parse_oneFieldSpecified_success.executor": "Run",
+    "Gradle.EditCommandTest.execute_allFieldsSpecifiedUnfilteredList_success.executor": "Run",
+    "Gradle.EditDonationCommandParserTest.executor": "Run",
+    "Gradle.EditDonationCommandParserTest.parse_invalidValue_failure.executor": "Run",
+    "Gradle.EditDonationCommandParserTest.parse_missingParts_failure.executor": "Run",
+    "Gradle.EditDonationCommandParserTest.parse_multipleRepeatedFields_failure.executor": "Run",
+    "Gradle.EditDonationCommandParserTest.parse_validInputString_success.executor": "Run",
+    "Gradle.EditDonationCommandParserTest.parse_valid_values.executor": "Run",
+    "Gradle.EditDonationCommandTest.constructor_nullBloodVolume_throwsNullPointerException.executor": "Run",
+    "Gradle.EditDonationCommandTest.constructor_nullDonationDate_throwsNullPointerException.executor": "Run",
+    "Gradle.EditDonationCommandTest.constructor_validArguments_success.executor": "Run",
+    "Gradle.EditDonationCommandTest.equals_compareNullDescriptor_returnsFalse.executor": "Run",
+    "Gradle.EditDonationCommandTest.equals_differentIndexInCommand_returnsFalse.executor": "Run",
+    "Gradle.EditDonationCommandTest.equals_differentIndex_returnsFalse.executor": "Run",
+    "Gradle.EditDonationCommandTest.equals_null_returnsFalse.executor": "Run",
+    "Gradle.EditDonationCommandTest.equals_sameDescriptor_returnsTrue.executor": "Run",
+    "Gradle.EditDonationCommandTest.equals_sameObject_returnsTrue.executor": "Run",
+    "Gradle.EditDonationCommandTest.equals_sameValuesInDescriptor_returnsTrue.executor": "Run",
+    "Gradle.EditDonationCommandTest.equals_sameValues_returnsTrue.executor": "Run",
+    "Gradle.EditDonationCommandTest.execute_dateAlreadyExistsForDonor_throwsCommandException.executor": "Run",
+    "Gradle.EditDonationCommandTest.execute_duplicateArguments_failure.executor": "Run",
+    "Gradle.EditDonationCommandTest.execute_duplicateDonationRecord_failure.executor": "Run",
+    "Gradle.EditDonationCommandTest.execute_duplicateDonationRecord_success.executor": "Run",
+    "Gradle.EditDonationCommandTest.execute_editingDonationRecordItself_success.executor": "Run",
+    "Gradle.EditDonationCommandTest.execute_invalidDonationDate_throwsCommandException.executor": "Run",
+    "Gradle.EditDonationCommandTest.execute_invalidPersonIndex_throwsCommandException.executor": "Run",
+    "Gradle.EditDonationCommandTest.execute_nullModel_throwsNullPointerException.executor": "Run",
+    "Gradle.EditDonationCommandTest.execute_personIdIsNull_failure.executor": "Run",
+    "Gradle.EditDonationCommandTest.execute_personInFilteredListIsNullExecute_failure.executor": "Run",
+    "Gradle.EditDonationCommandTest.execute_validArguments_success.executor": "Run",
+    "Gradle.EditDonationCommandTest.executor": "Run",
+    "Gradle.EditDonationCommandTest.toString_validCommand_returnsStringRepresentation.executor": "Run",
+    "Gradle.EditDonationsCommandParserTest.executor": "Run",
+    "Gradle.EditDonationsCommandParserTest.parse_invalidPreamble_failure.executor": "Run",
+    "Gradle.EditDonationsCommandParserTest.parse_invalidValue_failure.executor": "Run",
+    "Gradle.EditDonationsCommandParserTest.parse_missingParts_failure.executor": "Run",
+    "Gradle.EditDonationsCommandParserTest.parse_multipleRepeatedFields_failure.executor": "Run",
+    "Gradle.EditDonationsCommandParserTest.parse_someFieldsSpecified_success.executor": "Run",
+    "Gradle.EditDonationsCommandTest.execute_allFieldsSpecifiedUnfilteredList_success.executor": "Run",
+    "Gradle.EditDonationsCommandTest.execute_someFieldsSpecifiedUnfilteredList_success.executor": "Run",
+    "Gradle.EditDonationsCommandTest.executor": "Run",
+    "Gradle.EditPersonDescriptorTest.executor": "Run",
+    "Gradle.EligibilityStatusTest.isValidEligibilityStatus.executor": "Run",
+    "Gradle.ExitCommandTest.getMessage_string_returnsTrue.executor": "Run",
+    "Gradle.FindEligibilityCommandParserTest.executor": "Run",
+    "Gradle.FindEligibilityCommandParserTest.parse_validArgs_returnsFindCommand.executor": "Run",
+    "Gradle.FindEligibleCommandParserTest.executor": "Run",
+    "Gradle.FindEligibleCommandParserTest.parse_emptyArg_throwsParseException.executor": "Run",
+    "Gradle.FindEligibleCommandParserTest.parse_invalidArg_throwsParseException.executor": "Run",
+    "Gradle.FindEligibleCommandParserTest.parse_validArguments_success.executor": "Run",
+    "Gradle.FindEligibleCommandTest.equals.executor": "Run",
+    "Gradle.FindEligibleCommandTest.execute_multipleMatches_executesSuccessfully.executor": "Run",
+    "Gradle.FindEligibleCommandTest.execute_nullModelExecutes_throwsNullPointerException.executor": "Run",
+    "Gradle.FindEligibleCommandTest.execute_oneMatch_executesSuccessfully.executor": "Run",
+    "Gradle.FindEligibleCommandTest.executor": "Run",
+    "Gradle.FindEligibleCommandTest.toStringMethod.executor": "Run",
+    "Gradle.HasBloodTypeAndIsEligibleToDonatePredicateTest.equals.executor": "Run",
+    "Gradle.HasBloodTypeAndIsEligibleToDonatePredicateTest.executor": "Run",
+    "Gradle.HasBloodTypeAndIsEligibleToDonatePredicateTest.test_personFailureWithFailingBloodTypePredicate_returnsFalse.executor": "Run",
+    "Gradle.HasBloodTypeAndIsEligibleToDonatePredicateTest.test_personSuccessWithBothPredicates_returnsFalse.executor": "Run",
+    "Gradle.HasBloodTypeAndIsEligibleToDonatePredicateTest.test_personSuccessWithBothPredicates_returnsTrue.executor": "Run",
+    "Gradle.HasBloodTypeAndIsEligibleToDonatePredicateTest.toStringMethod.executor": "Run",
+    "Gradle.HasBloodTypePredicateTest.executor": "Run",
+    "Gradle.IndexTest.toDisplayUser.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.donatedWithLastThreeYears_returnsTrue.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.donorIsAboveSixtySixAndDonationIsNotInRange_returnsFalse.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.donorIsAboveSixtySixAndNeverDonatedBefore.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.donorIsBetweenSixteenAndSixty_returnsTrue.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.donorIsFifteen_returnsTrue.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.donorIsInRangeAndHasDonatedBefore_returnsTrue.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.donorIsSixteen_returnsTrue.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.donorIsSixtyOneAndNeverDonatedBefore_returnsFalse.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.donorIsSixtyOneAndNeverDonatedBefore_returnsTrue.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.donorIsSixtyOneButDonatedBefore_returnsTrue.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.donorIsSixtyYearsOld_returnsTrue.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.equals.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.oldestRepeatDonor_returnsTrue.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.test_personHasValidDateOfBirthAndBloodDuration_returnsTrue.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.toStringMethod.executor": "Run",
+    "Gradle.IsEligibleToDonatePredicateTest.validDateOfBirthRangeButDonationLengthTooShort_returnsFalse.executor": "Run",
+    "Gradle.JsonAdaptedPersonTest.executor": "Run",
+    "Gradle.JsonAdaptedPersonTest.toModelType_invalidDateofBirth_throwsIllegalValueException.executor": "Run",
+    "Gradle.JsonAdaptedPersonTest.toModelType_nullDateOfBirth_throwsIllegalValueException.executor": "Run",
+    "Gradle.JsonAdaptedPersonTest.toModelType_validPersonDetails_returnsPerson.executor": "Run",
+    "Gradle.JsonSerializableAddressBookTest.executor": "Run",
+    "Gradle.JsonSerializableAddressBookTest.toModelType_typicalPersonsFile_success.executor": "Run",
+    "Gradle.ListCommandTest.getMessage_string_returnsTrue.executor": "Run",
+    "Gradle.LogicManagerTest.execute_storageThrowsAdException_throwsCommandException.executor": "Debug",
+    "Gradle.LogicManagerTest.execute_storageThrowsIoException_throwsCommandException.executor": "Run",
+    "Gradle.LogicManagerTest.executor": "Run",
+    "Gradle.MatchingBloodTypeTest.equals.executor": "Run",
+    "Gradle.MatchingBloodTypeTest.executor": "Run",
+    "Gradle.MatchingBloodTypeTest.test_nameContainsKeywords_returnsTrue.executor": "Run",
+    "Gradle.MatchingBloodTypeTest.test_personDoesNotHaveBloodTypeOrHasInvalidDateOfBirth_returnsFalse.executor": "Run",
+    "Gradle.MatchingBloodTypeTest.test_personHasBloodType_returnsTrue.executor": "Run",
+    "Gradle.ParserUtilTest.executor": "Run",
+    "Gradle.ParserUtilTest.parseDateOfBirth_null_throwsNullPointerException.executor": "Run",
+    "Gradle.ParserUtilTest.parseDateOfBirth_validValueWithWhitespace_returnsDateOfBirthEmail.executor": "Run",
+    "Gradle.ParserUtilTest.parseDateOfBirth_validValueWithoutWhitespace_returnsDateOfBirth.executor": "Run",
+    "Gradle.PersonTest.toStringMethod.executor": "Run",
+    "Gradle.PhoneTest.executor": "Run",
+    "Gradle.PhoneTest.isValidPhone.executor": "Run",
+    "Gradle.StorageManagerTest.bloodNetReadSave.executor": "Run",
+    "Gradle.Tests in 'tp.test'.executor": "Coverage",
+    "Gradle.UiPartTest.executor": "Run",
+    "Gradle.UiPartTest.test_addInstructions_success.executor": "Run",
+    "Gradle.UniqueDonationRecordListTest.contains_donationRecordWithSameIdentityFieldsInList_returnsTrue.executor": "Run",
+    "Gradle.UniquePersonListTest.contains_nullPerson_throwsNullPointerException.executor": "Run",
+    "Gradle.UniquePersonListTest.executor": "Run",
+    "Gradle.UniquePersonListTest.setPerson_editedPersonHasSameIdentity_success.executor": "Run",
+    "Gradle.tp [:seedu.address.Main.main()].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "fix-ug-bugs",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/limin/tp/docs/diagrams",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.sourceCode.Java"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\limin\tp\docs" />
+      <recent name="C:\Users\limin\tp\docs\_markbind" />
+      <recent name="C:\Users\limin\tp\docs\team" />
+      <recent name="C:\Users\limin\tp\docs\images" />
+      <recent name="C:\Users\limin\tp\src\main\resources\images" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.ClearCommandTest.getMessage_string_returnsTrue">
+    <configuration name="ClearCommandTest.getMessage_string_returnsTrue" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;bloodnet.logic.commands.ClearCommandTest.getMessage_string_returnsTrue&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="EditDonationCommandTest.execute_dateAlreadyExistsForDonor_throwsCommandException" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;bloodnet.logic.commands.EditDonationCommandTest.execute_dateAlreadyExistsForDonor_throwsCommandException&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="EditDonationCommandTest.execute_duplicateDonationRecord_failure" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;bloodnet.logic.commands.EditDonationCommandTest.execute_duplicateDonationRecord_failure&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="EditDonationCommandTest.execute_editingDonationRecordItself_success" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;bloodnet.logic.commands.EditDonationCommandTest.execute_editingDonationRecordItself_success&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="EditDonationCommandTest.execute_invalidDonationDate_throwsCommandException" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;bloodnet.logic.commands.EditDonationCommandTest.execute_invalidDonationDate_throwsCommandException&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.ClearCommandTest.getMessage_string_returnsTrue" />
+      <item itemvalue="Gradle.EditDonationCommandTest.execute_dateAlreadyExistsForDonor_throwsCommandException" />
+      <item itemvalue="Gradle.EditDonationCommandTest.execute_duplicateDonationRecord_failure" />
+      <item itemvalue="Gradle.EditDonationCommandTest.execute_editingDonationRecordItself_success" />
+      <item itemvalue="Gradle.EditDonationCommandTest.execute_invalidDonationDate_throwsCommandException" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.ClearCommandTest.getMessage_string_returnsTrue" />
+        <item itemvalue="Gradle.EditDonationCommandTest.execute_dateAlreadyExistsForDonor_throwsCommandException" />
+        <item itemvalue="Gradle.EditDonationCommandTest.execute_editingDonationRecordItself_success" />
+        <item itemvalue="Gradle.EditDonationCommandTest.execute_duplicateDonationRecord_failure" />
+        <item itemvalue="Gradle.EditDonationCommandTest.execute_invalidDonationDate_throwsCommandException" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c44b0b1-eef0-49ac-bca6-ce921bb74b7a" name="Changes" comment="" />
+      <created>1758098964136</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1758098964136</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Merge branch and edit test cases">
+      <option name="closed" value="true" />
+      <created>1761325649942</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1761325649942</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Merge branch and edit test cases">
+      <option name="closed" value="true" />
+      <created>1761485641401</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1761485641401</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Merge branch and edit test cases">
+      <option name="closed" value="true" />
+      <created>1761485748176</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1761485748176</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Merge branch and edit test cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch and edit test cases" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/tp$Tests_in__tp_test_.ic" NAME="Tests in 'tp.test' Coverage Results" MODIFIED="1760601775961" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+  </component>
+</project>

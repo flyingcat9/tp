@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.logic.parser.BloodNetParserTest" tests="13" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.024">
+  <properties/>
+  <testcase name="parseCommand_delete()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.001"/>
+  <testcase name="parseCommand_add()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.003"/>
+  <testcase name="parseCommand_unrecognisedInput_throwsParseException()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.001"/>
+  <testcase name="parseCommand_clear()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.001"/>
+  <testcase name="parseCommand_edit()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.006"/>
+  <testcase name="parseCommand_exit()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.0"/>
+  <testcase name="parseCommand_find()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.003"/>
+  <testcase name="parseCommand_help()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.001"/>
+  <testcase name="parseCommand_list()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.0"/>
+  <testcase name="parseCommand_finddonations()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.002"/>
+  <testcase name="parseCommand_editdonations()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.002"/>
+  <testcase name="parseCommand_findeligible()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.002"/>
+  <testcase name="parseCommand_unknownCommand_throwsParseException()" classname="bloodnet.logic.parser.BloodNetParserTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,11 @@
+{
+  "guiSettings" : {
+    "windowWidth" : 824.0,
+    "windowHeight" : 600.0,
+    "windowCoordinates" : {
+      "x" : 435,
+      "y" : 200
+    }
+  },
+  "bloodNetFilePath" : "data\\bloodnet.json"
+}

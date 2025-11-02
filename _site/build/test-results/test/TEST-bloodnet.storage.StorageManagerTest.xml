@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.storage.StorageManagerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:26" hostname="LENOVOYOGA" time="0.017">
+  <properties/>
+  <testcase name="getBloodNetFilePath()" classname="bloodnet.storage.StorageManagerTest" time="0.002"/>
+  <testcase name="prefsReadSave()" classname="bloodnet.storage.StorageManagerTest" time="0.005"/>
+  <testcase name="bloodNetReadSave()" classname="bloodnet.storage.StorageManagerTest" time="0.01"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit17193248049968106481\prefs found.
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit16692217072557035300\ab found.
+Nov 02, 2025 2:49:26 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+]]></system-err>
+</testsuite>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LogicManager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic</a> &gt; <span class="el_source">LogicManager.java</span></div><h1>LogicManager.java</h1><pre class="source lang-java linenums">package bloodnet.logic;
+
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
+import java.nio.file.Path;
+import java.util.logging.Logger;
+
+import bloodnet.commons.core.GuiSettings;
+import bloodnet.commons.core.LogsCenter;
+import bloodnet.commons.exceptions.DataLoadingException;
+import bloodnet.logic.commands.Command;
+import bloodnet.logic.commands.InputResponse;
+import bloodnet.logic.commands.commandsessions.CommandSession;
+import bloodnet.logic.commands.commandsessions.exceptions.TerminalSessionStateException;
+import bloodnet.logic.commands.exceptions.CommandException;
+import bloodnet.logic.parser.BloodNetParser;
+import bloodnet.logic.parser.exceptions.ParseException;
+import bloodnet.model.Model;
+import bloodnet.model.ReadOnlyBloodNet;
+import bloodnet.model.donationrecord.DonationRecord;
+import bloodnet.model.person.Person;
+import bloodnet.storage.Storage;
+import bloodnet.storage.StorageManager;
+import javafx.collections.ObservableList;
+
+/**
+ * The main LogicManager of the app.
+ */
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">public class LogicManager implements Logic {</span>
+    public static final String TERMINAL_COMMAND_SESSION_STATE_ERROR_MESSAGE =
+            &quot;An error has occured under the hood! \n&quot;
+                    + &quot;Your previous command was likely not properly captured. Please try again.&quot;;
+
+<span class="fc" id="L34">    private final Logger logger = LogsCenter.getLogger(LogicManager.class);</span>
+
+    private final Model model;
+    private final Storage storage;
+    private final BloodNetParser bloodNetParser;
+
+<span class="fc" id="L40">    private CommandSession currentSession = null;</span>
+
+    /**
+     * Constructs a {@code LogicManager} with the given {@code Model} and
+     * {@code Storage}.
+     */
+<span class="fc" id="L46">    public LogicManager(Model model, Storage storage) {</span>
+<span class="fc" id="L47">        this.model = model;</span>
+<span class="fc" id="L48">        this.storage = storage;</span>
+<span class="fc" id="L49">        bloodNetParser = new BloodNetParser();</span>
+<span class="fc" id="L50">    }</span>
+
+    /**
+     * Constructs a {@code LogicManager} with the given {@code Model},
+     * {@code Storage} and {@code BloodNetParser}.
+     */
+<span class="fc" id="L56">    public LogicManager(Model model, Storage storage, BloodNetParser bloodNetParser) {</span>
+<span class="fc" id="L57">        this.model = model;</span>
+<span class="fc" id="L58">        this.storage = storage;</span>
+<span class="fc" id="L59">        this.bloodNetParser = bloodNetParser;</span>
+<span class="fc" id="L60">    }</span>
+
+    @Override
+    public InputResponse handle(String input) throws CommandException, ParseException {
+<span class="fc" id="L64">        logger.info(&quot;----------------[USER INPUT][&quot; + input + &quot;]&quot;);</span>
+
+<span class="fc bfc" id="L66" title="All 2 branches covered.">        if (currentSession == null) {</span>
+<span class="fc" id="L67">            Command command = bloodNetParser.parseCommand(input);</span>
+<span class="fc" id="L68">            this.currentSession = command.createSession(model);</span>
+        }
+
+<span class="pc bpc" id="L71" title="2 of 4 branches missed.">        assert this.currentSession != null;</span>
+
+<span class="fc" id="L73">        return advanceCurrentSession(input);</span>
+    }
+
+    private InputResponse advanceCurrentSession(String input) throws CommandException {
+        InputResponse response;
+        try {
+<span class="fc" id="L79">            response = currentSession.handle(input);</span>
+<span class="fc" id="L80">        } catch (TerminalSessionStateException e) {</span>
+<span class="fc" id="L81">            currentSession = null;</span>
+<span class="fc" id="L82">            response = new InputResponse(TERMINAL_COMMAND_SESSION_STATE_ERROR_MESSAGE);</span>
+<span class="fc" id="L83">        } catch (CommandException e) {</span>
+            // If a CommandException is thrown upon calling currentSession.handle(input),
+            // the current session should be ended.
+            // However, we still throw the CommandException,
+            // so that the OutputBox's text does not get reset to an empty String.
+            // Refer to OutputBox::handleCommandEntered to better understand this.
+<span class="fc" id="L89">            currentSession = null;</span>
+<span class="fc" id="L90">            throw e;</span>
+<span class="fc" id="L91">        }</span>
+<span class="fc bfc" id="L92" title="All 4 branches covered.">        if (currentSession != null &amp;&amp; currentSession.isDone()) {</span>
+<span class="fc" id="L93">            currentSession = null;</span>
+<span class="fc" id="L94">            saveBloodNetSafely();</span>
+        }
+<span class="fc" id="L96">        return response;</span>
+    }
+
+    private void saveBloodNetSafely() throws CommandException {
+        try {
+<span class="fc" id="L101">            storage.saveBloodNet(model.getBloodNet());</span>
+
+            // Reload bloodnet model with the latest data from storage.
+            // This way, the ID of newly created objects will be populated in the model
+            // The current model is used as a fallback in the event loading from storage fails
+<span class="fc" id="L106">            ReadOnlyBloodNet latestBloodNet = storage.readBloodNet().orElse(model.getBloodNet());</span>
+<span class="fc" id="L107">            model.setBloodNet(latestBloodNet);</span>
+
+<span class="fc" id="L109">        } catch (AccessDeniedException e) {</span>
+<span class="fc" id="L110">            throw new CommandException(</span>
+<span class="fc" id="L111">                    String.format(StorageManager.FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()), e);</span>
+<span class="fc" id="L112">        } catch (IOException ioe) {</span>
+<span class="fc" id="L113">            throw new CommandException(String.format(StorageManager.FILE_OPS_ERROR_FORMAT, ioe.getMessage()), ioe);</span>
+<span class="nc" id="L114">        } catch (DataLoadingException e) {</span>
+<span class="nc" id="L115">            throw new CommandException(&quot;Data file at &quot; + storage.getBloodNetFilePath() + &quot; could not be reloaded.&quot;);</span>
+<span class="fc" id="L116">        }</span>
+<span class="fc" id="L117">    }</span>
+
+    @Override
+    public ReadOnlyBloodNet getBloodNet() {
+<span class="nc" id="L121">        return model.getBloodNet();</span>
+    }
+
+    @Override
+    public ObservableList&lt;Person&gt; getFilteredPersonList() {
+<span class="fc" id="L126">        return model.getFilteredPersonList();</span>
+    }
+
+    @Override
+    public ObservableList&lt;DonationRecord&gt; getFilteredDonationRecordList() {
+<span class="fc" id="L131">        return model.getFilteredDonationRecordList();</span>
+    }
+
+    @Override
+    public Path getBloodNetFilePath() {
+<span class="nc" id="L136">        return model.getBloodNetFilePath();</span>
+    }
+
+    @Override
+    public GuiSettings getGuiSettings() {
+<span class="nc" id="L141">        return model.getGuiSettings();</span>
+    }
+
+    @Override
+    public void setGuiSettings(GuiSettings guiSettings) {
+<span class="nc" id="L146">        model.setGuiSettings(guiSettings);</span>
+<span class="nc" id="L147">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

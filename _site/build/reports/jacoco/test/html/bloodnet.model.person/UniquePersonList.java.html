@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UniquePersonList.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.model.person</a> &gt; <span class="el_source">UniquePersonList.java</span></div><h1>UniquePersonList.java</h1><pre class="source lang-java linenums">package bloodnet.model.person;
+
+import static bloodnet.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
+
+import java.util.Iterator;
+import java.util.List;
+
+import bloodnet.model.person.exceptions.DuplicatePersonException;
+import bloodnet.model.person.exceptions.PersonNotFoundException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+/**
+ * A list of persons that enforces uniqueness between its elements and does not allow nulls.
+ * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
+ * persons uses Person#isSamePerson(Person) for equality to ensure that the person being added or updated is
+ * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object)
+ * to ensure that the person with exactly the same fields will be removed.
+ * &lt;p&gt;
+ * Supports a minimal set of list operations.
+ *
+ * @see Person#isSamePerson(Person)
+ */
+<span class="fc" id="L25">public class UniquePersonList implements Iterable&lt;Person&gt; {</span>
+
+<span class="fc" id="L27">    private final ObservableList&lt;Person&gt; internalList = FXCollections.observableArrayList();</span>
+<span class="fc" id="L28">    private final ObservableList&lt;Person&gt; internalUnmodifiableList =</span>
+<span class="fc" id="L29">            FXCollections.unmodifiableObservableList(internalList);</span>
+
+    /**
+     * Returns true if the list contains an equivalent person as the given argument.
+     */
+    public boolean contains(Person toCheck) {
+<span class="fc" id="L35">        requireNonNull(toCheck);</span>
+<span class="fc" id="L36">        return internalList.stream().anyMatch(toCheck::isSamePerson);</span>
+    }
+
+    /**
+     * Adds a person to the list.
+     * The person must not already exist in the list.
+     */
+    public void add(Person toAdd) {
+<span class="fc" id="L44">        requireNonNull(toAdd);</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">        if (contains(toAdd)) {</span>
+<span class="fc" id="L46">            throw new DuplicatePersonException();</span>
+        }
+<span class="fc" id="L48">        internalList.add(toAdd);</span>
+<span class="fc" id="L49">    }</span>
+
+    /**
+     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the list.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     */
+    public void setPerson(Person target, Person editedPerson) {
+<span class="fc" id="L57">        requireAllNonNull(target, editedPerson);</span>
+
+<span class="fc" id="L59">        int index = internalList.indexOf(target);</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if (index == -1) {</span>
+<span class="fc" id="L61">            throw new PersonNotFoundException();</span>
+        }
+
+<span class="fc bfc" id="L64" title="All 4 branches covered.">        if (!target.isSamePerson(editedPerson) &amp;&amp; contains(editedPerson)) {</span>
+<span class="fc" id="L65">            throw new DuplicatePersonException();</span>
+        }
+
+<span class="fc" id="L68">        internalList.set(index, editedPerson);</span>
+<span class="fc" id="L69">    }</span>
+
+    /**
+     * Removes the equivalent person from the list.
+     * The person must exist in the list.
+     */
+    public void remove(Person toRemove) {
+<span class="fc" id="L76">        requireNonNull(toRemove);</span>
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (!internalList.remove(toRemove)) {</span>
+<span class="fc" id="L78">            throw new PersonNotFoundException();</span>
+        }
+<span class="fc" id="L80">    }</span>
+
+    public void setPersons(UniquePersonList replacement) {
+<span class="fc" id="L83">        requireNonNull(replacement);</span>
+<span class="fc" id="L84">        internalList.setAll(replacement.internalList);</span>
+<span class="fc" id="L85">    }</span>
+
+    /**
+     * Replaces the contents of this list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setPersons(List&lt;Person&gt; persons) {
+<span class="fc" id="L92">        requireAllNonNull(persons);</span>
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        if (!personsAreUnique(persons)) {</span>
+<span class="fc" id="L94">            throw new DuplicatePersonException();</span>
+        }
+
+<span class="fc" id="L97">        internalList.setAll(persons);</span>
+<span class="fc" id="L98">    }</span>
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList&lt;Person&gt; asUnmodifiableObservableList() {
+<span class="fc" id="L104">        return internalUnmodifiableList;</span>
+    }
+
+    @Override
+    public Iterator&lt;Person&gt; iterator() {
+<span class="nc" id="L109">        return internalList.iterator();</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">        if (other == this) {</span>
+<span class="nc" id="L115">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="pc bpc" id="L119" title="1 of 2 branches missed.">        if (!(other instanceof UniquePersonList)) {</span>
+<span class="nc" id="L120">            return false;</span>
+        }
+
+<span class="fc" id="L123">        UniquePersonList otherUniquePersonList = (UniquePersonList) other;</span>
+<span class="fc" id="L124">        return internalList.equals(otherUniquePersonList.internalList);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L129">        return internalList.hashCode();</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L134">        return internalList.toString();</span>
+    }
+
+    /**
+     * Returns true if {@code persons} contains only unique persons.
+     */
+    private boolean personsAreUnique(List&lt;Person&gt; persons) {
+<span class="fc bfc" id="L141" title="All 2 branches covered.">        for (int i = 0; i &lt; persons.size() - 1; i++) {</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">            for (int j = i + 1; j &lt; persons.size(); j++) {</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">                if (persons.get(i).isSamePerson(persons.get(j))) {</span>
+<span class="fc" id="L144">                    return false;</span>
+                }
+            }
+        }
+<span class="fc" id="L148">        return true;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

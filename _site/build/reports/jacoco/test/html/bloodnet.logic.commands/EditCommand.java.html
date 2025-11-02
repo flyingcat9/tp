@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EditCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.commands</a> &gt; <span class="el_source">EditCommand.java</span></div><h1>EditCommand.java</h1><pre class="source lang-java linenums">package bloodnet.logic.commands;
+
+import static bloodnet.logic.parser.CliSyntax.DATE_FORMAT;
+import static bloodnet.logic.parser.CliSyntax.POSITIVE_INTEGER_FORMAT;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_BLOOD_TYPE;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_DATE_OF_BIRTH;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_NAME;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_PHONE;
+import static bloodnet.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+import bloodnet.commons.core.index.Index;
+import bloodnet.commons.util.CollectionUtil;
+import bloodnet.commons.util.ToStringBuilder;
+import bloodnet.logic.Messages;
+import bloodnet.logic.commands.exceptions.CommandException;
+import bloodnet.model.Model;
+import bloodnet.model.person.BloodType;
+import bloodnet.model.person.DateOfBirth;
+import bloodnet.model.person.Email;
+import bloodnet.model.person.Name;
+import bloodnet.model.person.Person;
+import bloodnet.model.person.Phone;
+
+/**
+ * Edits the details of an existing person in BloodNet.
+ */
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">public class EditCommand extends Command {</span>
+
+    public static final String COMMAND_WORD = &quot;edit&quot;;
+
+<span class="fc" id="L37">    public static final CommandInformation COMMAND_INFORMATION = new CommandInformation(COMMAND_WORD,</span>
+            &quot;Edits the &quot;
+                    + &quot;field(s) of the donor identified by the index number used in the displayed donor list. &quot;
+                    + &quot;At least one field to edit must &quot;
+                    + &quot;be provided.&quot;, &quot;Parameters: DONOR_LIST_INDEX_&quot; + POSITIVE_INTEGER_FORMAT + &quot; &quot;
+            + &quot;[&quot; + PREFIX_NAME + &quot;NAME] &quot;
+            + &quot;[&quot; + PREFIX_PHONE + &quot;PHONE] &quot;
+            + &quot;[&quot; + PREFIX_EMAIL + &quot;EMAIL] &quot;
+            + &quot;[&quot; + PREFIX_BLOOD_TYPE + &quot;BLOOD_TYPE] &quot;
+            + &quot;[&quot; + PREFIX_DATE_OF_BIRTH + &quot;DATE_OF_BIRTH_&quot; + DATE_FORMAT + &quot;] &quot;, &quot;Example: &quot; + COMMAND_WORD + &quot; 1 &quot;
+            + PREFIX_PHONE + &quot;91234567 &quot;
+            + PREFIX_EMAIL + &quot;johndoe@example.com&quot;);
+
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = &quot;Edited donor: %1$s&quot;;
+    public static final String MESSAGE_NOT_EDITED = &quot;At least one field to edit must be provided.&quot;;
+    public static final String MESSAGE_DUPLICATE_PERSON = &quot;This donor already exists in BloodNet.&quot;;
+
+    private final Index index;
+    private final EditPersonDescriptor editPersonDescriptor;
+
+    /**
+     * @param index                Index of the person in the filtered person list to edit.
+     * @param editPersonDescriptor Details to edit the person with.
+     */
+<span class="fc" id="L61">    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {</span>
+<span class="fc" id="L62">        requireNonNull(index);</span>
+<span class="fc" id="L63">        requireNonNull(editPersonDescriptor);</span>
+<span class="fc" id="L64">        this.index = index;</span>
+<span class="fc" id="L65">        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);</span>
+<span class="fc" id="L66">    }</span>
+
+    @Override
+    public InputResponse execute(Model model) throws CommandException {
+<span class="fc" id="L70">        Person personToEdit = getPersonToEdit(model);</span>
+<span class="fc" id="L71">        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);</span>
+
+<span class="fc bfc" id="L73" title="All 4 branches covered.">        if (!personToEdit.isSamePerson(editedPerson) &amp;&amp; model.hasPerson(editedPerson)) {</span>
+<span class="fc" id="L74">            throw new CommandException(MESSAGE_DUPLICATE_PERSON);</span>
+        }
+
+<span class="fc" id="L77">        model.setPerson(personToEdit, editedPerson);</span>
+<span class="fc" id="L78">        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);</span>
+<span class="fc" id="L79">        return new InputResponse(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));</span>
+    }
+
+    /**
+     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * edited with {@code editPersonDescriptor}.
+     */
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+
+<span class="fc" id="L88">        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());</span>
+<span class="fc" id="L89">        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());</span>
+<span class="fc" id="L90">        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());</span>
+<span class="fc" id="L91">        BloodType updatedBloodType = editPersonDescriptor.getBloodType().orElse(personToEdit.getBloodType());</span>
+<span class="fc" id="L92">        DateOfBirth updatedDateOfBirth = editPersonDescriptor.getDateOfBirth().orElse(personToEdit.getDateOfBirth());</span>
+
+<span class="fc" id="L94">        return new Person(personToEdit.getId(), updatedName, updatedPhone, updatedEmail, updatedBloodType,</span>
+                updatedDateOfBirth);
+    }
+
+    private Person getPersonToEdit(Model model) throws CommandException {
+<span class="fc" id="L99">        requireNonNull(model);</span>
+<span class="fc" id="L100">        List&lt;Person&gt; lastShownList = model.getFilteredPersonList();</span>
+
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        if (index.getZeroBased() &gt;= lastShownList.size()) {</span>
+<span class="fc" id="L103">            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);</span>
+        }
+
+<span class="fc" id="L106">        Person personToEdit = lastShownList.get(index.getZeroBased());</span>
+<span class="pc bpc" id="L107" title="2 of 4 branches missed.">        assert personToEdit != null;</span>
+<span class="fc" id="L108">        return personToEdit;</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L114">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="fc bfc" id="L118" title="All 2 branches covered.">        if (!(other instanceof EditCommand)) {</span>
+<span class="fc" id="L119">            return false;</span>
+        }
+
+<span class="fc" id="L122">        EditCommand otherEditCommand = (EditCommand) other;</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">        return index.equals(otherEditCommand.index)</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">                &amp;&amp; editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L129">        return new ToStringBuilder(this)</span>
+<span class="fc" id="L130">                .add(&quot;index&quot;, index)</span>
+<span class="fc" id="L131">                .add(&quot;editPersonDescriptor&quot;, editPersonDescriptor)</span>
+<span class="fc" id="L132">                .toString();</span>
+    }
+
+    public static String getMessageUsage() {
+<span class="fc" id="L136">        return COMMAND_INFORMATION.getMessageUsage();</span>
+    }
+
+    /**
+     * Stores the details to edit the person with. Each non-empty field value will
+     * replace the
+     * corresponding field value of the person.
+     */
+    public static class EditPersonDescriptor {
+        private Name name;
+        private Phone phone;
+        private Email email;
+        private BloodType bloodType;
+        private DateOfBirth dateOfBirth;
+
+<span class="fc" id="L151">        public EditPersonDescriptor() {</span>
+<span class="fc" id="L152">        }</span>
+
+        /**
+         * Copy constructor.
+         */
+<span class="fc" id="L157">        public EditPersonDescriptor(EditPersonDescriptor toCopy) {</span>
+<span class="fc" id="L158">            setName(toCopy.name);</span>
+<span class="fc" id="L159">            setPhone(toCopy.phone);</span>
+<span class="fc" id="L160">            setEmail(toCopy.email);</span>
+<span class="fc" id="L161">            setBloodType(toCopy.bloodType);</span>
+<span class="fc" id="L162">            setDateOfBirth(toCopy.dateOfBirth);</span>
+<span class="fc" id="L163">        }</span>
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+<span class="fc" id="L169">            return CollectionUtil.isAnyNonNull(name, phone, email, bloodType, dateOfBirth);</span>
+        }
+
+        public void setName(Name name) {
+<span class="fc" id="L173">            this.name = name;</span>
+<span class="fc" id="L174">        }</span>
+
+        public Optional&lt;Name&gt; getName() {
+<span class="fc" id="L177">            return Optional.ofNullable(name);</span>
+        }
+
+        public void setPhone(Phone phone) {
+<span class="fc" id="L181">            this.phone = phone;</span>
+<span class="fc" id="L182">        }</span>
+
+        public Optional&lt;Phone&gt; getPhone() {
+<span class="fc" id="L185">            return Optional.ofNullable(phone);</span>
+        }
+
+        public void setEmail(Email email) {
+<span class="fc" id="L189">            this.email = email;</span>
+<span class="fc" id="L190">        }</span>
+
+        public Optional&lt;Email&gt; getEmail() {
+<span class="fc" id="L193">            return Optional.ofNullable(email);</span>
+        }
+
+        public void setBloodType(BloodType bloodType) {
+<span class="fc" id="L197">            this.bloodType = bloodType;</span>
+<span class="fc" id="L198">        }</span>
+
+        public Optional&lt;BloodType&gt; getBloodType() {
+<span class="fc" id="L201">            return Optional.ofNullable(bloodType);</span>
+        }
+
+        public void setDateOfBirth(DateOfBirth dateOfBirth) {
+<span class="fc" id="L205">            this.dateOfBirth = dateOfBirth;</span>
+<span class="fc" id="L206">        }</span>
+
+        public Optional&lt;DateOfBirth&gt; getDateOfBirth() {
+<span class="fc" id="L209">            return Optional.ofNullable(dateOfBirth);</span>
+        }
+
+        @Override
+        public boolean equals(Object other) {
+<span class="fc bfc" id="L214" title="All 2 branches covered.">            if (other == this) {</span>
+<span class="fc" id="L215">                return true;</span>
+            }
+
+            // instanceof handles nulls
+<span class="fc bfc" id="L219" title="All 2 branches covered.">            if (!(other instanceof EditPersonDescriptor)) {</span>
+<span class="fc" id="L220">                return false;</span>
+            }
+
+<span class="fc" id="L223">            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">            return Objects.equals(name, otherEditPersonDescriptor.name)</span>
+<span class="fc bfc" id="L225" title="All 2 branches covered.">                    &amp;&amp; Objects.equals(phone, otherEditPersonDescriptor.phone)</span>
+<span class="fc bfc" id="L226" title="All 2 branches covered.">                    &amp;&amp; Objects.equals(email, otherEditPersonDescriptor.email)</span>
+<span class="fc bfc" id="L227" title="All 2 branches covered.">                    &amp;&amp; Objects.equals(bloodType, otherEditPersonDescriptor.bloodType)</span>
+<span class="fc bfc" id="L228" title="All 2 branches covered.">                    &amp;&amp; Objects.equals(dateOfBirth, otherEditPersonDescriptor.dateOfBirth);</span>
+        }
+
+        @Override
+        public String toString() {
+<span class="fc" id="L233">            return new ToStringBuilder(this)</span>
+<span class="fc" id="L234">                    .add(&quot;name&quot;, name)</span>
+<span class="fc" id="L235">                    .add(&quot;phone&quot;, phone)</span>
+<span class="fc" id="L236">                    .add(&quot;email&quot;, email)</span>
+<span class="fc" id="L237">                    .add(&quot;bloodType&quot;, bloodType)</span>
+<span class="fc" id="L238">                    .add(&quot;dateOfBirth&quot;, dateOfBirth)</span>
+<span class="fc" id="L239">                    .toString();</span>
+        }
+
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

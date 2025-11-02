@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JsonBloodNetStorage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.storage</a> &gt; <span class="el_source">JsonBloodNetStorage.java</span></div><h1>JsonBloodNetStorage.java</h1><pre class="source lang-java linenums">package bloodnet.storage;
+
+import static java.util.Objects.requireNonNull;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+import java.util.logging.Logger;
+
+import bloodnet.commons.core.LogsCenter;
+import bloodnet.commons.exceptions.DataLoadingException;
+import bloodnet.commons.exceptions.IllegalValueException;
+import bloodnet.commons.util.FileUtil;
+import bloodnet.commons.util.JsonUtil;
+import bloodnet.model.BloodNet;
+import bloodnet.model.ReadOnlyBloodNet;
+import bloodnet.model.donationrecord.DonationRecord;
+import bloodnet.model.person.Person;
+
+/**
+ * A class to access BloodNet data stored as a json file on the hard disk.
+ */
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">public class JsonBloodNetStorage implements BloodNetStorage {</span>
+
+<span class="fc" id="L27">    private static final Logger logger = LogsCenter.getLogger(JsonBloodNetStorage.class);</span>
+
+    private Path filePath;
+
+<span class="fc" id="L31">    public JsonBloodNetStorage(Path filePath) {</span>
+<span class="fc" id="L32">        this.filePath = filePath;</span>
+<span class="fc" id="L33">    }</span>
+
+    public Path getBloodNetFilePath() {
+<span class="fc" id="L36">        return filePath;</span>
+    }
+
+    @Override
+    public Optional&lt;ReadOnlyBloodNet&gt; readBloodNet() throws DataLoadingException {
+<span class="fc" id="L41">        return readBloodNet(filePath);</span>
+    }
+
+    /**
+     * Similar to {@link #readBloodNet()}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     * @throws DataLoadingException if loading the data from storage failed.
+     */
+    public Optional&lt;ReadOnlyBloodNet&gt; readBloodNet(Path filePath) throws DataLoadingException {
+<span class="fc" id="L51">        requireNonNull(filePath);</span>
+
+<span class="fc" id="L53">        Optional&lt;JsonSerializableBloodNet&gt; jsonBloodNet = JsonUtil.readJsonFile(</span>
+                filePath, JsonSerializableBloodNet.class);
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (!jsonBloodNet.isPresent()) {</span>
+<span class="fc" id="L56">            return Optional.empty();</span>
+        }
+
+        try {
+<span class="fc" id="L60">            BloodNet bloodNet = jsonBloodNet.get().toModelType();</span>
+
+            // Populate the &quot;donorName&quot; &amp; &quot;donorPhoneNumber&quot; fields of the DonationRecords
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">            for (DonationRecord donationRecord : bloodNet.getDonationRecordList()) {</span>
+<span class="nc" id="L64">                List&lt;Person&gt; matchingPersons = bloodNet.getPersonList().stream()</span>
+<span class="nc" id="L65">                        .filter(person -&gt; person.getId().equals(donationRecord.getPersonId())).toList();</span>
+
+<span class="nc bnc" id="L67" title="All 4 branches missed.">                assert matchingPersons.size() == 1;</span>
+
+<span class="nc" id="L69">                String donorName = matchingPersons.get(0).getName().toString();</span>
+<span class="nc" id="L70">                String donorPhoneNumber = matchingPersons.get(0).getPhone().toString();</span>
+<span class="nc" id="L71">                donationRecord.setDonorName(donorName);</span>
+<span class="nc" id="L72">                donationRecord.setDonorPhoneNumber(donorPhoneNumber);</span>
+<span class="nc" id="L73">            }</span>
+
+<span class="fc" id="L75">            logger.info(&quot;Successfully populated each donation record's donor name&quot;);</span>
+
+<span class="fc" id="L77">            return Optional.of(bloodNet);</span>
+<span class="fc" id="L78">        } catch (IllegalValueException ive) {</span>
+<span class="fc" id="L79">            logger.info(&quot;Illegal values found in &quot; + filePath + &quot;: &quot; + ive.getMessage());</span>
+<span class="fc" id="L80">            throw new DataLoadingException(ive);</span>
+        }
+    }
+
+    @Override
+    public void saveBloodNet(ReadOnlyBloodNet bloodNet) throws IOException {
+<span class="fc" id="L86">        saveBloodNet(bloodNet, filePath);</span>
+<span class="fc" id="L87">    }</span>
+
+    /**
+     * Similar to {@link #saveBloodNet(ReadOnlyBloodNet)}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     */
+    public void saveBloodNet(ReadOnlyBloodNet bloodNet, Path filePath) throws IOException {
+<span class="fc" id="L95">        requireNonNull(bloodNet);</span>
+<span class="fc" id="L96">        requireNonNull(filePath);</span>
+
+        // Add IDs to newly created entities
+        // It must be done here as opposed to in the constructor of the respective models because models are an
+        // in-memory representation of objects in the database.
+        // As such, if we add the IDs on model instantiation, we could end up in a situation
+        // where duplicating a model for the purposes of computation would result in
+        // 2 models representing the same person but having different IDs
+
+        // In fact, my original approach was to add the IDs during the construction stage,
+        // but it caused many a test cases to fail as a result of the reason mentioned above.
+        // The only way we could add IDs during the construction stage without
+        // causing test cases to fail is to remove the &quot;id&quot; field from the equals() function,
+        // but that also kind of doesn't make sense.
+
+        // Iterate through each person and generate a UUID for it if it doesn't have an ID yet.
+<span class="fc bfc" id="L112" title="All 2 branches covered.">        for (Person person : bloodNet.getPersonList()) {</span>
+<span class="pc bpc" id="L113" title="1 of 2 branches missed.">            if (person.getId() == null) {</span>
+<span class="nc" id="L114">                person.setId(UUID.randomUUID());</span>
+            }
+<span class="fc" id="L116">        }</span>
+
+        // Iterate through each donationRecord and generate a UUID for it if it doesn't have an ID yet.
+<span class="pc bpc" id="L119" title="1 of 2 branches missed.">        for (DonationRecord donationRecord : bloodNet.getDonationRecordList()) {</span>
+<span class="nc bnc" id="L120" title="All 2 branches missed.">            if (donationRecord.getId() == null) {</span>
+<span class="nc" id="L121">                donationRecord.setId(UUID.randomUUID());</span>
+            }
+<span class="nc" id="L123">        }</span>
+
+<span class="fc" id="L125">        FileUtil.createIfMissing(filePath);</span>
+<span class="fc" id="L126">        JsonUtil.saveJsonFile(new JsonSerializableBloodNet(bloodNet), filePath);</span>
+<span class="fc" id="L127">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

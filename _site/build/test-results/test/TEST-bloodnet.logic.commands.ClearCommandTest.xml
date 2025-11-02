@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.logic.commands.ClearCommandTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.016">
+  <properties/>
+  <testcase name="execute_nonEmptyBloodNet_success()" classname="bloodnet.logic.commands.ClearCommandTest" time="0.003"/>
+  <testcase name="execute_emptyBloodNet_success()" classname="bloodnet.logic.commands.ClearCommandTest" time="0.001"/>
+  <testcase name="createSession_validModel_returnsConfirmationCommandSession()" classname="bloodnet.logic.commands.ClearCommandTest" time="0.008"/>
+  <testcase name="createSession_nullModel_throwsNullPointerException()" classname="bloodnet.logic.commands.ClearCommandTest" time="0.0"/>
+  <testcase name="getMessage_string_returnsTrue()" classname="bloodnet.logic.commands.ClearCommandTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

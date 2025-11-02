@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.logic.parser.ParserUtilTest" tests="31" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.054">
+  <properties/>
+  <testcase name="parseBloodVolume_validValueWithWhitespace_returnsTrimmedBloodVolume()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseIndex_outOfRangeInput_throwsParseException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.002"/>
+  <testcase name="parseDonationDate_invalidValue_throwsParseException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.003"/>
+  <testcase name="parseBloodType_invalidValue_throwsParseException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.006"/>
+  <testcase name="parseDonationDate_validValueWithoutWhitespace_returnsDonationDate()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseDateOfBirth_invalidValue_throwsParseException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.004"/>
+  <testcase name="parseDonationDate_validValueWithWhitespace_returnsTrimmedDonationDate()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.002"/>
+  <testcase name="parseName_null_throwsNullPointerException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.005"/>
+  <testcase name="parseEmail_invalidValue_throwsParseException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.002"/>
+  <testcase name="parseBloodType_null_throwsNullPointerException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseIndex_validInput_success()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseName_validValueWithoutWhitespace_returnsName()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseDateOfBirth_null_throwsNullPointerException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseBloodType_validValueWithoutWhitespace_returnsBloodType()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseDateOfBirth_validValueWithoutWhitespace_returnsDateOfBirth()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseDonationDate_null_throwsNullPointerException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseIndex_invalidInput_throwsParseException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseName_invalidValue_throwsParseException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseDateOfBirth_validValueWithWhitespace_returnsDateOfBirth()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parsePhone_null_throwsNullPointerException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parsePhone_invalidValue_throwsParseException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseBloodVolume_validValueWithoutWhitespace_returnsBloodVolume()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseBloodVolume_invalidValue_throwsParseException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parseEmail_null_throwsNullPointerException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.001"/>
+  <testcase name="parsePhone_validValueWithWhitespace_returnsTrimmedPhone()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parsePhone_validValueWithoutWhitespace_returnsPhone()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseEmail_validValueWithoutWhitespace_returnsEmail()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseBloodType_validValueWithWhitespace_returnsTrimmedBloodType()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseBloodVolume_null_throwsNullPointerException()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.002"/>
+  <testcase name="parseEmail_validValueWithWhitespace_returnsTrimmedEmail()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.0"/>
+  <testcase name="parseName_validValueWithWhitespace_returnsTrimmedName()" classname="bloodnet.logic.parser.ParserUtilTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

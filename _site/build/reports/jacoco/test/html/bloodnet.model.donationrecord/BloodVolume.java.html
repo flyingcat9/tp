@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BloodVolume.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.model.donationrecord</a> &gt; <span class="el_source">BloodVolume.java</span></div><h1>BloodVolume.java</h1><pre class="source lang-java linenums">package bloodnet.model.donationrecord;
+
+import static bloodnet.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
+
+/**
+ * Represents the volume of blood donated during a blood donation session in the bloodnet.
+ * Guarantees: immutable; is valid as declared in {@link #isValidBloodVolume(String)}
+ */
+public class BloodVolume {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            &quot;Blood volume should be a positive whole number less than 500 millilitres, as per the official guidelines.&quot;;
+
+    public final Integer volume;
+
+    /**
+     * Constructs a {@code Name}.
+     *
+     * @param volume A valid volume.
+     */
+<span class="fc" id="L22">    public BloodVolume(String volume) {</span>
+<span class="fc" id="L23">        requireNonNull(volume);</span>
+<span class="fc" id="L24">        checkArgument(isValidBloodVolume(volume), MESSAGE_CONSTRAINTS);</span>
+<span class="fc" id="L25">        this.volume = Integer.parseInt(volume);</span>
+<span class="fc" id="L26">    }</span>
+
+    /**
+     * Returns true if the blood volume is valid.
+     */
+    public static boolean isValidBloodVolume(String test) {
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if (test == null) {</span>
+<span class="fc" id="L33">            throw new NullPointerException();</span>
+        }
+
+        // Check that the string can be parsed into an integer
+        try {
+<span class="fc" id="L38">            Integer i = Integer.parseInt(test);</span>
+            // Ensure that the blood volume is not 0 or less than 0
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            if (i &lt;= 0) {</span>
+<span class="fc" id="L41">                return false;</span>
+            }
+<span class="fc bfc" id="L43" title="All 2 branches covered.">            if (i &gt;= 500) {</span>
+<span class="fc" id="L44">                return false;</span>
+            }
+<span class="fc" id="L46">        } catch (NumberFormatException e) {</span>
+<span class="fc" id="L47">            return false;</span>
+<span class="fc" id="L48">        }</span>
+
+        // If it can, it is a valid volume.
+        // Note: We may chose to apply further validation in the future,
+        // such as defining upper and lower bounds on the valid volumes.
+<span class="fc" id="L53">        return true;</span>
+    }
+
+
+    @Override
+    public String toString() {
+<span class="fc" id="L59">        return volume.toString();</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L65">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (!(other instanceof BloodVolume)) {</span>
+<span class="fc" id="L70">            return false;</span>
+        }
+
+<span class="fc" id="L73">        BloodVolume otherBloodVolume = (BloodVolume) other;</span>
+<span class="fc" id="L74">        return volume.equals(otherBloodVolume.volume);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L79">        return volume.hashCode();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

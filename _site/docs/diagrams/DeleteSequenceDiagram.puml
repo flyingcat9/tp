@@ -1,0 +1,134 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":BloodNetParser" as BloodNetParser LOGIC_COLOR
+participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant "s:ConfirmationCommandSession" as Session LOGIC_COLOR
+participant "seekConfirmation:InputResponse" as ConfirmationInputResponse LOGIC_COLOR
+participant "commandResult:InputResponse" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[--> LogicManager : handle("delete 1")
+activate LogicManager
+
+opt no current command session
+    note right
+        Normally, the current command session check is performed for every input.
+        If no session exists, a new session would be created (as shown here).
+        The opt block is omitted in the subsequent input flow for readability.
+    end note
+
+    LogicManager -> BloodNetParser : parseCommand("delete 1")
+    activate BloodNetParser
+
+    create DeleteCommandParser
+    BloodNetParser -> DeleteCommandParser
+    activate DeleteCommandParser
+
+    DeleteCommandParser --> BloodNetParser
+    deactivate DeleteCommandParser
+
+    BloodNetParser -> DeleteCommandParser : parse("1")
+    activate DeleteCommandParser
+
+    create DeleteCommand
+    DeleteCommandParser -> DeleteCommand
+    activate DeleteCommand
+
+    DeleteCommand --> DeleteCommandParser :
+    deactivate DeleteCommand
+    DeleteCommandParser --> BloodNetParser : d
+
+    deactivate DeleteCommandParser
+    'Hidden arrow to position the destroy marker below the end of the activation bar.
+    DeleteCommandParser -[hidden]-> BloodNetParser
+    destroy DeleteCommandParser
+
+    BloodNetParser --> LogicManager : d
+    deactivate BloodNetParser
+
+    LogicManager -> DeleteCommand : createSession(m)
+    activate DeleteCommand
+
+    note right
+    These interactions with model are highly specific to the
+    implementation of createSession for each command.
+    end note
+
+    DeleteCommand -> Model : getFilteredPersonList()
+    activate Model
+    Model --> DeleteCommand : filteredPersonList
+    deactivate Model
+
+    DeleteCommand -> Model : hasDonationRecordFor(personToDelete)
+    activate Model
+    Model --> DeleteCommand : whether personToDelete has any existing donation records
+    deactivate Model
+
+    create Session
+    DeleteCommand -> Session
+    activate Session
+
+    Session -->  DeleteCommand
+    deactivate Session
+
+    DeleteCommand --> LogicManager : s
+    deactivate DeleteCommand
+end
+
+LogicManager -> Session : handle("delete 1")
+activate Session
+
+
+create ConfirmationInputResponse
+Session -> ConfirmationInputResponse
+activate ConfirmationInputResponse
+
+ConfirmationInputResponse --> Session
+deactivate ConfirmationInputResponse
+
+Session --> LogicManager : seekConfirmation
+deactivate Session
+
+[<-- LogicManager : seekConfirmation
+deactivate LogicManager
+
+[--> LogicManager : handle("yes")
+activate LogicManager
+
+
+LogicManager -> Session : handle("yes")
+activate Session
+
+Session -> DeleteCommand : execute()
+activate DeleteCommand
+DeleteCommand -> Model: getFilteredPersonList()
+activate Model
+Model --> DeleteCommand : filteredPersonList
+deactivate Model
+DeleteCommand -> Model : deletePerson(personToDelete)
+activate Model
+Model --> DeleteCommand
+deactivate Model
+DeleteCommand --> Session
+deactivate DeleteCommand
+
+create CommandResult
+Session -> CommandResult
+activate CommandResult
+CommandResult --> Session
+deactivate CommandResult
+
+Session --> LogicManager : commandResult
+deactivate Session
+[<--LogicManager : feedback
+deactivate LogicManager
+@enduml

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.logic.parser.ArgumentTokenizerTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.007">
+  <properties/>
+  <testcase name="tokenize_emptyArgsString_noValues()" classname="bloodnet.logic.parser.ArgumentTokenizerTest" time="0.001"/>
+  <testcase name="equalsMethod()" classname="bloodnet.logic.parser.ArgumentTokenizerTest" time="0.001"/>
+  <testcase name="tokenize_multipleArgumentsWithRepeats()" classname="bloodnet.logic.parser.ArgumentTokenizerTest" time="0.0"/>
+  <testcase name="tokenize_noPrefixes_allTakenAsPreamble()" classname="bloodnet.logic.parser.ArgumentTokenizerTest" time="0.001"/>
+  <testcase name="tokenize_oneArgument()" classname="bloodnet.logic.parser.ArgumentTokenizerTest" time="0.001"/>
+  <testcase name="tokenize_multipleArguments()" classname="bloodnet.logic.parser.ArgumentTokenizerTest" time="0.001"/>
+  <testcase name="tokenize_multipleArgumentsJoined()" classname="bloodnet.logic.parser.ArgumentTokenizerTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

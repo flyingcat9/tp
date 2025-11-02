@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model as ModelPackage <<Rectangle>>{
+Class "<<interface>>\nReadOnlyBloodNet" as ReadOnlyBloodNet
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nModel" as Model
+Class BloodNet
+Class ModelManager
+Class UserPrefs
+
+Class UniquePersonList
+Class Person
+Class Name
+Class Phone
+Class Email
+Class BloodType
+Class DateOfBirth
+
+Class UniqueDonationRecordList
+Class DonationRecord
+Class DonationDate
+Class BloodVolume
+
+Class I #FFFFFF
+Class Space #FFFFFF
+}
+ReadOnlyUserPrefs -[hidden]-> Space
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Model
+
+BloodNet .up.|> ReadOnlyBloodNet
+
+ModelManager .up.|> Model
+Model .right.> ReadOnlyUserPrefs
+Model .left.> ReadOnlyBloodNet
+ModelManager -left-> "1" BloodNet
+ModelManager -right-> "1" UserPrefs
+UserPrefs .up.|> ReadOnlyUserPrefs
+
+BloodNet *--> "1" UniquePersonList
+UniquePersonList --> "~* all" Person
+Person *--> Name
+Person *--> Phone
+Person *--> Email
+Person *--> BloodType
+Person *--> DateOfBirth
+
+BloodNet *--> "1" UniqueDonationRecordList
+UniqueDonationRecordList --> "~* all" DonationRecord
+DonationRecord *--> DonationDate
+DonationRecord *--> BloodVolume
+
+DonationRecord ..> Person
+
+Person -[hidden]up--> I
+UniquePersonList -[hidden]right-> I
+
+DonationRecord -[hidden]up--> I
+UniqueDonationRecordList -[hidden]right-> I
+
+ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" DonationRecord
+@enduml

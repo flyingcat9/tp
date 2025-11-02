@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JsonUserPrefsStorage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.storage</a> &gt; <span class="el_source">JsonUserPrefsStorage.java</span></div><h1>JsonUserPrefsStorage.java</h1><pre class="source lang-java linenums">package bloodnet.storage;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.Optional;
+
+import bloodnet.commons.exceptions.DataLoadingException;
+import bloodnet.commons.util.JsonUtil;
+import bloodnet.model.ReadOnlyUserPrefs;
+import bloodnet.model.UserPrefs;
+
+/**
+ * A class to access UserPrefs stored in the hard disk as a json file
+ */
+public class JsonUserPrefsStorage implements UserPrefsStorage {
+
+    private Path filePath;
+
+<span class="fc" id="L19">    public JsonUserPrefsStorage(Path filePath) {</span>
+<span class="fc" id="L20">        this.filePath = filePath;</span>
+<span class="fc" id="L21">    }</span>
+
+    @Override
+    public Path getUserPrefsFilePath() {
+<span class="nc" id="L25">        return filePath;</span>
+    }
+
+    @Override
+    public Optional&lt;UserPrefs&gt; readUserPrefs() throws DataLoadingException {
+<span class="fc" id="L30">        return readUserPrefs(filePath);</span>
+    }
+
+    /**
+     * Similar to {@link #readUserPrefs()}
+     *
+     * @param prefsFilePath location of the data. Cannot be null.
+     * @throws DataLoadingException if the file format is not as expected.
+     */
+    public Optional&lt;UserPrefs&gt; readUserPrefs(Path prefsFilePath) throws DataLoadingException {
+<span class="fc" id="L40">        return JsonUtil.readJsonFile(prefsFilePath, UserPrefs.class);</span>
+    }
+
+    @Override
+    public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
+<span class="fc" id="L45">        JsonUtil.saveJsonFile(userPrefs, filePath);</span>
+<span class="fc" id="L46">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

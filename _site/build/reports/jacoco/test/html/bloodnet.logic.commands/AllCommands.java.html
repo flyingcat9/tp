@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AllCommands.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.commands</a> &gt; <span class="el_source">AllCommands.java</span></div><h1>AllCommands.java</h1><pre class="source lang-java linenums">package bloodnet.logic.commands;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
+/**
+ * Stores all the message usages in one class.
+ */
+<span class="fc" id="L9">public class AllCommands {</span>
+
+<span class="fc" id="L11">    public static final CommandInformation[] ALL_COMMANDS = { ListCommand.COMMAND_INFORMATION,</span>
+            FindCommand.COMMAND_INFORMATION,
+            AddCommand.COMMAND_INFORMATION,
+            EditCommand.COMMAND_INFORMATION, DeleteCommand.COMMAND_INFORMATION,
+            FindDonationsCommand.COMMAND_INFORMATION,
+            AddDonationCommand.COMMAND_INFORMATION, EditDonationCommand.COMMAND_INFORMATION,
+            DeleteDonationCommand.COMMAND_INFORMATION,
+            FindEligibleCommand.COMMAND_INFORMATION,
+            ClearCommand.COMMAND_INFORMATION,
+            HelpCommand.COMMAND_INFORMATION, ExitCommand.COMMAND_INFORMATION};
+
+<span class="fc" id="L22">    public static final HashMap&lt;String, CommandInformation&gt; COMMANDS = new LinkedHashMap&lt;&gt;();</span>
+
+    /**
+     * Adds the commands into a HashMap for usage in the help window.
+     */
+    public static void addCommands() {
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        for (CommandInformation information: ALL_COMMANDS) {</span>
+<span class="fc" id="L29">            COMMANDS.put(information.getCommand(), information);</span>
+        }
+<span class="fc" id="L31">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

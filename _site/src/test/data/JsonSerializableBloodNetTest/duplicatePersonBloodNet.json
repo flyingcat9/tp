@@ -1,0 +1,21 @@
+{
+  "persons": [
+    {
+      "id": "a7460411-cc1f-4b17-a75c-3009a766679a",
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "bloodType": "B+",
+      "dateOfBirth": "17-03-2000"
+    },
+    {
+      "id": "a7460411-cc1f-4b17-a75c-3009a766679a",
+      "name": "Alice Pauline",
+      "phone": "94351253",
+      "email": "pauline@example.com",
+      "dateOfBirth": "17-03-2000",
+      "bloodType": "B+"
+    }
+  ],
+  "donationRecords": []
+}

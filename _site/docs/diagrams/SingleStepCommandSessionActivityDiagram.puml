@@ -1,0 +1,16 @@
+@startuml
+title Single-step Command
+!include style.puml
+skinparam activity {
+    BackgroundColor LOGIC_COLOR
+    BorderColor black
+    ArrowColor LOGIC_COLOR_T4
+    FontColor white
+}
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:Create SingleStepCommandSession\nstoring the Command;
+:Carry out Command execution;
+stop
+@enduml

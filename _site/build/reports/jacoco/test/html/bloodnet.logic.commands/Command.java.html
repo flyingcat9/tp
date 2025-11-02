@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Command.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.commands</a> &gt; <span class="el_source">Command.java</span></div><h1>Command.java</h1><pre class="source lang-java linenums">package bloodnet.logic.commands;
+
+import bloodnet.logic.commands.commandsessions.CommandSession;
+import bloodnet.logic.commands.commandsessions.SingleStepCommandSession;
+import bloodnet.logic.commands.exceptions.CommandException;
+import bloodnet.model.Model;
+
+/**
+ * Represents a command with hidden internal logic and the ability to be
+ * executed.
+ */
+<span class="fc" id="L12">public abstract class Command {</span>
+
+    /**
+     * Create a command session to handle this command.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return a {@code CommandSession} that will manage user interaction of the command.
+     * @throws CommandException If an error occurs during session creation.
+     */
+    public CommandSession createSession(Model model) throws CommandException {
+<span class="fc" id="L22">        return new SingleStepCommandSession(this, model);</span>
+    }
+
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display
+     * @throws CommandException If an error occurs during command execution.
+     */
+    public abstract InputResponse execute(Model model) throws CommandException;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FindEligibleCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.commands</a> &gt; <span class="el_source">FindEligibleCommand.java</span></div><h1>FindEligibleCommand.java</h1><pre class="source lang-java linenums">package bloodnet.logic.commands;
+
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
+import bloodnet.commons.util.ToStringBuilder;
+import bloodnet.logic.Messages;
+import bloodnet.model.Model;
+import bloodnet.model.donationrecord.DonationDate;
+import bloodnet.model.person.HasBloodTypeAndIsEligibleToDonatePredicate;
+import bloodnet.model.person.HasBloodTypePredicate;
+import bloodnet.model.person.IsEligibleToDonatePredicate;
+
+/**
+ * Finds and lists all eligible persons based on blood type, date of birth
+ * and number of days since their last donation, if applicable.
+ */
+public class FindEligibleCommand extends Command {
+
+    public static final String COMMAND_WORD = &quot;findeligible&quot;;
+
+<span class="fc" id="L23">    public static final CommandInformation COMMAND_INFORMATION = new CommandInformation(COMMAND_WORD,</span>
+            &quot;Finds all donors who are eligible to donate blood for the specified blood type(s) &quot;
+                    + &quot;(case-insensitive) and displays them as a list with index numbers. All eligible blood donors &quot;
+                    + &quot;must be at least 16 (inclusive) years old on the donation date. For first-time donors, the  &quot;
+                    + &quot;donation date must be strictly before their 61st birthday. For returning donors, they must have &quot;
+                    + &quot;made a previous donation within the last 3 years from the donation date (inclusive of &quot;
+                    + &quot;that donation date), and the donation date must be strictly before their 66th birthday.&quot;
+                    + &quot; In addition, there must be a minimum of 84 days between any two consecutive donations.&quot;,
+            &quot;Parameters: BLOOD_TYPE...&quot;, &quot;Example: &quot; + COMMAND_WORD + &quot; O+ A+ B+&quot;);
+
+    private final List&lt;String&gt; enteredBloodTypes;
+
+<span class="fc" id="L35">    public FindEligibleCommand(List&lt;String&gt; enteredBloodTypes) {</span>
+<span class="fc" id="L36">        this.enteredBloodTypes = enteredBloodTypes;</span>
+<span class="fc" id="L37">    }</span>
+
+    @Override
+    public InputResponse execute(Model model) {
+<span class="fc" id="L41">        requireNonNull(model);</span>
+<span class="fc" id="L42">        model.updateFilteredPersonList(new HasBloodTypeAndIsEligibleToDonatePredicate(</span>
+                new HasBloodTypePredicate(enteredBloodTypes),
+<span class="fc" id="L44">                new IsEligibleToDonatePredicate(model, DonationDate.getTodayDate())));</span>
+<span class="fc" id="L45">        int filteredPersonListSize = model.getFilteredPersonList().size();</span>
+<span class="fc" id="L46">        return new InputResponse(</span>
+<span class="fc" id="L47">                String.format(Messages.MESSAGE_PEOPLE_LISTED_OVERVIEW,</span>
+<span class="fc" id="L48">                        filteredPersonListSize,</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">                        filteredPersonListSize == 1 ? &quot;&quot; : &quot;s&quot;));</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L55">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (!(other instanceof FindEligibleCommand)) {</span>
+<span class="fc" id="L60">            return false;</span>
+        }
+
+<span class="fc" id="L63">        FindEligibleCommand otherFindCommand = (FindEligibleCommand) other;</span>
+<span class="fc" id="L64">        return enteredBloodTypes.equals(otherFindCommand.enteredBloodTypes);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L69">        return new ToStringBuilder(this)</span>
+<span class="fc" id="L70">                .add(&quot;bloodTypes&quot;, enteredBloodTypes)</span>
+<span class="fc" id="L71">                .toString();</span>
+    }
+
+    public static String getMessageUsage() {
+<span class="fc" id="L75">        return COMMAND_INFORMATION.getMessageUsage();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

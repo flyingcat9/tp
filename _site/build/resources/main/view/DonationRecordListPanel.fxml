@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label text="Donation Records" styleClass="title"/>
+        <ImageView fitHeight="20" fitWidth="20" preserveRatio="true">
+            <image>
+                <Image url="@/images/donation_record_icon.png"/>
+            </image>
+        </ImageView>
+    </HBox>
+    <AnchorPane VBox.vgrow = "ALWAYS">
+    <ListView fx:id="donationRecordListView"
+              AnchorPane.topAnchor="0.0"
+              AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0"/>
+    </AnchorPane>
+</VBox>
+
+

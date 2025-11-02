@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MainApp.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet</a> &gt; <span class="el_source">MainApp.java</span></div><h1>MainApp.java</h1><pre class="source lang-java linenums">package bloodnet;
+
+import static bloodnet.model.util.SampleDataUtil.getSampleBloodNet;
+
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Logger;
+
+import bloodnet.commons.core.Config;
+import bloodnet.commons.core.LogsCenter;
+import bloodnet.commons.core.Version;
+import bloodnet.commons.exceptions.DataLoadingException;
+import bloodnet.commons.util.ConfigUtil;
+import bloodnet.commons.util.StringUtil;
+import bloodnet.logic.Logic;
+import bloodnet.logic.LogicManager;
+import bloodnet.model.BloodNet;
+import bloodnet.model.Model;
+import bloodnet.model.ModelManager;
+import bloodnet.model.ReadOnlyBloodNet;
+import bloodnet.model.ReadOnlyUserPrefs;
+import bloodnet.model.UserPrefs;
+import bloodnet.model.util.SampleDataUtil;
+import bloodnet.storage.BloodNetStorage;
+import bloodnet.storage.JsonBloodNetStorage;
+import bloodnet.storage.JsonUserPrefsStorage;
+import bloodnet.storage.Storage;
+import bloodnet.storage.StorageManager;
+import bloodnet.storage.UserPrefsStorage;
+import bloodnet.ui.Ui;
+import bloodnet.ui.UiManager;
+import javafx.application.Application;
+import javafx.stage.Stage;
+
+/**
+ * Runs the application.
+ */
+<span class="nc" id="L40">public class MainApp extends Application {</span>
+
+<span class="nc" id="L42">    public static final Version VERSION = new Version(0, 2, 2, true);</span>
+
+<span class="nc" id="L44">    private static final Logger logger = LogsCenter.getLogger(MainApp.class);</span>
+
+    protected Ui ui;
+    protected Logic logic;
+    protected Storage storage;
+    protected Model model;
+    protected Config config;
+
+    @Override
+    public void init() throws Exception {
+<span class="nc" id="L54">        logger.info(&quot;=============================[ Initializing BloodNet ]===========================&quot;);</span>
+<span class="nc" id="L55">        super.init();</span>
+
+<span class="nc" id="L57">        AppParameters appParameters = AppParameters.parse(getParameters());</span>
+<span class="nc" id="L58">        config = initConfig(appParameters.getConfigPath());</span>
+<span class="nc" id="L59">        initLogging(config);</span>
+
+<span class="nc" id="L61">        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());</span>
+<span class="nc" id="L62">        UserPrefs userPrefs = initPrefs(userPrefsStorage);</span>
+<span class="nc" id="L63">        BloodNetStorage bloodNetStorage = new JsonBloodNetStorage(userPrefs.getBloodNetFilePath());</span>
+<span class="nc" id="L64">        storage = new StorageManager(bloodNetStorage, userPrefsStorage);</span>
+
+<span class="nc" id="L66">        model = initModelManager(storage, userPrefs);</span>
+
+<span class="nc" id="L68">        logic = new LogicManager(model, storage);</span>
+
+<span class="nc" id="L70">        ui = new UiManager(logic);</span>
+<span class="nc" id="L71">    }</span>
+
+    /**
+     * Returns a {@code ModelManager} with the data from {@code storage}'s bloodnet and {@code userPrefs}. &lt;br&gt;
+     * The data from the sample bloodnet will be used instead if {@code storage}'s bloodnet is not found,
+     * or an empty bloodnet will be used instead if errors occur when reading {@code storage}'s bloodnet.
+     */
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+<span class="nc" id="L79">        logger.info(&quot;Using data file : &quot; + storage.getBloodNetFilePath());</span>
+
+        Optional&lt;ReadOnlyBloodNet&gt; bloodNetOptional;
+        ReadOnlyBloodNet initialData;
+        try {
+<span class="nc" id="L84">            bloodNetOptional = storage.readBloodNet();</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">            if (!bloodNetOptional.isPresent()) {</span>
+<span class="nc" id="L86">                logger.info(&quot;Creating a new data file &quot; + storage.getBloodNetFilePath()</span>
+                        + &quot; populated with a sample BloodNet.&quot;);
+
+                // We need to save the sample BloodNet data to the data file
+                // right away so that their UUIDs will be populated by the storage layer.
+<span class="nc" id="L91">                storage.saveBloodNet(getSampleBloodNet());</span>
+
+                // Then, we need to read the data via the storage layer again
+                // because it will populate the person's name in every Donation Record
+<span class="nc" id="L95">                bloodNetOptional = storage.readBloodNet();</span>
+            }
+<span class="nc" id="L97">            initialData = bloodNetOptional.orElseGet(SampleDataUtil::getSampleBloodNet);</span>
+
+<span class="nc" id="L99">        } catch (AccessDeniedException e) {</span>
+<span class="nc" id="L100">            logger.warning(String.format(StorageManager.FILE_OPS_PERMISSION_ERROR_FORMAT, e.getMessage()));</span>
+<span class="nc" id="L101">            initialData = new BloodNet();</span>
+<span class="nc" id="L102">        } catch (IOException ioe) {</span>
+<span class="nc" id="L103">            logger.warning(String.format(StorageManager.FILE_OPS_ERROR_FORMAT, ioe.getMessage()));</span>
+<span class="nc" id="L104">            initialData = new BloodNet();</span>
+<span class="nc" id="L105">        } catch (DataLoadingException e) {</span>
+<span class="nc" id="L106">            logger.warning(&quot;Data file at &quot; + storage.getBloodNetFilePath() + &quot; could not be loaded.&quot;</span>
+                    + &quot; Will be starting with an empty BloodNet.&quot;);
+<span class="nc" id="L108">            initialData = new BloodNet();</span>
+<span class="nc" id="L109">        }</span>
+
+<span class="nc" id="L111">        return new ModelManager(initialData, userPrefs);</span>
+    }
+
+    private void initLogging(Config config) {
+<span class="nc" id="L115">        LogsCenter.init(config);</span>
+<span class="nc" id="L116">    }</span>
+
+    /**
+     * Returns a {@code Config} using the file at {@code configFilePath}. &lt;br&gt;
+     * The default file path {@code Config#DEFAULT_CONFIG_FILE} will be used instead
+     * if {@code configFilePath} is null.
+     */
+    protected Config initConfig(Path configFilePath) {
+        Config initializedConfig;
+        Path configFilePathUsed;
+
+<span class="nc" id="L127">        configFilePathUsed = Config.DEFAULT_CONFIG_FILE;</span>
+
+<span class="nc bnc" id="L129" title="All 2 branches missed.">        if (configFilePath != null) {</span>
+<span class="nc" id="L130">            logger.info(&quot;Custom Config file specified &quot; + configFilePath);</span>
+<span class="nc" id="L131">            configFilePathUsed = configFilePath;</span>
+        }
+
+<span class="nc" id="L134">        logger.info(&quot;Using config file : &quot; + configFilePathUsed);</span>
+
+        try {
+<span class="nc" id="L137">            Optional&lt;Config&gt; configOptional = ConfigUtil.readConfig(configFilePathUsed);</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">            if (!configOptional.isPresent()) {</span>
+<span class="nc" id="L139">                logger.info(&quot;Creating new config file &quot; + configFilePathUsed);</span>
+            }
+<span class="nc" id="L141">            initializedConfig = configOptional.orElse(new Config());</span>
+<span class="nc" id="L142">        } catch (DataLoadingException e) {</span>
+<span class="nc" id="L143">            logger.warning(&quot;Config file at &quot; + configFilePathUsed + &quot; could not be loaded.&quot;</span>
+                    + &quot; Using default config properties.&quot;);
+<span class="nc" id="L145">            initializedConfig = new Config();</span>
+<span class="nc" id="L146">        }</span>
+
+        //Update config file in case it was missing to begin with or there are new/unused fields
+        try {
+<span class="nc" id="L150">            ConfigUtil.saveConfig(initializedConfig, configFilePathUsed);</span>
+<span class="nc" id="L151">        } catch (IOException e) {</span>
+<span class="nc" id="L152">            logger.warning(&quot;Failed to save config file : &quot; + StringUtil.getDetails(e));</span>
+<span class="nc" id="L153">        }</span>
+<span class="nc" id="L154">        return initializedConfig;</span>
+    }
+
+    /**
+     * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs file path,
+     * or a new {@code UserPrefs} with default configuration if errors occur when
+     * reading from the file.
+     */
+    protected UserPrefs initPrefs(UserPrefsStorage storage) {
+<span class="nc" id="L163">        Path prefsFilePath = storage.getUserPrefsFilePath();</span>
+<span class="nc" id="L164">        logger.info(&quot;Using preference file : &quot; + prefsFilePath);</span>
+
+        UserPrefs initializedPrefs;
+        try {
+<span class="nc" id="L168">            Optional&lt;UserPrefs&gt; prefsOptional = storage.readUserPrefs();</span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">            if (!prefsOptional.isPresent()) {</span>
+<span class="nc" id="L170">                logger.info(&quot;Creating new preference file &quot; + prefsFilePath);</span>
+            }
+<span class="nc" id="L172">            initializedPrefs = prefsOptional.orElse(new UserPrefs());</span>
+<span class="nc" id="L173">        } catch (DataLoadingException e) {</span>
+<span class="nc" id="L174">            logger.warning(&quot;Preference file at &quot; + prefsFilePath + &quot; could not be loaded.&quot;</span>
+                    + &quot; Using default preferences.&quot;);
+<span class="nc" id="L176">            initializedPrefs = new UserPrefs();</span>
+<span class="nc" id="L177">        }</span>
+
+        //Update prefs file in case it was missing to begin with or there are new/unused fields
+        try {
+<span class="nc" id="L181">            storage.saveUserPrefs(initializedPrefs);</span>
+<span class="nc" id="L182">        } catch (IOException e) {</span>
+<span class="nc" id="L183">            logger.warning(&quot;Failed to save config file : &quot; + StringUtil.getDetails(e));</span>
+<span class="nc" id="L184">        }</span>
+
+<span class="nc" id="L186">        return initializedPrefs;</span>
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+<span class="nc" id="L191">        logger.info(&quot;Starting BloodNet &quot; + MainApp.VERSION);</span>
+<span class="nc" id="L192">        ui.start(primaryStage);</span>
+<span class="nc" id="L193">    }</span>
+
+    @Override
+    public void stop() {
+<span class="nc" id="L197">        logger.info(&quot;============================ [ Stopping BloodNet ] =============================&quot;);</span>
+        try {
+<span class="nc" id="L199">            storage.saveUserPrefs(model.getUserPrefs());</span>
+<span class="nc" id="L200">        } catch (IOException e) {</span>
+<span class="nc" id="L201">            logger.severe(&quot;Failed to save preferences &quot; + StringUtil.getDetails(e));</span>
+<span class="nc" id="L202">        }</span>
+<span class="nc" id="L203">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

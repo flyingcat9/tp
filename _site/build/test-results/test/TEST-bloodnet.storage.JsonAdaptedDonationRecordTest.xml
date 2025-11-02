@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.storage.JsonAdaptedDonationRecordTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.021">
+  <properties/>
+  <testcase name="toModelType_nullBloodVolume_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedDonationRecordTest" time="0.009"/>
+  <testcase name="toModelType_nullPersonId_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedDonationRecordTest" time="0.005"/>
+  <testcase name="toModelType_validDonationRecordDetails_returnsDonationRecord()" classname="bloodnet.storage.JsonAdaptedDonationRecordTest" time="0.0"/>
+  <testcase name="toModelType_nullDonationDate_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedDonationRecordTest" time="0.001"/>
+  <testcase name="toModelType_invalidDonationDate_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedDonationRecordTest" time="0.001"/>
+  <testcase name="toModelType_invalidBloodVolume_throwsIllegalValueException()" classname="bloodnet.storage.JsonAdaptedDonationRecordTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

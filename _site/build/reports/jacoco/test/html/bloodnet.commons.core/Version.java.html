@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Version.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.commons.core</a> &gt; <span class="el_source">Version.java</span></div><h1>Version.java</h1><pre class="source lang-java linenums">package bloodnet.commons.core;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+/**
+ * Represents a version with major, minor and patch number
+ */
+public class Version implements Comparable&lt;Version&gt; {
+
+    public static final String VERSION_REGEX = &quot;V(\\d+)\\.(\\d+)\\.(\\d+)(ea)?&quot;;
+
+    private static final String EXCEPTION_STRING_NOT_VERSION = &quot;String is not a valid Version. %s&quot;;
+
+<span class="fc" id="L18">    private static final Pattern VERSION_PATTERN = Pattern.compile(VERSION_REGEX);</span>
+
+    private final int major;
+    private final int minor;
+    private final int patch;
+    private final boolean isEarlyAccess;
+
+    /**
+     * Constructs a {@code Version} with the given version details.
+     */
+<span class="fc" id="L28">    public Version(int major, int minor, int patch, boolean isEarlyAccess) {</span>
+<span class="fc" id="L29">        this.major = major;</span>
+<span class="fc" id="L30">        this.minor = minor;</span>
+<span class="fc" id="L31">        this.patch = patch;</span>
+<span class="fc" id="L32">        this.isEarlyAccess = isEarlyAccess;</span>
+<span class="fc" id="L33">    }</span>
+
+    public int getMajor() {
+<span class="fc" id="L36">        return major;</span>
+    }
+
+    public int getMinor() {
+<span class="fc" id="L40">        return minor;</span>
+    }
+
+    public int getPatch() {
+<span class="fc" id="L44">        return patch;</span>
+    }
+
+    public boolean isEarlyAccess() {
+<span class="fc" id="L48">        return isEarlyAccess;</span>
+    }
+
+    /**
+     * Parses a version number string in the format V1.2.3.
+     *
+     * @param versionString version number string
+     * @return a Version object
+     */
+    @JsonCreator
+    public static Version fromString(String versionString) throws IllegalArgumentException {
+<span class="fc" id="L59">        Matcher versionMatcher = VERSION_PATTERN.matcher(versionString);</span>
+
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (!versionMatcher.find()) {</span>
+<span class="fc" id="L62">            throw new IllegalArgumentException(String.format(EXCEPTION_STRING_NOT_VERSION, versionString));</span>
+        }
+
+<span class="fc" id="L65">        return new Version(Integer.parseInt(versionMatcher.group(1)),</span>
+<span class="fc" id="L66">                Integer.parseInt(versionMatcher.group(2)),</span>
+<span class="fc" id="L67">                Integer.parseInt(versionMatcher.group(3)),</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">                versionMatcher.group(4) == null ? false : true);</span>
+    }
+
+    @JsonValue
+    public String toString() {
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        return String.format(&quot;V%d.%d.%d%s&quot;, major, minor, patch, isEarlyAccess ? &quot;ea&quot; : &quot;&quot;);</span>
+    }
+
+    @Override
+    public int compareTo(Version other) {
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (major != other.major) {</span>
+<span class="fc" id="L79">            return major - other.major;</span>
+        }
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        if (minor != other.minor) {</span>
+<span class="fc" id="L82">            return minor - other.minor;</span>
+        }
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        if (patch != other.patch) {</span>
+<span class="fc" id="L85">            return patch - other.patch;</span>
+        }
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        if (isEarlyAccess == other.isEarlyAccess()) {</span>
+<span class="fc" id="L88">            return 0;</span>
+        }
+<span class="pc bpc" id="L90" title="1 of 2 branches missed.">        if (isEarlyAccess) {</span>
+<span class="fc" id="L91">            return -1;</span>
+        }
+<span class="nc" id="L93">        return 1;</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="pc bpc" id="L98" title="1 of 2 branches missed.">        if (other == this) {</span>
+<span class="nc" id="L99">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="pc bpc" id="L103" title="1 of 2 branches missed.">        if (!(other instanceof Version)) {</span>
+<span class="nc" id="L104">            return false;</span>
+        }
+
+<span class="fc" id="L107">        Version otherVersion = (Version) other;</span>
+<span class="pc bpc" id="L108" title="4 of 8 branches missed.">        return major == otherVersion.major</span>
+                &amp;&amp; minor == otherVersion.minor
+                &amp;&amp; patch == otherVersion.patch
+                &amp;&amp; isEarlyAccess == otherVersion.isEarlyAccess;
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L116">        String hash = String.format(&quot;%03d%03d%03d&quot;, major, minor, patch);</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        if (!isEarlyAccess) {</span>
+<span class="fc" id="L118">            hash = &quot;1&quot; + hash;</span>
+        }
+<span class="fc" id="L120">        return Integer.parseInt(hash);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

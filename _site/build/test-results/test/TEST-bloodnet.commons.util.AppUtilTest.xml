@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.commons.util.AppUtilTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:22" hostname="LENOVOYOGA" time="0.763">
+  <properties/>
+  <testcase name="getImage_exitingImage()" classname="bloodnet.commons.util.AppUtilTest" time="0.757"/>
+  <testcase name="checkArgument_falseWithoutErrorMessage_throwsIllegalArgumentException()" classname="bloodnet.commons.util.AppUtilTest" time="0.002"/>
+  <testcase name="getImage_nullGiven_throwsNullPointerException()" classname="bloodnet.commons.util.AppUtilTest" time="0.002"/>
+  <testcase name="checkArgument_true_nothingHappens()" classname="bloodnet.commons.util.AppUtilTest" time="0.0"/>
+  <testcase name="checkArgument_falseWithErrorMessage_throwsIllegalArgumentException()" classname="bloodnet.commons.util.AppUtilTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

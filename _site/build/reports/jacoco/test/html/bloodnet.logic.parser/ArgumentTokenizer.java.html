@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArgumentTokenizer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.parser</a> &gt; <span class="el_source">ArgumentTokenizer.java</span></div><h1>ArgumentTokenizer.java</h1><pre class="source lang-java linenums">package bloodnet.logic.parser;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Tokenizes arguments string of the form: {@code preamble &lt;prefix&gt;value &lt;prefix&gt;value ...}&lt;br&gt;
+ * e.g. {@code some preamble text t/ 11.00 t/12.00 k/ m/ July}  where prefixes are {@code t/ k/ m/}.&lt;br&gt;
+ * 1. An argument's value can be an empty string e.g. the value of {@code k/} in the above example.&lt;br&gt;
+ * 2. Leading and trailing whitespaces of an argument value will be discarded.&lt;br&gt;
+ * 3. An argument may be repeated and all its values will be accumulated e.g. the value of {@code t/}
+ * in the above example.&lt;br&gt;
+ */
+<span class="nc" id="L16">public class ArgumentTokenizer {</span>
+
+    /**
+     * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
+     * respective argument values. Only the given prefixes will be recognized in the arguments string.
+     *
+     * @param argsString Arguments string of the form: {@code preamble &lt;prefix&gt;value &lt;prefix&gt;value ...}
+     * @param prefixes   Prefixes to tokenize the arguments string with
+     * @return ArgumentMultimap object that maps prefixes to their arguments
+     */
+    public static ArgumentMultimap tokenize(String argsString, Prefix... prefixes) {
+<span class="fc" id="L27">        List&lt;PrefixPosition&gt; positions = findAllPrefixPositions(argsString, prefixes);</span>
+<span class="fc" id="L28">        return extractArguments(argsString, positions);</span>
+    }
+
+    /**
+     * Finds all zero-based prefix positions in the given arguments string.
+     *
+     * @param argsString Arguments string of the form: {@code preamble &lt;prefix&gt;value &lt;prefix&gt;value ...}
+     * @param prefixes   Prefixes to find in the arguments string
+     * @return List of zero-based prefix positions in the given arguments string
+     */
+    private static List&lt;PrefixPosition&gt; findAllPrefixPositions(String argsString, Prefix... prefixes) {
+<span class="fc" id="L39">        return Arrays.stream(prefixes)</span>
+<span class="fc" id="L40">                .flatMap(prefix -&gt; findPrefixPositions(argsString, prefix).stream())</span>
+<span class="fc" id="L41">                .collect(Collectors.toList());</span>
+    }
+
+    /**
+     * {@see findAllPrefixPositions}
+     */
+    private static List&lt;PrefixPosition&gt; findPrefixPositions(String argsString, Prefix prefix) {
+<span class="fc" id="L48">        List&lt;PrefixPosition&gt; positions = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L50">        int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        while (prefixPosition != -1) {</span>
+<span class="fc" id="L52">            PrefixPosition extendedPrefix = new PrefixPosition(prefix, prefixPosition);</span>
+<span class="fc" id="L53">            positions.add(extendedPrefix);</span>
+<span class="fc" id="L54">            prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);</span>
+<span class="fc" id="L55">        }</span>
+
+<span class="fc" id="L57">        return positions;</span>
+    }
+
+    /**
+     * Returns the index of the first occurrence of {@code prefix} in
+     * {@code argsString} starting from index {@code fromIndex}. An occurrence
+     * is valid if there is a whitespace before {@code prefix}. Returns -1 if no
+     * such occurrence can be found.
+     * &lt;p&gt;
+     * E.g if {@code argsString} = &quot;e/hip/900&quot;, {@code prefix} = &quot;p/&quot; and
+     * {@code fromIndex} = 0, this method returns -1 as there are no valid
+     * occurrences of &quot;p/&quot; with whitespace before it. However, if
+     * {@code argsString} = &quot;e/hi p/900&quot;, {@code prefix} = &quot;p/&quot; and
+     * {@code fromIndex} = 0, this method returns 5.
+     */
+    private static int findPrefixPosition(String argsString, String prefix, int fromIndex) {
+<span class="fc" id="L73">        int prefixIndex = argsString.indexOf(&quot; &quot; + prefix, fromIndex);</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">        return prefixIndex == -1 ? -1</span>
+<span class="fc" id="L75">                : prefixIndex + 1; // +1 as offset for whitespace</span>
+    }
+
+    /**
+     * Extracts prefixes and their argument values, and returns an {@code ArgumentMultimap} object that maps the
+     * extracted prefixes to their respective arguments. Prefixes are extracted based on their zero-based positions in
+     * {@code argsString}.
+     *
+     * @param argsString      Arguments string of the form: {@code preamble &lt;prefix&gt;value &lt;prefix&gt;value ...}
+     * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}
+     * @return ArgumentMultimap object that maps prefixes to their arguments
+     */
+    private static ArgumentMultimap extractArguments(String argsString, List&lt;PrefixPosition&gt; prefixPositions) {
+
+        // Sort by start position
+<span class="fc" id="L90">        prefixPositions.sort((prefix1, prefix2) -&gt; prefix1.getStartPosition() - prefix2.getStartPosition());</span>
+
+        // Insert a PrefixPosition to represent the preamble
+<span class="fc" id="L93">        PrefixPosition preambleMarker = new PrefixPosition(new Prefix(&quot;&quot;), 0);</span>
+<span class="fc" id="L94">        prefixPositions.add(0, preambleMarker);</span>
+
+        // Add a dummy PrefixPosition to represent the end of the string
+<span class="fc" id="L97">        PrefixPosition endPositionMarker = new PrefixPosition(new Prefix(&quot;&quot;), argsString.length());</span>
+<span class="fc" id="L98">        prefixPositions.add(endPositionMarker);</span>
+
+        // Map prefixes to their argument values (if any)
+<span class="fc" id="L101">        ArgumentMultimap argMultimap = new ArgumentMultimap();</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        for (int i = 0; i &lt; prefixPositions.size() - 1; i++) {</span>
+            // Extract and store prefixes and their arguments
+<span class="fc" id="L104">            Prefix argPrefix = prefixPositions.get(i).getPrefix();</span>
+<span class="fc" id="L105">            String argValue = extractArgumentValue(argsString, prefixPositions.get(i), prefixPositions.get(i + 1));</span>
+<span class="fc" id="L106">            argMultimap.put(argPrefix, argValue);</span>
+        }
+
+<span class="fc" id="L109">        return argMultimap;</span>
+    }
+
+    /**
+     * Returns the trimmed value of the argument in the arguments string specified by {@code currentPrefixPosition}.
+     * The end position of the value is determined by {@code nextPrefixPosition}.
+     */
+    private static String extractArgumentValue(String argsString,
+                                               PrefixPosition currentPrefixPosition,
+                                               PrefixPosition nextPrefixPosition) {
+<span class="fc" id="L119">        Prefix prefix = currentPrefixPosition.getPrefix();</span>
+
+<span class="fc" id="L121">        int valueStartPos = currentPrefixPosition.getStartPosition() + prefix.getPrefix().length();</span>
+<span class="fc" id="L122">        String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());</span>
+
+<span class="fc" id="L124">        return value.trim();</span>
+    }
+
+    /**
+     * Represents a prefix's position in an arguments string.
+     */
+    private static class PrefixPosition {
+        private int startPosition;
+        private final Prefix prefix;
+
+<span class="fc" id="L134">        PrefixPosition(Prefix prefix, int startPosition) {</span>
+<span class="fc" id="L135">            this.prefix = prefix;</span>
+<span class="fc" id="L136">            this.startPosition = startPosition;</span>
+<span class="fc" id="L137">        }</span>
+
+        int getStartPosition() {
+<span class="fc" id="L140">            return startPosition;</span>
+        }
+
+        Prefix getPrefix() {
+<span class="fc" id="L144">            return prefix;</span>
+        }
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

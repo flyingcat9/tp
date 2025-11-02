@@ -1,0 +1,26 @@
+{
+  "persons": [
+    {
+      "id": "a7c24d59-8836-44d1-b471-ca7ca82b4e9d",
+      "name": "Valid Person",
+      "phone": "94824242",
+      "email": "hans@example.com",
+      "dateOfBirth": "11-08-1980",
+      "bloodType": "A+"
+    }
+  ],
+  "donationRecords": [
+    {
+      "id": "a7c24d59-8836-44d1-b471-ca7ca82b4e9d",
+      "personId": "a7460411-cc1f-4b17-a75c-3009a766679a",
+      "donationDate": "11-08-2023",
+      "bloodVolume": "400"
+    },
+    {
+      "id": "a7c24d59-8836-44d1-b471-ca7ca82b4e9d",
+      "personId": "a7460411-cc1f-4b17-a75c-3009a766679a",
+      "donationDate": "Invalid donation date",
+      "bloodVolume": "400"
+    }
+  ]
+}

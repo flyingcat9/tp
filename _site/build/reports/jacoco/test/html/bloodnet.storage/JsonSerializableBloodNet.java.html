@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JsonSerializableBloodNet.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.storage</a> &gt; <span class="el_source">JsonSerializableBloodNet.java</span></div><h1>JsonSerializableBloodNet.java</h1><pre class="source lang-java linenums">package bloodnet.storage;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import bloodnet.commons.exceptions.IllegalValueException;
+import bloodnet.model.BloodNet;
+import bloodnet.model.ReadOnlyBloodNet;
+import bloodnet.model.donationrecord.DonationRecord;
+import bloodnet.model.person.Person;
+
+/**
+ * An Immutable BloodNet that is serializable to JSON format.
+ */
+@JsonRootName(value = &quot;bloodnet&quot;)
+class JsonSerializableBloodNet {
+
+    public static final String MESSAGE_DUPLICATE_PERSON = &quot;Persons list contains duplicate person(s).&quot;;
+
+<span class="fc" id="L25">    private final List&lt;JsonAdaptedPerson&gt; persons = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L26">    private final List&lt;JsonAdaptedDonationRecord&gt; donationRecords = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * Constructs a {@code JsonSerializableBloodNet} with the given persons.
+     */
+    @JsonCreator
+    public JsonSerializableBloodNet(@JsonProperty(&quot;persons&quot;) List&lt;JsonAdaptedPerson&gt; persons,
+<span class="fc" id="L33">                                    @JsonProperty(&quot;donationRecords&quot;) List&lt;JsonAdaptedDonationRecord&gt; donationRecords) {</span>
+<span class="fc" id="L34">        this.persons.addAll(persons);</span>
+<span class="fc" id="L35">        this.donationRecords.addAll(donationRecords);</span>
+<span class="fc" id="L36">    }</span>
+
+    /**
+     * Converts a given {@code ReadOnlyBloodNet} into this class for Jackson use.
+     *
+     * @param source future changes to this will not affect the created {@code JsonSerializableBloodNet}.
+     */
+<span class="fc" id="L43">    public JsonSerializableBloodNet(ReadOnlyBloodNet source) {</span>
+<span class="fc" id="L44">        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));</span>
+<span class="fc" id="L45">        donationRecords.addAll(source.getDonationRecordList().stream().map(JsonAdaptedDonationRecord::new)</span>
+<span class="fc" id="L46">                .collect(Collectors.toList()));</span>
+<span class="fc" id="L47">    }</span>
+
+    /**
+     * Converts this bloodnet into the model's {@code BloodNet} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated.
+     */
+    public BloodNet toModelType() throws IllegalValueException {
+<span class="fc" id="L55">        BloodNet bloodNet = new BloodNet();</span>
+
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {</span>
+<span class="fc" id="L58">            Person person = jsonAdaptedPerson.toModelType();</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            if (bloodNet.hasPerson(person)) {</span>
+<span class="fc" id="L60">                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);</span>
+            }
+<span class="fc" id="L62">            bloodNet.addPerson(person);</span>
+<span class="fc" id="L63">        }</span>
+
+<span class="pc bpc" id="L65" title="1 of 2 branches missed.">        for (JsonAdaptedDonationRecord jsonAdaptedDonationRecord : donationRecords) {</span>
+<span class="nc" id="L66">            DonationRecord donationRecord = jsonAdaptedDonationRecord.toModelType();</span>
+<span class="nc bnc" id="L67" title="All 2 branches missed.">            if (bloodNet.hasDonationRecord(donationRecord)) {</span>
+<span class="nc" id="L68">                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);</span>
+            }
+<span class="nc" id="L70">            bloodNet.addDonationRecord(donationRecord);</span>
+<span class="nc" id="L71">        }</span>
+
+<span class="fc" id="L73">        return bloodNet;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

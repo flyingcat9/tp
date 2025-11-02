@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.commons.util.ConfigUtilTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:23" hostname="LENOVOYOGA" time="1.127">
+  <properties/>
+  <testcase name="read_missingFile_emptyResult()" classname="bloodnet.commons.util.ConfigUtilTest" time="0.963"/>
+  <testcase name="read_valuesMissingFromFile_defaultValuesUsed()" classname="bloodnet.commons.util.ConfigUtilTest" time="0.093"/>
+  <testcase name="read_null_throwsNullPointerException()" classname="bloodnet.commons.util.ConfigUtilTest" time="0.003"/>
+  <testcase name="read_fileInOrder_successfullyRead()" classname="bloodnet.commons.util.ConfigUtilTest" time="0.007"/>
+  <testcase name="saveConfig_allInOrder_success()" classname="bloodnet.commons.util.ConfigUtilTest" time="0.039"/>
+  <testcase name="read_extraValuesInFile_extraValuesIgnored()" classname="bloodnet.commons.util.ConfigUtilTest" time="0.004"/>
+  <testcase name="save_nullConfig_throwsNullPointerException()" classname="bloodnet.commons.util.ConfigUtilTest" time="0.002"/>
+  <testcase name="read_notJsonFormat_exceptionThrown()" classname="bloodnet.commons.util.ConfigUtilTest" time="0.009"/>
+  <testcase name="save_nullFile_throwsNullPointerException()" classname="bloodnet.commons.util.ConfigUtilTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Nov 02, 2025 2:49:24 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\ConfigUtilTest\EmptyConfig.json found.
+Nov 02, 2025 2:49:24 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\ConfigUtilTest\TypicalConfig.json found.
+Nov 02, 2025 2:49:24 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit10319806654036196706\TempConfig.json found.
+Nov 02, 2025 2:49:24 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit10319806654036196706\TempConfig.json found.
+Nov 02, 2025 2:49:24 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\ConfigUtilTest\ExtraValuesConfig.json found.
+Nov 02, 2025 2:49:24 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\ConfigUtilTest\NotJsonFormatConfig.json found.
+Nov 02, 2025 2:49:24 PM bloodnet.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\ConfigUtilTest\NotJsonFormatConfig.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'this': was expecting 'null', 'true', 'false' or NaN
+ at [Source: this file is not in json format!
+; line: 1, column: 5]
+]]></system-err>
+</testsuite>

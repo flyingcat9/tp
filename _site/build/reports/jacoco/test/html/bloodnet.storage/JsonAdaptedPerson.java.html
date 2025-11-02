@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JsonAdaptedPerson.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.storage</a> &gt; <span class="el_source">JsonAdaptedPerson.java</span></div><h1>JsonAdaptedPerson.java</h1><pre class="source lang-java linenums">package bloodnet.storage;
+
+import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import bloodnet.commons.exceptions.IllegalValueException;
+import bloodnet.model.person.BloodType;
+import bloodnet.model.person.DateOfBirth;
+import bloodnet.model.person.Email;
+import bloodnet.model.person.Name;
+import bloodnet.model.person.Person;
+import bloodnet.model.person.Phone;
+
+/**
+ * Jackson-friendly version of {@link Person}.
+ */
+class JsonAdaptedPerson {
+
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = &quot;Person's %s field is missing!&quot;;
+
+    private final String id;
+    private final String name;
+    private final String phone;
+    private final String email;
+    private final String bloodType;
+    private final String dateOfBirth;
+
+    /**
+     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     */
+    @JsonCreator
+    public JsonAdaptedPerson(@JsonProperty(&quot;id&quot;) String id, @JsonProperty(&quot;name&quot;) String name,
+                             @JsonProperty(&quot;phone&quot;) String phone,
+                             @JsonProperty(&quot;email&quot;) String email, @JsonProperty(&quot;bloodType&quot;) String bloodType,
+<span class="fc" id="L37">                             @JsonProperty(&quot;dateOfBirth&quot;) String dateOfBirth) {</span>
+<span class="fc" id="L38">        this.id = id;</span>
+<span class="fc" id="L39">        this.name = name;</span>
+<span class="fc" id="L40">        this.phone = phone;</span>
+<span class="fc" id="L41">        this.email = email;</span>
+<span class="fc" id="L42">        this.bloodType = bloodType;</span>
+<span class="fc" id="L43">        this.dateOfBirth = dateOfBirth;</span>
+<span class="fc" id="L44">    }</span>
+
+    /**
+     * Converts a given {@code Person} into this class for Jackson use.
+     */
+<span class="fc" id="L49">    public JsonAdaptedPerson(Person source) {</span>
+<span class="fc" id="L50">        id = source.getId().toString();</span>
+<span class="fc" id="L51">        name = source.getName().fullName;</span>
+<span class="fc" id="L52">        phone = source.getPhone().value;</span>
+<span class="fc" id="L53">        email = source.getEmail().value;</span>
+<span class="fc" id="L54">        bloodType = source.getBloodType().value;</span>
+<span class="fc" id="L55">        dateOfBirth = source.getDateOfBirth().toString();</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     *
+     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     */
+    public Person toModelType() throws IllegalValueException {
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (id == null) {</span>
+<span class="fc" id="L65">            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, &quot;ID&quot;));</span>
+        }
+<span class="fc" id="L67">        final UUID modelId = UUID.fromString(id);</span>
+
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (name == null) {</span>
+<span class="fc" id="L70">            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));</span>
+        }
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (!Name.isValidName(name)) {</span>
+<span class="fc" id="L73">            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);</span>
+        }
+<span class="fc" id="L75">        final Name modelName = new Name(name);</span>
+
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        if (phone == null) {</span>
+<span class="fc" id="L78">            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));</span>
+        }
+<span class="fc bfc" id="L80" title="All 2 branches covered.">        if (!Phone.isValidPhone(phone)) {</span>
+<span class="fc" id="L81">            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);</span>
+        }
+<span class="fc" id="L83">        final Phone modelPhone = new Phone(phone);</span>
+
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if (email == null) {</span>
+<span class="fc" id="L86">            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));</span>
+        }
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        if (!Email.isValidEmail(email)) {</span>
+<span class="fc" id="L89">            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);</span>
+        }
+<span class="fc" id="L91">        final Email modelEmail = new Email(email);</span>
+
+<span class="fc bfc" id="L93" title="All 2 branches covered.">        if (bloodType == null) {</span>
+<span class="fc" id="L94">            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,</span>
+<span class="fc" id="L95">                    BloodType.class.getSimpleName()));</span>
+        }
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if (!BloodType.isValidBloodType(bloodType)) {</span>
+<span class="fc" id="L98">            throw new IllegalValueException(BloodType.MESSAGE_CONSTRAINTS);</span>
+        }
+<span class="fc" id="L100">        final BloodType modelBloodType = new BloodType(bloodType);</span>
+
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        if (dateOfBirth == null) {</span>
+<span class="fc" id="L103">            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,</span>
+<span class="fc" id="L104">                    DateOfBirth.class.getSimpleName()));</span>
+        }
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (!DateOfBirth.isValidDateOfBirth(dateOfBirth)) {</span>
+<span class="fc" id="L107">            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);</span>
+        }
+<span class="fc" id="L109">        final DateOfBirth modelDateOfBirth = new DateOfBirth(dateOfBirth);</span>
+
+
+<span class="fc" id="L112">        return new Person(modelId, modelName, modelPhone, modelEmail, modelBloodType, modelDateOfBirth);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

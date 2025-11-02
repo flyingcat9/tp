@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DonationRecordCard.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.ui</a> &gt; <span class="el_source">DonationRecordCard.java</span></div><h1>DonationRecordCard.java</h1><pre class="source lang-java linenums">package bloodnet.ui;
+
+import bloodnet.model.donationrecord.DonationRecord;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+
+/**
+ * An UI component that displays information of a {@code DonationRecord}.
+ */
+public class DonationRecordCard extends UiPart&lt;Region&gt; {
+
+    private static final String FXML = &quot;DonationRecordCard.fxml&quot;;
+
+    public final DonationRecord record;
+
+    @FXML
+    private HBox cardPane;
+
+    @FXML
+    private Label id;
+
+    @FXML
+    private Label donorName;
+
+    @FXML
+    private Label donationDate;
+
+    @FXML
+    private Label bloodVolume;
+
+    /**
+     * Creates a {@code DonationRecordCard} with the given {@code DonationRecord} and index to display.
+     */
+    public DonationRecordCard(DonationRecord record, int displayedIndex) {
+<span class="nc" id="L37">        super(FXML);</span>
+<span class="nc" id="L38">        this.record = record;</span>
+<span class="nc" id="L39">        id.setText(displayedIndex + &quot;. &quot;);</span>
+<span class="nc" id="L40">        donorName.setText(record.getDonorName() + &quot; (&quot; + record.getDonorPhoneNumber() + &quot;)&quot;);</span>
+<span class="nc" id="L41">        donationDate.setText(record.getDonationDate().toString());</span>
+<span class="nc" id="L42">        bloodVolume.setText(record.getBloodVolume().toString() + &quot; ml&quot;);</span>
+
+<span class="nc" id="L44">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

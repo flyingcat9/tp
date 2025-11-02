@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.logic.parser.FindEligibleCommandParserTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.002">
+  <properties/>
+  <testcase name="parse_emptyArg_throwsParseException()" classname="bloodnet.logic.parser.FindEligibleCommandParserTest" time="0.0"/>
+  <testcase name="parse_validArg_success()" classname="bloodnet.logic.parser.FindEligibleCommandParserTest" time="0.001"/>
+  <testcase name="parse_invalidArg_throwsParseException()" classname="bloodnet.logic.parser.FindEligibleCommandParserTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

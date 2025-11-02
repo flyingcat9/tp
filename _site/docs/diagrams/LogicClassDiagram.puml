@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR_T4
+skinparam classBackgroundColor LOGIC_COLOR
+
+package Logic as LogicPackage {
+
+package "Parser Classes" as ParserClasses{
+}
+Class XYZCommand
+Class InputResponse
+Class "{abstract}\nCommand" as Command
+
+
+Class "<<interface>>\nLogic" as Logic
+Class LogicManager
+
+Class "{abstract}\nCommandSession" as Session
+class ABCCommandSession
+}
+
+
+package Model {
+Class HiddenModel #FFFFFF
+}
+
+package Storage {
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Logic
+
+LogicManager .right.|> Logic
+LogicManager -right->"1" ParserClasses
+ParserClasses ..> XYZCommand : <<create>>
+
+XYZCommand -up-|> Command
+LogicManager -left-> Command : <<call>>
+
+LogicManager --> Model
+LogicManager --> Storage
+Storage --[hidden] Model
+Session .[hidden]up.> Storage
+Command ..> Model
+note top of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+
+LogicManager -down-> Session
+ABCCommandSession -up-|> Session
+Command .up.> ABCCommandSession : <<create>>
+
+Command .up.> InputResponse : <<create>>
+
+note right of ABCCommandSession: ABCCommandSession = \nSingleStepCommandSession, \nConfirmationCommandSession, etc
+
+
+Logic ..> InputResponse
+LogicManager -down-> InputResponse
+Session .up.> InputResponse : <<create>>
+@enduml

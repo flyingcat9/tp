@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AddDonationCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.commands</a> &gt; <span class="el_source">AddDonationCommand.java</span></div><h1>AddDonationCommand.java</h1><pre class="source lang-java linenums">package bloodnet.logic.commands;
+
+import static bloodnet.logic.parser.CliSyntax.DATE_FORMAT;
+import static bloodnet.logic.parser.CliSyntax.MILLILITRE_FORMAT;
+import static bloodnet.logic.parser.CliSyntax.POSITIVE_INTEGER_FORMAT;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_BLOOD_VOLUME;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_DONATION_DATE;
+import static bloodnet.logic.parser.CliSyntax.PREFIX_PERSON_INDEX_ONE_BASED;
+import static java.util.Objects.requireNonNull;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+import bloodnet.commons.core.index.Index;
+import bloodnet.commons.util.ToStringBuilder;
+import bloodnet.logic.Messages;
+import bloodnet.logic.commands.exceptions.CommandException;
+import bloodnet.model.Model;
+import bloodnet.model.donationrecord.BloodVolume;
+import bloodnet.model.donationrecord.DonationDate;
+import bloodnet.model.donationrecord.DonationRecord;
+import bloodnet.model.donationrecord.DonorIsSamePersonPredicate;
+import bloodnet.model.person.Person;
+
+/**
+ * Adds a donation record for a person in BloodNet.
+ */
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">public class AddDonationCommand extends Command {</span>
+
+    public static final String COMMAND_WORD = &quot;adddonation&quot;;
+
+<span class="fc" id="L33">    public static final CommandInformation COMMAND_INFORMATION = new CommandInformation(COMMAND_WORD,</span>
+            &quot;Adds a donation &quot;
+            + &quot;record for the donor identified by their index number in the displayed donor list.&quot;,
+            &quot;Parameters: &quot; + PREFIX_PERSON_INDEX_ONE_BASED + &quot;DONOR_LIST_INDEX_&quot; + POSITIVE_INTEGER_FORMAT + &quot; &quot;
+            + PREFIX_DONATION_DATE + &quot;DONATION_DATE_&quot; + DATE_FORMAT + &quot; &quot; + PREFIX_BLOOD_VOLUME
+            + &quot;BLOOD_VOLUME_&quot; + MILLILITRE_FORMAT,
+            &quot;Example: &quot; + COMMAND_WORD + &quot; &quot;
+            + PREFIX_PERSON_INDEX_ONE_BASED + &quot;1 &quot;
+            + PREFIX_DONATION_DATE + &quot;07-05-2025 &quot;
+            + PREFIX_BLOOD_VOLUME + &quot;450 &quot;);
+
+    public static final String MESSAGE_SUCCESS = &quot;New donation record added: %1$s&quot;;
+    public static final String MESSAGE_DUPLICATE_DONATION_RECORD =
+                                                &quot;This donation record already exists in BloodNet.&quot;;
+    public static final String MESSAGE_CONCATENATED_VALIDATION_ERRORS_HEADER =
+            &quot;This record violates the following eligibility criteria: &quot;;
+
+    private final Index targetPersonIndex;
+    private final DonationDate donationDate;
+    private final BloodVolume bloodVolume;
+
+    /**
+     * Creates an AddDonationCommand to add the specified {@code DonationRecord}
+     */
+<span class="fc" id="L57">    public AddDonationCommand(Index targetPersonIndex, DonationDate donationDate, BloodVolume bloodVolume) {</span>
+<span class="fc" id="L58">        requireNonNull(donationDate);</span>
+<span class="fc" id="L59">        requireNonNull(bloodVolume);</span>
+<span class="fc" id="L60">        this.targetPersonIndex = targetPersonIndex;</span>
+<span class="fc" id="L61">        this.donationDate = donationDate;</span>
+<span class="fc" id="L62">        this.bloodVolume = bloodVolume;</span>
+<span class="fc" id="L63">    }</span>
+
+    @Override
+    public InputResponse execute(Model model) throws CommandException {
+<span class="fc" id="L67">        requireNonNull(model);</span>
+
+<span class="fc" id="L69">        Person personToAddRecordFor = getPersonToAddRecordFor(model);</span>
+<span class="fc" id="L70">        UUID personId = personToAddRecordFor.getId();</span>
+
+<span class="pc bpc" id="L72" title="2 of 4 branches missed.">        assert personId != null;</span>
+
+<span class="fc" id="L74">        DonationRecord donationRecord = new DonationRecord(null, personId, donationDate, bloodVolume);</span>
+
+<span class="fc" id="L76">        ArrayList&lt;String&gt; validationErrorStrings = donationRecord.validate(model.getBloodNet().getPersonList(),</span>
+<span class="fc" id="L77">                                                                           model.getBloodNet().getDonationRecordList());</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (!validationErrorStrings.isEmpty()) {</span>
+<span class="fc" id="L79">            String concatenatedMessage = MESSAGE_CONCATENATED_VALIDATION_ERRORS_HEADER;</span>
+<span class="fc bfc" id="L80" title="All 2 branches covered.">            for (String validationErrorString : validationErrorStrings) {</span>
+<span class="fc" id="L81">                concatenatedMessage += &quot;\n- &quot; + validationErrorString;</span>
+<span class="fc" id="L82">            }</span>
+<span class="fc" id="L83">            throw new CommandException(concatenatedMessage);</span>
+        }
+
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">        if (model.hasDonationRecord(donationRecord)) {</span>
+<span class="nc" id="L87">            throw new CommandException(MESSAGE_DUPLICATE_DONATION_RECORD);</span>
+        }
+
+<span class="fc" id="L90">        model.addDonationRecord(donationRecord);</span>
+
+<span class="fc" id="L92">        model.updateFilteredDonationRecordList(new DonorIsSamePersonPredicate(personToAddRecordFor));</span>
+
+<span class="fc" id="L94">        return new InputResponse(String.format(MESSAGE_SUCCESS, Messages.format(donationRecord, personToAddRecordFor)));</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L99" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L100">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        if (!(other instanceof AddDonationCommand)) {</span>
+<span class="fc" id="L105">            return false;</span>
+        }
+
+<span class="fc" id="L108">        AddDonationCommand otherAddDonationCommand = (AddDonationCommand) other;</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        return targetPersonIndex.equals(otherAddDonationCommand.targetPersonIndex)</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">            &amp;&amp; donationDate.equals(otherAddDonationCommand.donationDate)</span>
+<span class="pc bpc" id="L111" title="1 of 2 branches missed.">            &amp;&amp; bloodVolume.equals(otherAddDonationCommand.bloodVolume);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L116">        return new ToStringBuilder(this)</span>
+<span class="fc" id="L117">            .add(&quot;targetPersonIndex&quot;, targetPersonIndex)</span>
+<span class="fc" id="L118">            .add(&quot;donationDate&quot;, donationDate)</span>
+<span class="fc" id="L119">            .add(&quot;bloodVolume&quot;, bloodVolume)</span>
+<span class="fc" id="L120">            .toString();</span>
+    }
+
+    /**
+     * Retrieves the {@code Person} corresponding to the {@code targetPersonIndex} of this {@code AddDonationCommand}
+     */
+    private Person getPersonToAddRecordFor(Model model) throws CommandException {
+<span class="fc" id="L127">        requireNonNull(model);</span>
+<span class="fc" id="L128">        List&lt;Person&gt; lastShownList = model.getFilteredPersonList();</span>
+
+<span class="fc bfc" id="L130" title="All 2 branches covered.">        if (targetPersonIndex.getZeroBased() &gt;= lastShownList.size()) {</span>
+<span class="fc" id="L131">            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);</span>
+        }
+
+<span class="fc" id="L134">        return lastShownList.get(targetPersonIndex.getZeroBased());</span>
+    }
+
+    public static String getMessageUsage() {
+<span class="fc" id="L138">        return COMMAND_INFORMATION.getMessageUsage();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

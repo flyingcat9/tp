@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Index.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.commons.core.index</a> &gt; <span class="el_source">Index.java</span></div><h1>Index.java</h1><pre class="source lang-java linenums">package bloodnet.commons.core.index;
+
+import bloodnet.commons.util.ToStringBuilder;
+
+/**
+ * Represents a zero-based or one-based index.
+ * &lt;p&gt;
+ * {@code Index} should be used right from the start (when parsing in a new user input), so that if the current
+ * component wants to communicate with another component, it can send an {@code Index} to avoid having to know what
+ * base the other component is using for its index. However, after receiving the {@code Index}, that component can
+ * convert it back to an int if the index will not be passed to a different component again.
+ */
+public class Index {
+    private int zeroBasedIndex;
+
+    /**
+     * Index can only be created by calling {@link Index#fromZeroBased(int)} or
+     * {@link Index#fromOneBased(int)}.
+     */
+<span class="fc" id="L20">    private Index(int zeroBasedIndex) {</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        if (zeroBasedIndex &lt; 0) {</span>
+<span class="fc" id="L22">            throw new IndexOutOfBoundsException();</span>
+        }
+
+<span class="fc" id="L25">        this.zeroBasedIndex = zeroBasedIndex;</span>
+<span class="fc" id="L26">    }</span>
+
+    public int getZeroBased() {
+<span class="fc" id="L29">        return zeroBasedIndex;</span>
+    }
+
+    public int getOneBased() {
+<span class="fc" id="L33">        return zeroBasedIndex + 1;</span>
+    }
+
+    /**
+     * Creates a new {@code Index} using a zero-based index.
+     */
+    public static Index fromZeroBased(int zeroBasedIndex) {
+<span class="fc" id="L40">        return new Index(zeroBasedIndex);</span>
+    }
+
+    /**
+     * Creates a new {@code Index} using a one-based index.
+     */
+    public static Index fromOneBased(int oneBasedIndex) {
+<span class="fc" id="L47">        return new Index(oneBasedIndex - 1);</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L53">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (!(other instanceof Index)) {</span>
+<span class="fc" id="L58">            return false;</span>
+        }
+
+<span class="fc" id="L61">        Index otherIndex = (Index) other;</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        return zeroBasedIndex == otherIndex.zeroBasedIndex;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L67">        return new ToStringBuilder(this).add(&quot;zeroBasedIndex&quot;, zeroBasedIndex).toString();</span>
+    }
+
+    /**
+     * Converts the index to be easily readable to the user.
+     * @return the user index
+     */
+    public String toDisplayUser() {
+<span class="fc" id="L75">        return Integer.toString(zeroBasedIndex + 1);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

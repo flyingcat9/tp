@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FindDonationsCommand.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.commands</a> &gt; <span class="el_source">FindDonationsCommand.java</span></div><h1>FindDonationsCommand.java</h1><pre class="source lang-java linenums">package bloodnet.logic.commands;
+
+import static bloodnet.logic.parser.CliSyntax.POSITIVE_INTEGER_FORMAT;
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
+import bloodnet.commons.core.index.Index;
+import bloodnet.commons.util.ToStringBuilder;
+import bloodnet.logic.Messages;
+import bloodnet.logic.commands.exceptions.CommandException;
+import bloodnet.model.Model;
+import bloodnet.model.donationrecord.DonorIsSamePersonPredicate;
+import bloodnet.model.person.Person;
+
+/**
+ * Finds and list all donation records in BloodNet related to
+ * the person identified by the index number used in the displayed
+ * person list from BloodNet.
+ */
+public class FindDonationsCommand extends Command {
+    public static final String COMMAND_WORD = &quot;finddonations&quot;;
+
+<span class="fc" id="L24">    public static final CommandInformation COMMAND_INFORMATION = new CommandInformation(COMMAND_WORD,</span>
+            &quot;Finds all donation &quot;
+            + &quot;records related to the donor identified by the index number used in the displayed donor list.&quot;,
+            &quot;Parameters: DONATION_RECORD_LIST_INDEX_&quot; + POSITIVE_INTEGER_FORMAT, &quot;Example: &quot;
+            + COMMAND_WORD + &quot; 1&quot;);
+
+    private final Index targetPersonIndex;
+
+<span class="fc" id="L32">    public FindDonationsCommand(Index targetPersonIndex) {</span>
+<span class="fc" id="L33">        this.targetPersonIndex = targetPersonIndex;</span>
+<span class="fc" id="L34">    }</span>
+
+    @Override
+    public InputResponse execute(Model model) throws CommandException {
+<span class="fc" id="L38">        Person personToFindRecordsOf = getPersonToFindRecordsOf(model);</span>
+<span class="fc" id="L39">        DonorIsSamePersonPredicate predicate = new DonorIsSamePersonPredicate(personToFindRecordsOf);</span>
+<span class="fc" id="L40">        model.updateFilteredDonationRecordList(predicate);</span>
+<span class="fc" id="L41">        int filteredDonationRecordListSize = model.getFilteredDonationRecordList().size();</span>
+<span class="fc" id="L42">        return new InputResponse(</span>
+<span class="fc" id="L43">                String.format(Messages.MESSAGE_DONATIONS_LISTED_OVERVIEW,</span>
+<span class="fc" id="L44">                        filteredDonationRecordListSize,</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">                        filteredDonationRecordListSize == 1 ? &quot;&quot; : &quot;s&quot;,</span>
+<span class="fc" id="L46">                        personToFindRecordsOf.getName()));</span>
+    }
+
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L52">            return true;</span>
+        }
+
+        // instanceof handle nulls
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (!(other instanceof FindDonationsCommand)) {</span>
+<span class="fc" id="L57">            return false;</span>
+        }
+
+<span class="fc" id="L60">        FindDonationsCommand otherFindDonationsCommand = (FindDonationsCommand) other;</span>
+<span class="fc" id="L61">        return targetPersonIndex.equals(otherFindDonationsCommand.targetPersonIndex);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L66">        return new ToStringBuilder(this)</span>
+<span class="nc" id="L67">                .add(&quot;targetPersonIndex&quot;, targetPersonIndex)</span>
+<span class="nc" id="L68">                .toString();</span>
+    }
+
+    private Person getPersonToFindRecordsOf(Model model) throws CommandException {
+<span class="fc" id="L72">        requireNonNull(model);</span>
+<span class="fc" id="L73">        List&lt;Person&gt; lastShownList = model.getFilteredPersonList();</span>
+
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (targetPersonIndex.getZeroBased() &gt;= lastShownList.size()) {</span>
+<span class="fc" id="L76">            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);</span>
+        }
+
+<span class="fc" id="L79">        return lastShownList.get(targetPersonIndex.getZeroBased());</span>
+    }
+
+    public static String getMessageUsage() {
+<span class="fc" id="L83">        return COMMAND_INFORMATION.getMessageUsage();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

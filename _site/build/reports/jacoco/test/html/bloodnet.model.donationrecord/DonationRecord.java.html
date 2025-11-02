@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DonationRecord.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.model.donationrecord</a> &gt; <span class="el_source">DonationRecord.java</span></div><h1>DonationRecord.java</h1><pre class="source lang-java linenums">package bloodnet.model.donationrecord;
+
+import static bloodnet.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
+
+import bloodnet.commons.util.ToStringBuilder;
+import bloodnet.model.person.DateOfBirth;
+import bloodnet.model.person.Person;
+import javafx.collections.ObservableList;
+
+/**
+ * Represents a Donation Record in BloodNet.
+ * Guarantees: details are present and not null, field values are validated, immutable.
+ */
+public class DonationRecord {
+    // Static validation error strings
+    public static final String MESSAGE_AGE_BELOW_16 =
+            &quot;Donor is too young on the donation date. &quot;
+            + &quot;Donation date cannot be between %s (their birthdate) &quot;
+            + &quot;and %s (one day before their 16th birthdate) inclusive.&quot;;
+    public static final String MESSAGE_NEIGHBOURING_DONATION_TOO_CLOSE =
+            &quot;Consecutive donations must be at least 12 weeks (84 days) apart. &quot;
+            + &quot;However, the donor has already donated blood on %s. &quot;
+            + &quot;Therefore, the donation date cannot be between %s and %s inclusive.&quot;;
+    public static final String MESSAGE_FIRST_TIME_DONOR_TOO_OLD =
+            &quot;This is a first-time donor. &quot;
+            + &quot;Donation date cannot be on or after %s (their 61st birthdate).&quot;;
+    public static final String MESSAGE_NON_RECENT_DONOR_TOO_OLD =
+            &quot;This is a repeated donor. However, they have not donated blood in the last 3 years. &quot;
+            + &quot;Donation date cannot be on or after %s (their 66th birthdate).&quot;;
+
+    // Identity fields
+    private UUID id;
+    private final UUID personId;
+    private final DonationDate donationDate;
+
+    // Data fields
+    private final BloodVolume bloodVolume;
+
+    // Fields which aren't actually stored in the database, but displayed
+    // in the UI
+    private String donorName;
+    private String donorPhoneNumber;
+
+    /**
+     * Every field other than ID must be present and not null.
+     */
+<span class="fc" id="L56">    public DonationRecord(UUID id, UUID personId, DonationDate donationDate, BloodVolume bloodVolume) {</span>
+<span class="fc" id="L57">        requireAllNonNull(personId, donationDate, bloodVolume);</span>
+<span class="fc" id="L58">        this.id = id;</span>
+
+<span class="fc" id="L60">        this.personId = personId;</span>
+<span class="fc" id="L61">        this.donationDate = donationDate;</span>
+<span class="fc" id="L62">        this.bloodVolume = bloodVolume;</span>
+<span class="fc" id="L63">    }</span>
+
+    public void setId(UUID id) {
+<span class="nc" id="L66">        this.id = id;</span>
+<span class="nc" id="L67">    }</span>
+
+    public UUID getId() {
+<span class="fc" id="L70">        return id;</span>
+    }
+
+    public UUID getPersonId() {
+<span class="fc" id="L74">        return personId;</span>
+    }
+
+    public DonationDate getDonationDate() {
+<span class="fc" id="L78">        return donationDate;</span>
+    }
+
+    public BloodVolume getBloodVolume() {
+<span class="fc" id="L82">        return bloodVolume;</span>
+    }
+
+    public void setDonorName(String donorName) {
+<span class="nc" id="L86">        this.donorName = donorName;</span>
+<span class="nc" id="L87">    }</span>
+
+    public String getDonorName() {
+<span class="nc" id="L90">        return donorName;</span>
+    }
+
+    public void setDonorPhoneNumber(String donorPhoneNumber) {
+<span class="nc" id="L94">        this.donorPhoneNumber = donorPhoneNumber;</span>
+<span class="nc" id="L95">    }</span>
+
+    public String getDonorPhoneNumber() {
+<span class="nc" id="L98">        return donorPhoneNumber;</span>
+    }
+
+    /**
+     * Returns true if both records have the same date and personId.
+     * This defines a weaker notion of equality between two donation records.
+     */
+    public boolean isSameDonationRecord(DonationRecord otherDonationRecord) {
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        if (otherDonationRecord == this) {</span>
+<span class="fc" id="L107">            return true;</span>
+        }
+
+<span class="fc bfc" id="L110" title="All 2 branches covered.">        return otherDonationRecord != null</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">                &amp;&amp; (otherDonationRecord.getDonationDate().equals(getDonationDate())</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">                &amp;&amp; otherDonationRecord.getPersonId().equals(getPersonId()));</span>
+    }
+
+    /**
+     * Validates this donation record using the below criteria.
+     * Only uses the {@code personId} and {@code donationDate} fields of this
+     * {@code DonationRecord} object.
+     * Does not use the {@code id} and {@code bloodVolume} fields.
+     *
+     * &lt;p&gt;
+     * Criteria for invalid donation record:
+     * &lt;/p&gt;
+     * &lt;ul&gt;
+     * &lt;li&gt;Age of person, at the date of donationDate, is &lt; 16&lt;/li&gt;
+     *
+     * &lt;li&gt;Number of days between the predecessor donation record (if it exists) and
+     * the donationDate is strictly less than 84. That is, if the predecessor donation
+     * record is the 0th date, then return false if donationDate is the 83rd date or
+     * lower.&lt;/li&gt;
+     *
+     * &lt;li&gt;Number of days between the successor donation record (if it exists) and
+     * the donationDate is strictly less than 84. That is, if the donationDate is the
+     * 0th date, then return false if successor donation record is the 83rd date or
+     * lower.&lt;/li&gt;
+     *
+     * &lt;li&gt;If person is a first-time blood donor (ie, there exists no predecessor donation
+     * record for that donor) AND donationDate &gt;= 61st birthdate of the person.&lt;/li&gt;
+     *
+     * &lt;li&gt;If person is not a first-time blood donor (ie, there exists some predecessor
+     * donation record for that donor) AND person has not donated in the last 3 years
+     * AND donationDate &gt;= 66th birthdate of the person.&lt;/li&gt;
+     * &lt;/ul&gt;
+     *
+     * @return an {@code ArrayList} containing a list of validation error strings
+     */
+    public ArrayList&lt;String&gt; validate(ObservableList&lt;Person&gt; fullPersonList,
+                                      ObservableList&lt;DonationRecord&gt; fullDonationRecordList) {
+<span class="fc" id="L149">        ArrayList&lt;String&gt; validationErrorStrings = new ArrayList&lt;&gt;();</span>
+
+        // We try to resolve the personId to a person by
+        // checking against the FULL personList in the BloodNet,
+        // not just against the filteredPersonList.
+
+        // This is to allow this method to be used
+        // by the isEligibleToDonate predicate,
+        // which may create a DonationRecord object
+        // with a personId that is not in the filteredPersonList.
+<span class="fc" id="L159">        Person person = fullPersonList.stream()</span>
+<span class="fc" id="L160">                .filter(p -&gt; p.getId().equals(personId))</span>
+<span class="fc" id="L161">                .findFirst()</span>
+<span class="fc" id="L162">                .orElseThrow();</span>
+
+<span class="fc" id="L164">        LocalDate donationDateValue = donationDate.getValue();</span>
+<span class="fc" id="L165">        LocalDate dateOfBirthValue = person.getDateOfBirth().getValue();</span>
+
+        // 1. Age of person at donationDate must be &gt;= 16
+<span class="fc" id="L168">        int ageAtDonation = Period.between(dateOfBirthValue, donationDateValue).getYears();</span>
+<span class="fc bfc" id="L169" title="All 2 branches covered.">        if (ageAtDonation &lt; 16) {</span>
+<span class="fc" id="L170">            LocalDate sixteenthBirthday = dateOfBirthValue.plusYears(16);</span>
+<span class="fc" id="L171">            String errorString = String.format(MESSAGE_AGE_BELOW_16,</span>
+<span class="fc" id="L172">                                                dateOfBirthValue.format(DateOfBirth.DATE_FORMATTER),</span>
+<span class="fc" id="L173">                                                sixteenthBirthday.minusDays(1).format(DonationDate.DATE_FORMATTER));</span>
+<span class="fc" id="L174">            validationErrorStrings.add(errorString);</span>
+        }
+
+        // If .validate() is called when trying to edit a donation record,
+        // we want to filter fullDonationRecordList to only include those records that are
+        // not the record that is currently being edited.
+
+        // However, if .validate() is called by IsEligibleToDonatePredicate#test(Person)
+        // or by AddDonationCommand#execute(),
+        // we do not want to impose the above-mentioned filter.
+
+        // If this.getId() == null, this method
+        // is being called by either IsEligibleToDonatePredicate#test(Person)
+        // or AddDonationCommand#execute().
+<span class="fc bfc" id="L188" title="All 2 branches covered.">        boolean isDonationRecordIdNull = this.getId() == null;</span>
+
+        // Find predecessor (last donation before donationDate)
+<span class="fc" id="L191">        Optional&lt;DonationDate&gt; predecessorDonationDateOptional = fullDonationRecordList.stream()</span>
+<span class="fc" id="L192">                .filter(donationRecord -&gt; donationRecord.getPersonId().equals(person.getId()))</span>
+<span class="fc bfc" id="L193" title="All 4 branches covered.">                .filter(donationRecord -&gt; isDonationRecordIdNull || !donationRecord.getId().equals(this.getId()))</span>
+<span class="fc" id="L194">                .map(DonationRecord::getDonationDate)</span>
+<span class="fc" id="L195">                .filter(donationDate -&gt; donationDate.getValue().isBefore(donationDateValue))</span>
+<span class="fc" id="L196">                .max(Comparator.comparing(DonationDate::getValue));</span>
+
+        // Find successor (first donation after donationDate)
+<span class="fc" id="L199">        Optional&lt;DonationDate&gt; successorDonationDateOptional = fullDonationRecordList.stream()</span>
+<span class="fc" id="L200">                .filter(donationRecord -&gt; donationRecord.getPersonId().equals(person.getId()))</span>
+<span class="fc bfc" id="L201" title="All 4 branches covered.">                .filter(donationRecord -&gt; isDonationRecordIdNull || !donationRecord.getId().equals(this.getId()))</span>
+<span class="fc" id="L202">                .map(DonationRecord::getDonationDate)</span>
+<span class="fc" id="L203">                .filter(donationDate -&gt; donationDate.getValue().isAfter(donationDateValue))</span>
+<span class="fc" id="L204">                .min(Comparator.comparing(DonationDate::getValue));</span>
+
+        // 2. Days between predecessor and donationDate must be &gt;= 84
+<span class="fc bfc" id="L207" title="All 2 branches covered.">        if (predecessorDonationDateOptional.isPresent()) {</span>
+<span class="fc" id="L208">            LocalDate predecessorDonationDate = predecessorDonationDateOptional.get().getValue();</span>
+<span class="fc" id="L209">            long daysSinceLastDonation = ChronoUnit.DAYS.between(predecessorDonationDate,</span>
+                    donationDateValue);
+<span class="fc bfc" id="L211" title="All 2 branches covered.">            if (daysSinceLastDonation &lt; 84) {</span>
+<span class="fc" id="L212">                String errorString = String.format(MESSAGE_NEIGHBOURING_DONATION_TOO_CLOSE,</span>
+<span class="fc" id="L213">                                                    predecessorDonationDate.format(DonationDate.DATE_FORMATTER),</span>
+<span class="fc" id="L214">                                                    predecessorDonationDate.format(DonationDate.DATE_FORMATTER),</span>
+<span class="fc" id="L215">                                                    predecessorDonationDate.plusDays(83)</span>
+<span class="fc" id="L216">                                                                           .format(DonationDate.DATE_FORMATTER));</span>
+<span class="fc" id="L217">                validationErrorStrings.add(errorString);</span>
+            }
+        }
+
+        // 3. Days between donationDate and successor must be &gt;= 84
+<span class="fc bfc" id="L222" title="All 2 branches covered.">        if (successorDonationDateOptional.isPresent()) {</span>
+<span class="fc" id="L223">            LocalDate successorDonationDate = successorDonationDateOptional.get().getValue();</span>
+<span class="fc" id="L224">            long daysToNextDonation = ChronoUnit.DAYS.between(donationDateValue,</span>
+                    successorDonationDate);
+<span class="fc bfc" id="L226" title="All 2 branches covered.">            if (daysToNextDonation &lt; 84) {</span>
+<span class="fc" id="L227">                String errorString = String.format(MESSAGE_NEIGHBOURING_DONATION_TOO_CLOSE,</span>
+<span class="fc" id="L228">                                                    successorDonationDate.format(DonationDate.DATE_FORMATTER),</span>
+<span class="fc" id="L229">                                                    successorDonationDate.minusDays(83)</span>
+<span class="fc" id="L230">                                                                         .format(DonationDate.DATE_FORMATTER),</span>
+<span class="fc" id="L231">                                                    successorDonationDate.format(DonationDate.DATE_FORMATTER));</span>
+<span class="fc" id="L232">                validationErrorStrings.add(errorString);</span>
+            }
+        }
+
+        // 4. Person is a first-time blood donor and donationDate &gt;= 61st birthday
+<span class="fc" id="L237">        LocalDate sixtyFirstBirthday = dateOfBirthValue.plusYears(61);</span>
+<span class="fc bfc" id="L238" title="All 4 branches covered.">        if (predecessorDonationDateOptional.isEmpty() &amp;&amp; !donationDateValue.isBefore(sixtyFirstBirthday)) {</span>
+<span class="fc" id="L239">            String errorMessage = String.format(MESSAGE_FIRST_TIME_DONOR_TOO_OLD, sixtyFirstBirthday.format(</span>
+                    DonationDate.DATE_FORMATTER));
+<span class="fc" id="L241">            validationErrorStrings.add(errorMessage);</span>
+        }
+
+        // 5. Person not first-time blood donor AND not donated in last 3 years AND donationDate &gt;= 66th birthday
+<span class="fc" id="L245">        LocalDate sixtySixthBirthday = dateOfBirthValue.plusYears(66);</span>
+<span class="fc bfc" id="L246" title="All 2 branches covered.">        if (predecessorDonationDateOptional.isPresent()) {</span>
+<span class="fc" id="L247">            LocalDate lastDonation = predecessorDonationDateOptional.get().getValue();</span>
+<span class="fc bfc" id="L248" title="All 2 branches covered.">            if (!lastDonation.plusYears(3).isAfter(donationDateValue)</span>
+<span class="fc bfc" id="L249" title="All 2 branches covered.">                    &amp;&amp; !donationDateValue.isBefore(sixtySixthBirthday)) {</span>
+<span class="fc" id="L250">                String errorMessage = String.format(MESSAGE_NON_RECENT_DONOR_TOO_OLD, sixtySixthBirthday.format(</span>
+                        DonationDate.DATE_FORMATTER));
+<span class="fc" id="L252">                validationErrorStrings.add(errorMessage);</span>
+            }
+        }
+<span class="fc" id="L255">        return validationErrorStrings;</span>
+    }
+
+    /**
+     * Returns true if both persons have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
+     */
+    @Override
+    public boolean equals(Object other) {
+<span class="fc bfc" id="L264" title="All 2 branches covered.">        if (other == this) {</span>
+<span class="fc" id="L265">            return true;</span>
+        }
+
+        // instanceof handles nulls
+<span class="fc bfc" id="L269" title="All 2 branches covered.">        if (!(other instanceof DonationRecord)) {</span>
+<span class="fc" id="L270">            return false;</span>
+        }
+
+<span class="fc" id="L273">        DonationRecord otherDonationRecord = (DonationRecord) other;</span>
+<span class="fc bfc" id="L274" title="All 2 branches covered.">        return personId.equals(otherDonationRecord.personId)</span>
+<span class="fc bfc" id="L275" title="All 2 branches covered.">                &amp;&amp; donationDate.equals(otherDonationRecord.donationDate)</span>
+<span class="fc bfc" id="L276" title="All 2 branches covered.">                &amp;&amp; bloodVolume.equals(otherDonationRecord.bloodVolume);</span>
+    }
+
+    @Override
+    public int hashCode() {
+        // use this method for custom fields hashing instead of implementing your own
+<span class="fc" id="L282">        return Objects.hash(id, personId, donationDate, bloodVolume);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L287">        return new ToStringBuilder(this)</span>
+<span class="fc" id="L288">                .add(&quot;id&quot;, id)</span>
+<span class="fc" id="L289">                .add(&quot;personId&quot;, personId)</span>
+<span class="fc" id="L290">                .add(&quot;donationDate&quot;, donationDate)</span>
+<span class="fc" id="L291">                .add(&quot;bloodVolume&quot;, bloodVolume)</span>
+<span class="fc" id="L292">                .toString();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

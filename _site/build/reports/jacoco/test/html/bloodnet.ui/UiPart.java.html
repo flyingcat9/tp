@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UiPart.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.ui</a> &gt; <span class="el_source">UiPart.java</span></div><h1>UiPart.java</h1><pre class="source lang-java linenums">package bloodnet.ui;
+
+import static java.util.Objects.requireNonNull;
+
+import java.io.IOException;
+import java.net.URL;
+
+import bloodnet.MainApp;
+import javafx.fxml.FXMLLoader;
+
+/**
+ * Represents a distinct part of the UI. e.g. Windows, dialogs, panels, status bars, etc.
+ * It contains a scene graph with a root node of type {@code T}.
+ */
+public abstract class UiPart&lt;T&gt; {
+
+    /**
+     * Resource folder where FXML files are stored.
+     */
+    public static final String FXML_FILE_FOLDER = &quot;/view/&quot;;
+
+<span class="fc" id="L22">    private final FXMLLoader fxmlLoader = new FXMLLoader();</span>
+
+    /**
+     * Constructs a UiPart with the specified FXML file URL.
+     * The FXML file must not specify the {@code fx:controller} attribute.
+     */
+<span class="fc" id="L28">    public UiPart(URL fxmlFileUrl) {</span>
+<span class="fc" id="L29">        loadFxmlFile(fxmlFileUrl, null);</span>
+<span class="fc" id="L30">    }</span>
+
+    /**
+     * Constructs a UiPart using the specified FXML file within {@link #FXML_FILE_FOLDER}.
+     *
+     * @see #UiPart(URL)
+     */
+    public UiPart(String fxmlFileName) {
+<span class="nc" id="L38">        this(getFxmlFileUrl(fxmlFileName));</span>
+<span class="nc" id="L39">    }</span>
+
+    /**
+     * Constructs a UiPart with the specified FXML file URL and root object.
+     * The FXML file must not specify the {@code fx:controller} attribute.
+     */
+<span class="fc" id="L45">    public UiPart(URL fxmlFileUrl, T root) {</span>
+<span class="fc" id="L46">        loadFxmlFile(fxmlFileUrl, root);</span>
+<span class="fc" id="L47">    }</span>
+
+    /**
+     * Constructs a UiPart with the specified FXML file within {@link #FXML_FILE_FOLDER} and root object.
+     *
+     * @see #UiPart(URL, T)
+     */
+    public UiPart(String fxmlFileName, T root) {
+<span class="nc" id="L55">        this(getFxmlFileUrl(fxmlFileName), root);</span>
+<span class="nc" id="L56">    }</span>
+
+    /**
+     * Returns the root object of the scene graph of this UiPart.
+     */
+    public T getRoot() {
+<span class="fc" id="L62">        return fxmlLoader.getRoot();</span>
+    }
+
+    /**
+     * Loads the object hierarchy from a FXML document.
+     *
+     * @param location Location of the FXML document.
+     * @param root     Specifies the root of the object hierarchy.
+     */
+    private void loadFxmlFile(URL location, T root) {
+<span class="fc" id="L72">        requireNonNull(location);</span>
+<span class="fc" id="L73">        fxmlLoader.setLocation(location);</span>
+<span class="fc" id="L74">        fxmlLoader.setController(this);</span>
+<span class="fc" id="L75">        fxmlLoader.setRoot(root);</span>
+        try {
+<span class="fc" id="L77">            fxmlLoader.load();</span>
+<span class="fc" id="L78">        } catch (IOException e) {</span>
+<span class="fc" id="L79">            throw new AssertionError(e);</span>
+<span class="fc" id="L80">        }</span>
+<span class="fc" id="L81">    }</span>
+
+    /**
+     * Returns the FXML file URL for the specified FXML file name within {@link #FXML_FILE_FOLDER}.
+     */
+    private static URL getFxmlFileUrl(String fxmlFileName) {
+<span class="fc" id="L87">        requireNonNull(fxmlFileName);</span>
+<span class="fc" id="L88">        String fxmlFileNameWithFolder = FXML_FILE_FOLDER + fxmlFileName;</span>
+<span class="fc" id="L89">        URL fxmlFileUrl = MainApp.class.getResource(fxmlFileNameWithFolder);</span>
+<span class="fc" id="L90">        return requireNonNull(fxmlFileUrl);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

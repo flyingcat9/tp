@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - LogicManagerTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>LogicManagerTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/bloodnet.logic.html">bloodnet.logic</a> &gt; LogicManagerTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">10</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.248s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard error</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">execute_commandExceptionDuringSessionHandle_resetsSession()</td>
+<td class="success">0.017s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">execute_commandExecutionError_throwsCommandException()</td>
+<td class="success">0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">execute_invalidCommandFormat_throwsParseException()</td>
+<td class="success">0.011s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">execute_multiStateCommand_success()</td>
+<td class="success">0.018s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">execute_storageThrowsAdException_throwsCommandException()</td>
+<td class="success">0.051s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">execute_storageThrowsIoException_throwsCommandException()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">execute_terminalSessionStateException_resetsSession()</td>
+<td class="success">0.013s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">execute_validCommand_success()</td>
+<td class="success">0.117s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">getFilteredDonationRecordsList_modifyList_throwsUnsupportedOperationException()</td>
+<td class="success">0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">getFilteredPersonList_modifyList_throwsUnsupportedOperationException()</td>
+<td class="success">0.003s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard error</h2>
+<span class="code">
+<pre>Nov 02, 2025 2:49:24 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][uicfhmowqewca]
+Nov 02, 2025 2:49:24 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][add n/Amy Bee p/88888888 e/amy@example.com b/A+ d/01-04-1995]
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][list]
+Nov 02, 2025 2:49:25 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit14275026052278226944\bloodnet.json found.
+Nov 02, 2025 2:49:25 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][throw command exception]
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][]
+Nov 02, 2025 2:49:25 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit16133676315119575252\bloodnet.json found.
+Nov 02, 2025 2:49:25 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][add n/Amy Bee p/88888888 e/amy@example.com b/A+ d/01-04-1995]
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][throw terminal]
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][]
+Nov 02, 2025 2:49:25 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit10237403990952000603\bloodnet.json found.
+Nov 02, 2025 2:49:25 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][multi state]
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][multi state]
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][multi state]
+Nov 02, 2025 2:49:25 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit11974285468318552431\bloodnet.json found.
+Nov 02, 2025 2:49:25 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][]
+Nov 02, 2025 2:49:25 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit11974285468318552431\bloodnet.json found.
+Nov 02, 2025 2:49:25 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:25 PM bloodnet.logic.LogicManager handle
+INFO: ----------------[USER INPUT][delete 9]
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 7.4.2</a> at 2 Nov 2025, 2:49:26 pm</p>
+</div>
+</div>
+</body>
+</html>

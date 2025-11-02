@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.storage.JsonUserPrefsStorageTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:26" hostname="LENOVOYOGA" time="0.059">
+  <properties/>
+  <testcase name="savePrefs_nullPrefs_throwsNullPointerException()" classname="bloodnet.storage.JsonUserPrefsStorageTest" time="0.004"/>
+  <testcase name="readUserPrefs_fileInOrder_successfullyRead()" classname="bloodnet.storage.JsonUserPrefsStorageTest" time="0.014"/>
+  <testcase name="readUserPrefs_nullFilePath_throwsNullPointerException()" classname="bloodnet.storage.JsonUserPrefsStorageTest" time="0.003"/>
+  <testcase name="readUserPrefs_notJsonFormat_exceptionThrown()" classname="bloodnet.storage.JsonUserPrefsStorageTest" time="0.005"/>
+  <testcase name="saveUserPrefs_nullFilePath_throwsNullPointerException()" classname="bloodnet.storage.JsonUserPrefsStorageTest" time="0.003"/>
+  <testcase name="readUserPrefs_valuesMissingFromFile_defaultValuesUsed()" classname="bloodnet.storage.JsonUserPrefsStorageTest" time="0.004"/>
+  <testcase name="readUserPrefs_missingFile_emptyResult()" classname="bloodnet.storage.JsonUserPrefsStorageTest" time="0.002"/>
+  <testcase name="saveUserPrefs_allInOrder_success()" classname="bloodnet.storage.JsonUserPrefsStorageTest" time="0.017"/>
+  <testcase name="readUserPrefs_extraValuesInFile_extraValuesIgnored()" classname="bloodnet.storage.JsonUserPrefsStorageTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\JsonUserPrefsStorageTest\TypicalUserPref.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\JsonUserPrefsStorageTest\NotJsonFormatUserPrefs.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonUserPrefsStorageTest\NotJsonFormatUserPrefs.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'Not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: Not a json file!
+; line: 1, column: 4]
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\JsonUserPrefsStorageTest\EmptyUserPrefs.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit1409044676382018386\TempPrefs.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit1409044676382018386\TempPrefs.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\JsonUserPrefsStorageTest\ExtraValuesUserPref.json found.
+]]></system-err>
+</testsuite>

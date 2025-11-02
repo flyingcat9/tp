@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.logic.commands.AddDonationCommandTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.056">
+  <properties/>
+  <testcase name="equals_sameValues_returnsTrue()" classname="bloodnet.logic.commands.AddDonationCommandTest" time="0.002"/>
+  <testcase name="execute_nullModel_throwsNullPointerException()" classname="bloodnet.logic.commands.AddDonationCommandTest" time="0.002"/>
+  <testcase name="execute_invalidDonationDate_throwsCommandException()" classname="bloodnet.logic.commands.AddDonationCommandTest" time="0.009"/>
+  <testcase name="constructor_validArguments_success()" classname="bloodnet.logic.commands.AddDonationCommandTest" time="0.003"/>
+  <testcase name="constructor_nullBloodVolume_throwsNullPointerException()" classname="bloodnet.logic.commands.AddDonationCommandTest" time="0.008"/>
+  <testcase name="equals_differentIndex_returnsFalse()" classname="bloodnet.logic.commands.AddDonationCommandTest" time="0.0"/>
+  <testcase name="equals_sameObject_returnsTrue()" classname="bloodnet.logic.commands.AddDonationCommandTest" time="0.001"/>
+  <testcase name="equals_null_returnsFalse()" classname="bloodnet.logic.commands.AddDonationCommandTest" time="0.003"/>
+  <testcase name="toString_validCommand_returnsStringRepresentation()" classname="bloodnet.logic.commands.AddDonationCommandTest" time="0.001"/>
+  <testcase name="execute_validArguments_success()" classname="bloodnet.logic.commands.AddDonationCommandTest" time="0.012"/>
+  <testcase name="constructor_nullDonationDate_throwsNullPointerException()" classname="bloodnet.logic.commands.AddDonationCommandTest" time="0.002"/>
+  <testcase name="execute_invalidPersonIndex_throwsCommandException()" classname="bloodnet.logic.commands.AddDonationCommandTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.storage.JsonBloodNetStorageTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:26" hostname="LENOVOYOGA" time="0.072">
+  <properties/>
+  <testcase name="read_missingFile_emptyResult()" classname="bloodnet.storage.JsonBloodNetStorageTest" time="0.003"/>
+  <testcase name="readAndSaveBloodNet_allInOrder_success()" classname="bloodnet.storage.JsonBloodNetStorageTest" time="0.021"/>
+  <testcase name="readBloodNet_invalidPersonBloodNet_throwDataLoadingException()" classname="bloodnet.storage.JsonBloodNetStorageTest" time="0.015"/>
+  <testcase name="saveBloodNet_nullFilePath_throwsNullPointerException()" classname="bloodnet.storage.JsonBloodNetStorageTest" time="0.011"/>
+  <testcase name="readBloodNet_nullFilePath_throwsNullPointerException()" classname="bloodnet.storage.JsonBloodNetStorageTest" time="0.004"/>
+  <testcase name="readBloodNet_invalidAndValidPersonBloodNet_throwDataLoadingException()" classname="bloodnet.storage.JsonBloodNetStorageTest" time="0.005"/>
+  <testcase name="read_notJsonFormat_exceptionThrown()" classname="bloodnet.storage.JsonBloodNetStorageTest" time="0.006"/>
+  <testcase name="saveBloodNet_nullBloodNet_throwsNullPointerException()" classname="bloodnet.storage.JsonBloodNetStorageTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit13980374772996573715\TempBloodNet.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit13980374772996573715\TempBloodNet.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file C:\Users\limin\AppData\Local\Temp\junit13980374772996573715\TempBloodNet.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Successfully populated each donation record's donor name
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\JsonBloodNetStorageTest\invalidPersonBloodNet.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Illegal values found in src\test\data\JsonBloodNetStorageTest\invalidPersonBloodNet.json: Person's ID field is missing!
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\JsonBloodNetStorageTest\invalidAndValidPersonBloodNet.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.storage.JsonBloodNetStorage readBloodNet
+INFO: Illegal values found in src\test\data\JsonBloodNetStorageTest\invalidAndValidPersonBloodNet.json: Phone numbers should only contain numbers, be 8 digits long, and start with either 3, 6, 8, or 9.
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+INFO: JSON file src\test\data\JsonBloodNetStorageTest\notJsonFormatBloodNet.json found.
+Nov 02, 2025 2:49:26 PM bloodnet.commons.util.JsonUtil readJsonFile
+WARNING: Error reading from jsonFile file src\test\data\JsonBloodNetStorageTest\notJsonFormatBloodNet.json: com.fasterxml.jackson.core.JsonParseException: Unrecognized token 'not': was expecting 'null', 'true', 'false' or NaN
+ at [Source: not json format!
+; line: 1, column: 4]
+]]></system-err>
+</testsuite>

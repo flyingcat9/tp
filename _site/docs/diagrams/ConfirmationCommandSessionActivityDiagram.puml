@@ -1,0 +1,22 @@
+@startuml
+title Command Requiring User Confirmation
+!include style.puml
+skinparam activity {
+    BackgroundColor LOGIC_COLOR
+    BorderColor black
+    ArrowColor LOGIC_COLOR_T4
+    FontColor white
+}
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+:User inputs command requiring\n user confirmation (e.g. delete 1);
+:Create ConfirmationCommandSession storing\nthe deferred execution of the Command;
+repeat :Ask user for confirmation;
+repeat while () is ([else]) not ([user inputs 'yes' or 'no' (caps insensitive)])
+if () then ([user inputs 'yes'])
+    :Carry out deferred execution of the Command;
+else ([user inputs 'no'])
+endif
+stop
+@enduml

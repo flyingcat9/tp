@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.model.person.IsEligibleToDonatePredicateTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:25" hostname="LENOVOYOGA" time="0.021">
+  <properties/>
+  <testcase name="donorHasSuccessorDonationMoreThan84Days_returnsTrue()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.0"/>
+  <testcase name="donorHasSuccessorDonationAtExactly84Days_returnsTrue()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.0"/>
+  <testcase name="donorIsInRangeAndHasDonatedBefore_returnsTrue()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.001"/>
+  <testcase name="equals()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.0"/>
+  <testcase name="validDateOfBirthRangeButDonationLengthTooShort_returnsFalse()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.0"/>
+  <testcase name="toStringMethod()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.001"/>
+  <testcase name="donatedWithLastThreeYears_returnsTrue()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.001"/>
+  <testcase name="donorIsBetweenSixteenAndSixty_returnsTrue()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.001"/>
+  <testcase name="donorIsSixtyYearsOld_returnsTrue()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.0"/>
+  <testcase name="donorIsSixteen_returnsTrue()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.001"/>
+  <testcase name="donorIsSixtyOneAndNeverDonatedBefore_returnsFalse()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.001"/>
+  <testcase name="donorHasSuccessorDonationWithin84Days_returnsFalse()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.001"/>
+  <testcase name="donorIsSixtyOneAndNeverDonatedBefore()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.0"/>
+  <testcase name="donorHasPredecessorDonationAtExactly84Days_returnsTrue()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.001"/>
+  <testcase name="donorIsFifteen_returnsFalse()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.0"/>
+  <testcase name="donorHasPredecessorDonationWithin84Days_returnsFalse()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.001"/>
+  <testcase name="donorIsSixtyOneButDonatedBefore_returnsTrue()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.001"/>
+  <testcase name="oldestRepeatDonor_returnsTrue()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.0"/>
+  <testcase name="donorIsAboveSixtySixAndDonationIsNotInRange_returnsFalse()" classname="bloodnet.model.person.IsEligibleToDonatePredicateTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

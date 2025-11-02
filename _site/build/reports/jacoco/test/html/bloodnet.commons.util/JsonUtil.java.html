@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JsonUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.commons.util</a> &gt; <span class="el_source">JsonUtil.java</span></div><h1>JsonUtil.java</h1><pre class="source lang-java linenums">package bloodnet.commons.util;
+
+import static java.util.Objects.requireNonNull;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.deser.std.FromStringDeserializer;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
+import bloodnet.commons.core.LogsCenter;
+import bloodnet.commons.exceptions.DataLoadingException;
+
+/**
+ * Converts a Java object instance to JSON and vice versa
+ */
+<span class="nc" id="L29">public class JsonUtil {</span>
+
+<span class="fc" id="L31">    private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);</span>
+
+<span class="fc" id="L33">    private static ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules()</span>
+<span class="fc" id="L34">            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)</span>
+<span class="fc" id="L35">            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)</span>
+<span class="fc" id="L36">            .setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE)</span>
+<span class="fc" id="L37">            .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY)</span>
+<span class="fc" id="L38">            .registerModule(new SimpleModule(&quot;SimpleModule&quot;)</span>
+<span class="fc" id="L39">                    .addSerializer(Level.class, new ToStringSerializer())</span>
+<span class="fc" id="L40">                    .addDeserializer(Level.class, new LevelDeserializer(Level.class)));</span>
+
+    static &lt;T&gt; void serializeObjectToJsonFile(Path jsonFile, T objectToSerialize) throws IOException {
+<span class="fc" id="L43">        FileUtil.writeToFile(jsonFile, toJsonString(objectToSerialize));</span>
+<span class="fc" id="L44">    }</span>
+
+    static &lt;T&gt; T deserializeObjectFromJsonFile(Path jsonFile, Class&lt;T&gt; classOfObjectToDeserialize)
+            throws IOException {
+<span class="fc" id="L48">        return fromJsonString(FileUtil.readFromFile(jsonFile), classOfObjectToDeserialize);</span>
+    }
+
+    /**
+     * Returns the JSON object from the given file or {@code Optional.empty()} object if the file is not found.
+     * If any values are missing from the file, default values will be used, as long as the file is a valid JSON file.
+     *
+     * @param filePath                   cannot be null.
+     * @param classOfObjectToDeserialize JSON file has to correspond to the structure in the class given here.
+     * @throws DataLoadingException if loading of the JSON file failed.
+     */
+    public static &lt;T&gt; Optional&lt;T&gt; readJsonFile(
+            Path filePath, Class&lt;T&gt; classOfObjectToDeserialize) throws DataLoadingException {
+<span class="fc" id="L61">        requireNonNull(filePath);</span>
+
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        if (!Files.exists(filePath)) {</span>
+<span class="fc" id="L64">            return Optional.empty();</span>
+        }
+<span class="fc" id="L66">        logger.info(&quot;JSON file &quot; + filePath + &quot; found.&quot;);</span>
+
+        T jsonFile;
+
+        try {
+<span class="fc" id="L71">            jsonFile = deserializeObjectFromJsonFile(filePath, classOfObjectToDeserialize);</span>
+<span class="fc" id="L72">        } catch (IOException e) {</span>
+<span class="fc" id="L73">            logger.warning(&quot;Error reading from jsonFile file &quot; + filePath + &quot;: &quot; + e);</span>
+<span class="fc" id="L74">            throw new DataLoadingException(e);</span>
+<span class="fc" id="L75">        }</span>
+
+<span class="fc" id="L77">        return Optional.of(jsonFile);</span>
+    }
+
+    /**
+     * Saves the Json object to the specified file.
+     * Overwrites existing file if it exists, creates a new file if it doesn't.
+     *
+     * @param jsonFile cannot be null
+     * @param filePath cannot be null
+     * @throws IOException if there was an error during writing to the file
+     */
+    public static &lt;T&gt; void saveJsonFile(T jsonFile, Path filePath) throws IOException {
+<span class="fc" id="L89">        requireNonNull(filePath);</span>
+<span class="fc" id="L90">        requireNonNull(jsonFile);</span>
+
+<span class="fc" id="L92">        serializeObjectToJsonFile(filePath, jsonFile);</span>
+<span class="fc" id="L93">    }</span>
+
+
+    /**
+     * Converts a given string representation of a JSON data to instance of a class
+     *
+     * @param &lt;T&gt; The generic type to create an instance of
+     * @return The instance of T with the specified values in the JSON string
+     */
+    public static &lt;T&gt; T fromJsonString(String json, Class&lt;T&gt; instanceClass) throws IOException {
+<span class="fc" id="L103">        return objectMapper.readValue(json, instanceClass);</span>
+    }
+
+    /**
+     * Converts a given instance of a class into its JSON data string representation
+     *
+     * @param instance The T object to be converted into the JSON string
+     * @param &lt;T&gt;      The generic type to create an instance of
+     * @return JSON data representation of the given class instance, in string
+     */
+    public static &lt;T&gt; String toJsonString(T instance) throws JsonProcessingException {
+<span class="fc" id="L114">        return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(instance);</span>
+    }
+
+    /**
+     * Contains methods that retrieve logging level from serialized string.
+     */
+    private static class LevelDeserializer extends FromStringDeserializer&lt;Level&gt; {
+
+        protected LevelDeserializer(Class&lt;?&gt; vc) {
+<span class="fc" id="L123">            super(vc);</span>
+<span class="fc" id="L124">        }</span>
+
+        @Override
+        protected Level _deserialize(String value, DeserializationContext ctxt) {
+<span class="fc" id="L128">            return getLoggingLevel(value);</span>
+        }
+
+        /**
+         * Gets the logging level that matches loggingLevelString
+         * &lt;p&gt;
+         * Returns null if there are no matches
+         */
+        private Level getLoggingLevel(String loggingLevelString) {
+<span class="fc" id="L137">            return Level.parse(loggingLevelString);</span>
+        }
+
+        @Override
+        public Class&lt;Level&gt; handledType() {
+<span class="nc" id="L142">            return Level.class;</span>
+        }
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

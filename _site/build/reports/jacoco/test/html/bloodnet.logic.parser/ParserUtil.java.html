@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ParserUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.logic.parser</a> &gt; <span class="el_source">ParserUtil.java</span></div><h1>ParserUtil.java</h1><pre class="source lang-java linenums">package bloodnet.logic.parser;
+
+import static bloodnet.logic.Messages.MESSAGE_DATE_OF_BIRTH_TOO_OLD;
+import static java.util.Objects.requireNonNull;
+
+import java.time.LocalDate;
+
+import bloodnet.commons.core.index.Index;
+import bloodnet.commons.util.StringUtil;
+import bloodnet.logic.parser.exceptions.ParseException;
+import bloodnet.model.donationrecord.BloodVolume;
+import bloodnet.model.donationrecord.DonationDate;
+import bloodnet.model.person.BloodType;
+import bloodnet.model.person.DateOfBirth;
+import bloodnet.model.person.Email;
+import bloodnet.model.person.Name;
+import bloodnet.model.person.Phone;
+
+/**
+ * Contains utility methods used for parsing strings in the various *Parser classes.
+ */
+<span class="nc" id="L22">public class ParserUtil {</span>
+
+    public static final String MESSAGE_INVALID_INDEX = &quot;Index is not a non-zero unsigned integer.&quot;;
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     *
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static Index parseIndex(String oneBasedIndex) throws ParseException {
+<span class="fc" id="L33">        String trimmedIndex = oneBasedIndex.trim();</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {</span>
+<span class="fc" id="L35">            throw new ParseException(MESSAGE_INVALID_INDEX);</span>
+        }
+<span class="fc" id="L37">        return Index.fromOneBased(Integer.parseInt(trimmedIndex));</span>
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Name parseName(String name) throws ParseException {
+<span class="fc" id="L47">        requireNonNull(name);</span>
+<span class="fc" id="L48">        String trimmedName = name.trim();</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (!Name.isValidName(trimmedName)) {</span>
+<span class="fc" id="L50">            throw new ParseException(Name.MESSAGE_CONSTRAINTS);</span>
+        }
+<span class="fc" id="L52">        return new Name(trimmedName);</span>
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static Phone parsePhone(String phone) throws ParseException {
+<span class="fc" id="L62">        requireNonNull(phone);</span>
+<span class="fc" id="L63">        String trimmedPhone = phone.trim();</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if (!Phone.isValidPhone(trimmedPhone)) {</span>
+<span class="fc" id="L65">            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);</span>
+        }
+<span class="fc" id="L67">        return new Phone(trimmedPhone);</span>
+    }
+
+    /**
+     * Parses a {@code String bloodType} into an {@code BloodType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code bloodType} is invalid.
+     */
+    public static BloodType parseBloodType(String bloodType) throws ParseException {
+<span class="fc" id="L77">        requireNonNull(bloodType);</span>
+<span class="fc" id="L78">        String trimmedBloodType = bloodType.trim();</span>
+<span class="fc bfc" id="L79" title="All 2 branches covered.">        if (!BloodType.isValidBloodType(trimmedBloodType)) {</span>
+<span class="fc" id="L80">            throw new ParseException(BloodType.MESSAGE_CONSTRAINTS);</span>
+        }
+<span class="fc" id="L82">        return new BloodType(trimmedBloodType);</span>
+    }
+
+    /**
+     * Parses a {@code String date of birth} into a {@code Date of Birth}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date of birth} is invalid.
+     */
+    public static DateOfBirth parseDateOfBirth(String dateOfBirth) throws ParseException {
+<span class="fc" id="L92">        requireNonNull(dateOfBirth);</span>
+<span class="fc" id="L93">        String trimmedDateOfBirth = dateOfBirth.trim();</span>
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        if (!DateOfBirth.isValidDateOfBirth(trimmedDateOfBirth)) {</span>
+<span class="fc" id="L95">            String formattedMessage = String.format(</span>
+                    MESSAGE_DATE_OF_BIRTH_TOO_OLD,
+<span class="fc" id="L97">                    LocalDate.now().minusYears(130).format(DateOfBirth.DATE_FORMATTER));</span>
+<span class="fc" id="L98">            throw new ParseException(formattedMessage);</span>
+        }
+<span class="fc" id="L100">        return new DateOfBirth(trimmedDateOfBirth);</span>
+    }
+
+    /**
+     * Parses a {@code String email} into an {@code Email}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Email parseEmail(String email) throws ParseException {
+<span class="fc" id="L110">        requireNonNull(email);</span>
+<span class="fc" id="L111">        String trimmedEmail = email.trim();</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">        if (!Email.isValidEmail(trimmedEmail)) {</span>
+<span class="fc" id="L113">            throw new ParseException(Email.MESSAGE_CONSTRAINTS);</span>
+        }
+<span class="fc" id="L115">        return new Email(trimmedEmail);</span>
+    }
+
+    /**
+     * Parses a {@code String donationDate} into a {@code DonationDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code donationDate} is invalid.
+     */
+    public static DonationDate parseDonationDate(String donationDate) throws ParseException {
+<span class="fc" id="L125">        requireNonNull(donationDate);</span>
+<span class="fc" id="L126">        String trimmedDonationDate = donationDate.trim();</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        if (!DonationDate.isValidDonationDate(trimmedDonationDate)) {</span>
+<span class="fc" id="L128">            throw new ParseException(DonationDate.MESSAGE_CONSTRAINTS);</span>
+        }
+<span class="fc" id="L130">        return new DonationDate(trimmedDonationDate);</span>
+    }
+
+    /**
+     * Parses a {@code String bloodVolume} into a {@code BloodVolume}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code bloodVolume} is invalid.
+     */
+    public static BloodVolume parseBloodVolume(String bloodVolume) throws ParseException {
+<span class="fc" id="L140">        requireNonNull(bloodVolume);</span>
+<span class="fc" id="L141">        String trimmedBloodVolume = bloodVolume.trim();</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">        if (!BloodVolume.isValidBloodVolume(trimmedBloodVolume)) {</span>
+<span class="fc" id="L143">            throw new ParseException(BloodVolume.MESSAGE_CONSTRAINTS);</span>
+        }
+<span class="fc" id="L145">        return new BloodVolume(trimmedBloodVolume);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

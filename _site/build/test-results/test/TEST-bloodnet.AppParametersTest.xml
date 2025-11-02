@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="bloodnet.AppParametersTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2025-11-02T06:49:22" hostname="LENOVOYOGA" time="0.097">
+  <properties/>
+  <testcase name="equals()" classname="bloodnet.AppParametersTest" time="0.031"/>
+  <testcase name="toStringMethod()" classname="bloodnet.AppParametersTest" time="0.012"/>
+  <testcase name="parse_validConfigPath_success()" classname="bloodnet.AppParametersTest" time="0.004"/>
+  <testcase name="parse_nullConfigPath_success()" classname="bloodnet.AppParametersTest" time="0.0"/>
+  <testcase name="parse_invalidConfigPath_success()" classname="bloodnet.AppParametersTest" time="0.044"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Nov 02, 2025 2:49:22 PM bloodnet.AppParameters parse
+WARNING: Invalid config path a?. Using default config path.
+]]></system-err>
+</testsuite>

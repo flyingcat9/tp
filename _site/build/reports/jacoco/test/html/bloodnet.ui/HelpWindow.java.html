@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HelpWindow.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.ui</a> &gt; <span class="el_source">HelpWindow.java</span></div><h1>HelpWindow.java</h1><pre class="source lang-java linenums">package bloodnet.ui;
+
+import java.util.logging.Logger;
+
+import bloodnet.commons.core.LogsCenter;
+import bloodnet.logic.commands.AllCommands;
+import javafx.fxml.FXML;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.control.Button;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
+
+/**
+ * Controller for a help page.
+ */
+public class HelpWindow extends UiPart&lt;Stage&gt; {
+
+    public static final String USERGUIDE_URL = &quot;https://ay2526s1-cs2103t-t16-4.github.io/tp/UserGuide.html&quot;;
+    public static final String HELP_MESSAGE = &quot;Refer to the user guide: &quot; + USERGUIDE_URL;
+
+<span class="nc" id="L25">    private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);</span>
+    private static final String FXML = &quot;HelpWindow.fxml&quot;;
+
+
+    @FXML
+    private Button copyButton;
+
+    @FXML
+    private TextFlow helpMessage;
+
+    /**
+     * Creates a new HelpWindow.
+     *
+     * @param root Stage to use as the root of the HelpWindow.
+     */
+    public HelpWindow(Stage root) {
+<span class="nc" id="L41">        super(FXML, root);</span>
+<span class="nc" id="L42">        logger.info(&quot;HelpWindow initialised.&quot;);</span>
+<span class="nc" id="L43">        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();</span>
+<span class="nc" id="L44">        getRoot().setWidth(screenBounds.getWidth() * 0.6);</span>
+<span class="nc" id="L45">        getRoot().setHeight(screenBounds.getHeight() * 0.8);</span>
+<span class="nc" id="L46">        getRoot().setResizable(true);</span>
+<span class="nc" id="L47">        addTitle();</span>
+<span class="nc" id="L48">        AllCommands.addCommands();</span>
+<span class="nc" id="L49">        formatInstructions();</span>
+<span class="nc" id="L50">        addLink();</span>
+<span class="nc" id="L51">    }</span>
+
+    /**
+     * Creates a new HelpWindow.
+     */
+    public HelpWindow() {
+<span class="nc" id="L57">        this(new Stage());</span>
+<span class="nc" id="L58">    }</span>
+
+    /**
+     * Shows the help window.
+     *
+     * @throws IllegalStateException &lt;ul&gt;
+     *                               &lt;li&gt;
+     *                               if this method is called on a thread other than the JavaFX Application Thread.
+     *                               &lt;/li&gt;
+     *                               &lt;li&gt;
+     *                               if this method is called during animation or layout processing.
+     *                               &lt;/li&gt;
+     *                               &lt;li&gt;
+     *                               if this method is called on the primary stage.
+     *                               &lt;/li&gt;
+     *                               &lt;li&gt;
+     *                               if {@code dialogStage} is already showing.
+     *                               &lt;/li&gt;
+     *                               &lt;/ul&gt;
+     */
+    public void show() {
+<span class="nc" id="L79">        logger.fine(&quot;Showing help page about the application.&quot;);</span>
+<span class="nc" id="L80">        getRoot().show();</span>
+<span class="nc" id="L81">        getRoot().centerOnScreen();</span>
+<span class="nc" id="L82">    }</span>
+
+    /**
+     * Returns true if the help window is currently being shown.
+     */
+    public boolean isShowing() {
+<span class="nc" id="L88">        return getRoot().isShowing();</span>
+    }
+
+    /**
+     * Hides the help window.
+     */
+    public void hide() {
+<span class="nc" id="L95">        getRoot().hide();</span>
+<span class="nc" id="L96">    }</span>
+
+    /**
+     * Focuses on the help window.
+     */
+    public void focus() {
+<span class="nc" id="L102">        getRoot().requestFocus();</span>
+<span class="nc" id="L103">    }</span>
+
+    /**
+     * Copies the URL to the user guide to the clipboard.
+     */
+    @FXML
+    private void copyUrl() {
+<span class="nc" id="L110">        final Clipboard clipboard = Clipboard.getSystemClipboard();</span>
+<span class="nc" id="L111">        final ClipboardContent url = new ClipboardContent();</span>
+<span class="nc" id="L112">        url.putString(USERGUIDE_URL);</span>
+<span class="nc" id="L113">        clipboard.setContent(url);</span>
+<span class="nc" id="L114">        logger.info(&quot;User clicked 'Copy Link' button.&quot;);</span>
+<span class="nc" id="L115">    }</span>
+
+    /**
+     * Adds the header for the message box.
+     */
+    public void addTitle() {
+<span class="nc" id="L121">        Text title = new Text(&quot;BloodNet Commands\n&quot;);</span>
+<span class="nc" id="L122">        title.setStyle(&quot;-fx-font-size: 20px; -fx-font-weight: bold; -fx-fill: #C12727;&quot;);</span>
+<span class="nc" id="L123">        helpMessage.getChildren().add(title);</span>
+<span class="nc" id="L124">        Text space = new Text(&quot;\n&quot;);</span>
+<span class="nc" id="L125">        helpMessage.getChildren().add(space);</span>
+
+<span class="nc" id="L127">    }</span>
+
+    /**
+     * Formats the instructions appropriately.
+     */
+    public void formatInstructions() {
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        for (String command: AllCommands.COMMANDS.keySet()) {</span>
+<span class="nc" id="L134">            Text instruction = new Text(command + &quot;: &quot;);</span>
+<span class="nc" id="L135">            instruction.setStyle(&quot;-fx-font-weight: bold; -fx-fill: #C12727;&quot;);</span>
+<span class="nc" id="L136">            helpMessage.getChildren().add(instruction);</span>
+
+<span class="nc" id="L138">            Text description = new Text(AllCommands.COMMANDS.get(command).getDescription() + &quot;\n&quot;);</span>
+<span class="nc" id="L139">            helpMessage.getChildren().add(description);</span>
+
+<span class="nc" id="L141">            String parameters = AllCommands.COMMANDS.get(command).getParameters();</span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            if (!parameters.isEmpty()) {</span>
+<span class="nc" id="L143">                Text parameter = new Text(parameters + &quot;\n&quot;);</span>
+<span class="nc" id="L144">                parameter.setStyle(&quot;-fx-fill: #262525;&quot;);</span>
+<span class="nc" id="L145">                helpMessage.getChildren().add(parameter);</span>
+            }
+<span class="nc" id="L147">            String examples = AllCommands.COMMANDS.get(command).getExample();</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            if (!examples.isEmpty()) {</span>
+<span class="nc" id="L149">                Text example = new Text(examples + &quot;\n&quot;);</span>
+<span class="nc" id="L150">                example.setStyle(&quot;-fx-fill: #4d4b4b;&quot;);</span>
+<span class="nc" id="L151">                helpMessage.getChildren().add(example);</span>
+            }
+<span class="nc" id="L153">            Text space = new Text(&quot;\n&quot;);</span>
+<span class="nc" id="L154">            helpMessage.getChildren().add(space);</span>
+<span class="nc" id="L155">        }</span>
+<span class="nc" id="L156">    }</span>
+
+    /**
+     * Add the link to the message box.
+     */
+    public void addLink() {
+<span class="nc" id="L162">        Text text = new Text(HELP_MESSAGE + &quot;         &quot;);</span>
+<span class="nc" id="L163">        helpMessage.getChildren().add(text);</span>
+<span class="nc" id="L164">        Button linker = new Button(&quot;Copy link&quot;);</span>
+<span class="nc" id="L165">        linker.getStyleClass().add(&quot;copyButton&quot;);</span>
+<span class="nc" id="L166">        linker.setOnAction(event -&gt; copyUrl());</span>
+<span class="nc" id="L167">        helpMessage.getChildren().add(linker);</span>
+<span class="nc" id="L168">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

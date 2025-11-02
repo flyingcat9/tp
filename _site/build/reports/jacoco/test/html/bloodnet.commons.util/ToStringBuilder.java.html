@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ToStringBuilder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tp</a> &gt; <a href="index.source.html" class="el_package">bloodnet.commons.util</a> &gt; <span class="el_source">ToStringBuilder.java</span></div><h1>ToStringBuilder.java</h1><pre class="source lang-java linenums">package bloodnet.commons.util;
+
+/**
+ * Builds a string representation of an object that is suitable as the return value of {@link Object#toString()}.
+ */
+public class ToStringBuilder {
+    private static final String OBJECT_PREFIX = &quot;{&quot;;
+    private static final String OBJECT_SUFFIX = &quot;}&quot;;
+    private static final String FIELD_SEPARATOR = &quot;, &quot;;
+    private static final String FIELD_NAME_VALUE_SEPARATOR = &quot;=&quot;;
+
+<span class="fc" id="L12">    private final StringBuilder stringBuilder = new StringBuilder();</span>
+    private boolean hasField;
+
+    /**
+     * Constructs a {@code ToStringBuilder} whose formatted output will be prefixed with {@code objectName}.
+     */
+<span class="fc" id="L18">    public ToStringBuilder(String objectName) {</span>
+<span class="fc" id="L19">        stringBuilder.append(objectName).append(OBJECT_PREFIX);</span>
+<span class="fc" id="L20">    }</span>
+
+    /**
+     * Constructs a {@code ToStringBuilder} whose formatted output will be prefixed with the
+     * canonical class name of {@code object}.
+     */
+    public ToStringBuilder(Object object) {
+<span class="fc" id="L27">        this(object.getClass().getCanonicalName());</span>
+<span class="fc" id="L28">    }</span>
+
+    /**
+     * Adds a field name/value pair to the output string.
+     *
+     * @param fieldName  The name of the field.
+     * @param fieldValue The value of the field.
+     * @return A reference to this {@code ToStringBuilder} object, allowing method calls to be chained.
+     */
+    public ToStringBuilder add(String fieldName, Object fieldValue) {
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (hasField) {</span>
+<span class="fc" id="L39">            stringBuilder.append(FIELD_SEPARATOR);</span>
+        }
+<span class="fc" id="L41">        stringBuilder.append(fieldName).append(FIELD_NAME_VALUE_SEPARATOR).append(fieldValue);</span>
+<span class="fc" id="L42">        hasField = true;</span>
+<span class="fc" id="L43">        return this;</span>
+    }
+
+    /**
+     * Returns the built formatted string representation.
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L51">        return stringBuilder.toString() + OBJECT_SUFFIX;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

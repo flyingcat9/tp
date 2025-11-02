@@ -1,0 +1,127 @@
+{
+  "persons" : [ {
+    "id" : "04adb966-5b89-4951-bdaf-0471b76b6349",
+    "name" : "Alex Yeoh",
+    "phone" : "91234567",
+    "email" : "johndoe@example.com",
+    "bloodType" : "A+",
+    "dateOfBirth" : "28-03-1995"
+  }, {
+    "id" : "929cae0a-c20f-4a6c-8bff-782443910534",
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "bloodType" : "AB+",
+    "dateOfBirth" : "01-01-2000"
+  }, {
+    "id" : "225a1def-43a0-4c8f-9256-18f88e162bcd",
+    "name" : "Charlotte Oliveiro",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "bloodType" : "O-",
+    "dateOfBirth" : "04-01-2003"
+  }, {
+    "id" : "773ef4ee-ec45-4a9c-bbc5-aeee7585895c",
+    "name" : "David Li",
+    "phone" : "91031282",
+    "email" : "lidavid@example.com",
+    "bloodType" : "B+",
+    "dateOfBirth" : "12-12-2000"
+  }, {
+    "id" : "763927e1-342b-468b-b539-3197e55cd53b",
+    "name" : "Irfan Ibrahim",
+    "phone" : "92492021",
+    "email" : "irfan@example.com",
+    "bloodType" : "B-",
+    "dateOfBirth" : "09-06-1990"
+  }, {
+    "id" : "cfc7e2e5-26cc-40e5-aaa2-1273a083e8af",
+    "name" : "Roy Balakrishnan",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "bloodType" : "O+",
+    "dateOfBirth" : "21-03-2004"
+  }, {
+    "id" : "fe96e6fb-0c5f-45d6-ba27-b2639b8a9e5e",
+    "name" : "jimmy",
+    "phone" : "32345678",
+    "email" : "e@exacom",
+    "bloodType" : "B+",
+    "dateOfBirth" : "02-02-2020"
+  }, {
+    "id" : "d0d0ee0e-f7f7-42e1-9227-72912699b05d",
+    "name" : "john doe",
+    "phone" : "32345678",
+    "email" : "e@example.com",
+    "bloodType" : "A+",
+    "dateOfBirth" : "02-02-2020"
+  }, {
+    "id" : "cfc39ba6-55d4-4262-a9eb-621199cfb99a",
+    "name" : "John Doe",
+    "phone" : "32345678",
+    "email" : "e@example.com",
+    "bloodType" : "A+",
+    "dateOfBirth" : "02-02-2020"
+  }, {
+    "id" : "cde57710-5f92-4bf0-a821-08a058de090a",
+    "name" : "john     doe",
+    "phone" : "32345678",
+    "email" : "e@example.com",
+    "bloodType" : "A+",
+    "dateOfBirth" : "02-02-2020"
+  }, {
+    "id" : "bf286582-9634-47ad-bc42-0b9964021326",
+    "name" : "John Doe",
+    "phone" : "98818202",
+    "email" : "e@example.com",
+    "bloodType" : "A+",
+    "dateOfBirth" : "02-02-2020"
+  }, {
+    "id" : "33368457-6b8a-489e-ab6f-fdcd41d9a1a9",
+    "name" : "john doe",
+    "phone" : "98818202",
+    "email" : "e@example.com",
+    "bloodType" : "A+",
+    "dateOfBirth" : "02-02-2020"
+  }, {
+    "id" : "0e473263-2745-4b15-9b2c-671e17acca24",
+    "name" : "Alex yeoh",
+    "phone" : "91234567",
+    "email" : "johndoe@example.com",
+    "bloodType" : "A+",
+    "dateOfBirth" : "28-03-1995"
+  }, {
+    "id" : "cee909ec-668c-42b0-b21a-fa0ca8eb5a77",
+    "name" : "Alex  Yeoh",
+    "phone" : "91234567",
+    "email" : "johndoe@example.com",
+    "bloodType" : "A+",
+    "dateOfBirth" : "28-03-2025"
+  } ],
+  "donationRecords" : [ {
+    "id" : "01ab240a-2e7a-4beb-a8a1-5f9325019b28",
+    "personId" : "04adb966-5b89-4951-bdaf-0471b76b6349",
+    "donationDate" : "15-10-2025",
+    "bloodVolume" : "450"
+  }, {
+    "id" : "8e84ac9b-da7d-4da2-af22-d713a6337098",
+    "personId" : "225a1def-43a0-4c8f-9256-18f88e162bcd",
+    "donationDate" : "21-03-2025",
+    "bloodVolume" : "400"
+  }, {
+    "id" : "5b2e97d5-42ce-44eb-a1c2-895ea5f9b049",
+    "personId" : "225a1def-43a0-4c8f-9256-18f88e162bcd",
+    "donationDate" : "25-07-2025",
+    "bloodVolume" : "400"
+  }, {
+    "id" : "35c36cfb-e4c9-4411-a5b6-36ac5b19489b",
+    "personId" : "763927e1-342b-468b-b539-3197e55cd53b",
+    "donationDate" : "18-02-2025",
+    "bloodVolume" : "400"
+  }, {
+    "id" : "27e01424-af32-4be4-a08b-b93f7870b45f",
+    "personId" : "763927e1-342b-468b-b539-3197e55cd53b",
+    "donationDate" : "15-10-2025",
+    "bloodVolume" : "499"
+  } ]
+}
